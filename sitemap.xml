@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://example.com/2024/08/22/hello-world/</loc>
+    
+    <lastmod>2024-08-23T04:36:33.001Z</lastmod>
+    
+    <date>1724323444994</date>
+    <title>Hello World | RETROSPRO</title>
+    
+    <desc>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick</desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/08/23/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</loc>
+    
+    <lastmod>2024-08-23T04:27:01.733Z</lastmod>
+    
+    <date>1724387125000</date>
+    <title>golang远程调试 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/about/index.html</loc>
+    
+    <lastmod>2024-08-23T04:03:37.806Z</lastmod>
+    
+    <date>1724385772000</date>
+    <title>关于 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/index.html</loc>
+    
+    <lastmod>2024-08-23T04:01:29.517Z</lastmod>
+    
+    <date>1724382360000</date>
+    <title>分类 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/index.html</loc>
+    
+    <lastmod>2024-08-23T03:59:54.342Z</lastmod>
+    
+    <date>1724385429000</date>
+    <title>标签 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+</urlset>
+
