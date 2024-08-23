@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2024/08/23/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</loc>
+    <loc>http://example.com/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</loc>
     
-    <lastmod>2024-08-23T15:20:55.538Z</lastmod>
+    <lastmod>2024-08-23T16:01:59.880Z</lastmod>
     
     <date>1724387125000</date>
-    <title>golang远程调试 | RETROSPRO</title>
+    <title>Goland远程调试 | RETROSPRO</title>
     
-    <desc></desc>
+    <desc>1. Goland单步调试1.1 Goland侧配置 配置代码同步 添加Go Remote</desc>
   </url>
   
   <url>
-    <loc>http://example.com/2024/08/22/hello-world/</loc>
+    <loc>http://example.com/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     
-    <lastmod>2024-08-23T04:36:33.001Z</lastmod>
+    <lastmod>2024-08-23T16:00:09.615Z</lastmod>
     
-    <date>1724323444994</date>
-    <title>Hello World | RETROSPRO</title>
+    <date>1724427455000</date>
+    <title>pprof使用指南 | RETROSPRO</title>
     
-    <desc>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick</desc>
+    <desc></desc>
   </url>
   
   <url>

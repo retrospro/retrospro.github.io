@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>golang远程调试</title>
-    <url>/2024/08/23/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
+    <title>Goland远程调试</title>
+    <url>/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[<h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
 <li><p>配置代码同步</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225107371.png" alt="image-20240823225107371"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
 </li>
 <li><p>添加Go Remote</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225246673.png" alt="image-20240823225246673"></p>
+<span id="more"></span>
+
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225246673.png" alt="image-20240823225246673"></p>
 </li>
 </ol>
 <h2 id="1-2-Linux-侧配置"><a href="#1-2-Linux-侧配置" class="headerlink" title="1.2 Linux 侧配置"></a>1.2 Linux 侧配置</h2><ol>
 <li><p>安装go</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225501448.png" alt="image-20240823225501448"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225501448.png" alt="image-20240823225501448"></p>
 </li>
 <li><p>配置环境变量</p>
 </li>
 </ol>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225711804.png" alt="image-20240823225711804"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225711804.png" alt="image-20240823225711804"></p>
 <ol start="3">
 <li><p>安装dlv</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225759957.png" alt="image-20240823225759957"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225759957.png" alt="image-20240823225759957"></p>
 </li>
 <li><p>编译用于调试的go二进制</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823225923905.png" alt="image-20240823225923905"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225923905.png" alt="image-20240823225923905"></p>
 </li>
 <li><p>打开2345端口的防火墙</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=2345/tcp</span><br></pre></td></tr></table></figure>
@@ -33,16 +35,16 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop xxx.service</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>服务端开启dlv调试</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823230501230.png" alt="image-20240823230501230"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230501230.png" alt="image-20240823230501230"></p>
 </li>
 </ol>
-<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823230835485.png" alt="image-20240823230835485"></p>
+<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230835485.png" alt="image-20240823230835485"></p>
 <h1 id="2-Goland远程执行单元测试"><a href="#2-Goland远程执行单元测试" class="headerlink" title="2. Goland远程执行单元测试"></a>2. Goland远程执行单元测试</h1><ol>
 <li><p>全量执行</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823231615455.png" alt="image-20240823231615455"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231615455.png" alt="image-20240823231615455"></p>
 </li>
 <li><p>单个测试文件执行</p>
-<p><img src="/golang%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95.assets/image-20240823231956910.png" alt="image-20240823231956910"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231956910.png" alt="image-20240823231956910"></p>
 </li>
 </ol>
 <p><strong>注意：如果本地单测文件有改动，记得将改动同步上传至远程服务器</strong></p>
@@ -57,23 +59,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/08/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<span id="more"></span>
-
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>pprof使用指南</title>
+    <url>/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>golang</category>
+        <category>golang调试</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>golang调试</tag>
+      </tags>
   </entry>
 </search>
