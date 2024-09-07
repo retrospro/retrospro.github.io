@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/retrospro.png">
+  <link rel="mask-icon" href="/images/retrospro.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1. 选择排序与冒泡排序时间复杂度O(N^2)，额外空间复杂度O(1)   2. 插入排序时间复杂度O(N^2)，额外空间复杂度O(1) 最好情况：O(N)，最坏情况：O(N^2) 算法流程按照最差情况来估计时间复杂度 类似于打扑克牌抓牌时的插入  3. 快速排序https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;sort-an-array&#x2F;submissions&#x2F; 使用「快速排序」解决的经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法-1排序">
+<meta property="og:url" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="RETROSPRO">
+<meta property="og:description" content="1. 选择排序与冒泡排序时间复杂度O(N^2)，额外空间复杂度O(1)   2. 插入排序时间复杂度O(N^2)，额外空间复杂度O(1) 最好情况：O(N)，最坏情况：O(N^2) 算法流程按照最差情况来估计时间复杂度 类似于打扑克牌抓牌时的插入  3. 快速排序https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;sort-an-array&#x2F;submissions&#x2F; 使用「快速排序」解决的经">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170729362.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240829164912630.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831184709207.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831185648360.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902160735736.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png">
+<meta property="og:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png">
+<meta property="article:published_time" content="2024-08-26T09:02:18.000Z">
+<meta property="article:modified_time" content="2024-09-07T13:50:50.260Z">
+<meta property="article:author" content="Eric Hao">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png">
+
+
+<link rel="canonical" href="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/","path":"2024/08/26/数据结构与算法/","title":"数据结构与算法-1排序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构与算法-1排序 | RETROSPRO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">RETROSPRO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">1. 选择排序与冒泡排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">2. 插入排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">3. 快速排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">4. 堆排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">5. 归并排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">6. 哈希表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%9C%89%E5%BA%8F%E8%A1%A8"><span class="nav-number">7.</span> <span class="nav-text">7. 有序表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Eric Hao"
+      src="/images/retrospro.png">
+  <p class="site-author-name" itemprop="name">Eric Hao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/retrospro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;retrospro" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构与算法-1排序 | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构与算法-1排序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-26 17:02:18" itemprop="dateCreated datePublished" datetime="2024-08-26T17:02:18+08:00">2024-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-07 21:50:50" itemprop="dateModified" datetime="2024-09-07T21:50:50+08:00">2024-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-选择排序与冒泡排序"><a href="#1-选择排序与冒泡排序" class="headerlink" title="1. 选择排序与冒泡排序"></a>1. 选择排序与冒泡排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png" alt="image-20240826170655954"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170729362.png" alt="image-20240826170729362"></p>
+<h1 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2. 插入排序"></a>2. 插入排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p>最好情况：O(N)，最坏情况：O(N^2)</p>
+<p>算法流程按照最差情况来估计时间复杂度</p>
+<p>类似于打扑克牌抓牌时的插入</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240829164912630.png" alt="image-20240829164912630"></p>
+<h1 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/">https://leetcode.cn/problems/sort-an-array/submissions/</a></p>
+<p><strong>使用「快速排序」解决的经典问题（非常重要）：</strong></p>
+<ul>
+<li>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-largest-element-in-an-array/description/">https://leetcode.cn/problems/kth-largest-element-in-an-array/description/</a></p>
+<ul>
+<li>荷兰国旗问题：「力扣」第 75 题：颜色分类</li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-colors/description/">https://leetcode.cn/problems/sort-colors/description/</a></p>
+<h1 id="4-堆排序"><a href="#4-堆排序" class="headerlink" title="4. 堆排序"></a>4. 堆排序</h1><p>堆排序的细节和复杂度分析</p>
+<p>时间复杂度O(N*logN)，额外空间复杂度O(1) </p>
+<p>堆结构非常重要</p>
+<p>1，堆结构的heapInsert与heapify </p>
+<p>2，堆结构的增大和减少 </p>
+<p>3，如果只是建立堆的过程，时间复杂度为O(N) </p>
+<p>4，优先级队列结构，就是堆结构</p>
+<p>使用堆排序解决的经典问题：</p>
+<ul>
+<li><p>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/560152694/">https://leetcode.cn/problems/sort-an-array/submissions/560152694/</a></p>
+</li>
+<li><p>排序几乎有序的数组</p>
+</li>
+</ul>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831184709207.png" alt="image-20240831184709207"></p>
+<p>假设要求升序排列，由题意，数组最小的数一定在下标。0–k 的范围内，所以将 0–k 范围内的数建立成小根堆，则下标0的数即为数组最小值，然后 k 窗口依次往右移动</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831185648360.png" alt="image-20240831185648360"></p>
+<h1 id="5-归并排序"><a href="#5-归并排序" class="headerlink" title="5. 归并排序"></a>5. 归并排序</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902160735736.png" alt="image-20240902160735736"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/560674602/">https://leetcode.cn/problems/sort-an-array/submissions/560674602/</a>. – 用归并排序解决数组排序问题题解</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">LCR 170. 交易逆序对的总数</a></li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/">https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/">315. 计算右侧小于当前元素的个数</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/</a></p>
+</li>
+</ul>
+<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
+<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png" alt="image-20240830152141731"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png" alt="image-20240830152152732"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"># 排序</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/24/golang%E5%88%87%E7%89%87/" rel="prev" title="golang切片">
+                  <i class="fa fa-angle-left"></i> golang切片
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" rel="next" title="linux系统编程">
+                  linux系统编程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Eric Hao</span>
+  </div>
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"retrospro","repo":"gitalk","client_id":"Ov23liOgrSkahiDbuNEk","client_secret":"af23b916424a5d6cb8b5e4e0f2f69eb66562e5eb","admin_user":"retrospro","distraction_free_mode":true,"proxy":"https://vercel.prohibitorum.top/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"fc2cab9f8dcadb292b57a96798f14cfd"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
