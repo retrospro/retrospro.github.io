@@ -1,77 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Goland远程调试</title>
-    <url>/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
-<li><p>配置代码同步</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
-</li>
-<li><p>添加Go Remote</p>
-<span id="more"></span>
-
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225246673.png" alt="image-20240823225246673"></p>
-</li>
-</ol>
-<h2 id="1-2-Linux-侧配置"><a href="#1-2-Linux-侧配置" class="headerlink" title="1.2 Linux 侧配置"></a>1.2 Linux 侧配置</h2><ol>
-<li><p>安装go</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225501448.png" alt="image-20240823225501448"></p>
-</li>
-<li><p>配置环境变量</p>
-</li>
-</ol>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225711804.png" alt="image-20240823225711804"></p>
-<ol start="3">
-<li><p>安装dlv</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225759957.png" alt="image-20240823225759957"></p>
-</li>
-<li><p>编译用于调试的go二进制</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225923905.png" alt="image-20240823225923905"></p>
-</li>
-<li><p>打开2345端口的防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=2345/tcp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>停服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop xxx.service</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>服务端开启dlv调试</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230501230.png" alt="image-20240823230501230"></p>
-</li>
-</ol>
-<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230835485.png" alt="image-20240823230835485"></p>
-<h1 id="2-Goland远程执行单元测试"><a href="#2-Goland远程执行单元测试" class="headerlink" title="2. Goland远程执行单元测试"></a>2. Goland远程执行单元测试</h1><ol>
-<li><p>全量执行</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231615455.png" alt="image-20240823231615455"></p>
-</li>
-<li><p>单个测试文件执行</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231956910.png" alt="image-20240823231956910"></p>
-</li>
-</ol>
-<p><strong>注意：如果本地单测文件有改动，记得将改动同步上传至远程服务器</strong></p>
-]]></content>
-      <categories>
-        <category>golang</category>
-        <category>golang调试</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>golang调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pprof使用指南</title>
-    <url>/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>golang</category>
-        <category>golang调试</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>golang调试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>golang切片</title>
     <url>/2024/08/24/golang%E5%88%87%E7%89%87/</url>
     <content><![CDATA[<h1 id="1-make切片时，是否指定size有什么区别？"><a href="#1-make切片时，是否指定size有什么区别？" class="headerlink" title="1. make切片时，是否指定size有什么区别？"></a>1. make切片时，是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
@@ -177,184 +106,6 @@
       </categories>
       <tags>
         <tag>linux系统编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>golang随想录</title>
-    <url>/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="1-关于make是否指定容量"><a href="#1-关于make是否指定容量" class="headerlink" title="1. 关于make是否指定容量"></a>1. 关于make是否指定容量</h1><p><strong>在 Go 语言中，make 函数用于创建通道（channel）、切片（slice）和映射（map）。 根据是否指定size，channel分为非缓冲通道 和 缓冲通道； 那么对于切片（slice）和映射（map）来说，make时是否指定size，有什么区别呢？</strong></p>
-<p>在 Go 语言中，<code>make</code> 函数用于创建通道（channel）、切片（slice）和映射（map）。对于切片和映射，<code>make</code> 函数的行为在是否指定大小（size）时有所不同。下面分别讨论切片和映射在使用 <code>make</code> 函数时是否指定大小的区别。</p>
-<h3 id="切片（Slice）"><a href="#切片（Slice）" class="headerlink" title="切片（Slice）"></a>切片（Slice）</h3><ul>
-<li><p><strong>未指定大小</strong>：当你使用 <code>make([]T, len)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 的切片，并且容量（capacity）等于长度。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个长度和容量均为 5 的切片。切片的所有元素都会被初始化为类型 <code>T</code> 的零值（比如对于 <code>int</code> 类型，零值是 0）。</p>
-</li>
-<li><p><strong>指定容量</strong>：当你使用 <code>make([]T, len, cap)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 且容量为 <code>cap</code> 的切片。容量可以比长度大。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个长度为 5、容量为 10 的切片。这意味着虽然切片的当前长度是 5，但它最多可以扩展到 10 个元素而无需重新分配内存。</p>
-</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>如果不指定容量，Go 会将容量设置为与长度相同。</li>
-<li>如果指定了容量，Go 会为切片预留更多的空间。这在切片需要频繁追加元素的场景下非常有用，因为预先指定较大的容量可以减少在追加元素时的内存重新分配操作，提高性能。</li>
-</ul>
-<h3 id="映射（Map）"><a href="#映射（Map）" class="headerlink" title="映射（Map）"></a>映射（Map）</h3><ul>
-<li><p><strong>未指定大小</strong>：当你使用 <code>make(map[T1]T2)</code> 创建映射时，Go 会创建一个初始大小适合较小规模使用的映射。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个空的映射。虽然初始容量是非零的，但如果往映射中插入了超出初始容量的元素，映射会自动扩展。</p>
-</li>
-<li><p><strong>指定大小</strong>：当你使用 <code>make(map[T1]T2, cap)</code> 创建映射时，<code>cap</code> 表示预估的元素数量。Go 会为映射预分配足够的空间来存储 <code>cap</code> 个元素，以减少在实际使用过程中发生的扩展操作。</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个初始容量为 10 的映射。这意味着 Go 会为至少 10 个键值对分配内存，减少当实际插入元素数量接近或超过 10 时的内存重新分配次数。</p>
-</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>如果不指定容量，Go 会为映射分配一个默认的小容量，并在需要时自动扩展。</li>
-<li>如果指定了容量，Go 会为映射预分配足够的内存以存储指定数量的元素，从而提高性能，尤其是在已知需要存储大量元素的场景下。</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong>切片</strong>：指定容量可以让切片在追加元素时减少内存重新分配，从而提高性能。未指定容量时，容量等于长度。</li>
-<li><strong>映射</strong>：指定容量可以减少映射在插入大量元素时的扩展次数，从而提高性能。未指定容量时，映射的容量是初始的小值，并会根据需要自动扩展。</li>
-</ul>
-<h1 id="2-切片是否指定size有什么区别？"><a href="#2-切片是否指定size有什么区别？" class="headerlink" title="2. 切片是否指定size有什么区别？"></a>2. 切片是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
-<p>在 Go 语言中，<code>make</code> 函数用于创建切片时，是否指定 <code>size</code>（即长度）会影响切片的初始状态。下面解释两种情况下的区别：</p>
-<h3 id="1-不指定长度"><a href="#1-不指定长度" class="headerlink" title="1. 不指定长度"></a>1. 不指定长度</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>行为</strong>：如果你这样创建切片，由于没有指定长度和容量，Go 将会报错，因为 <code>make([]int)</code> 语法是无效的。</li>
-<li><strong>原因</strong>：<code>make</code> 函数在用于创建切片时至少需要一个参数（长度），你必须指定切片的初始长度。</li>
-</ul>
-<p>因此，你需要至少指定长度，像下面这样：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这段代码创建了一个长度为 0 的切片，其容量也为 0。这是一个空的切片，但仍然可以追加元素。</p>
-<h3 id="2-指定长度"><a href="#2-指定长度" class="headerlink" title="2. 指定长度"></a>2. 指定长度</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>行为</strong>：这段代码创建了一个长度为 5 的切片，其容量也为 5。切片中的 5 个元素会被初始化为类型 <code>int</code> 的零值（即 0）。切片的底层数组会包含 5 个元素。</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">fmt.Println(slice) <span class="comment">// 输出: [0 0 0 0 0]</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(slice)) <span class="comment">// 输出: 5</span></span><br><span class="line">fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ol>
-<li><p><strong>未指定长度（非法操作）</strong>：如果你不指定长度并直接调用 <code>make([]int)</code>，Go 编译器会报错，因为这种用法是不合法的。你至少需要指定长度。</p>
-</li>
-<li><p><strong>指定长度</strong>：当你指定长度时，切片会被创建并初始化为指定长度的切片。它的容量和长度都等于你指定的长度。如果你在创建切片时指定的长度为 5，那么切片将包含 5 个元素，所有元素的初始值为 0。</p>
-</li>
-<li><p><strong>创建空切片</strong>：如果你需要一个空切片（长度为 0），你可以这样写：</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>这个切片的长度和容量都为 0，可以使用 <code>append</code> 函数向其中添加元素，容量会根据需要自动扩展。</p>
-</li>
-</ol>
-<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
-]]></content>
-      <categories>
-        <category>golang</category>
-        <category>golang基础</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>golang基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构与算法-1排序</title>
-    <url>/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="1-选择排序与冒泡排序"><a href="#1-选择排序与冒泡排序" class="headerlink" title="1. 选择排序与冒泡排序"></a>1. 选择排序与冒泡排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png" alt="image-20240826170655954"></p>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170729362.png" alt="image-20240826170729362"></p>
-<h1 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2. 插入排序"></a>2. 插入排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
-<p>最好情况：O(N)，最坏情况：O(N^2)</p>
-<p>算法流程按照最差情况来估计时间复杂度</p>
-<p>类似于打扑克牌抓牌时的插入</p>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240829164912630.png" alt="image-20240829164912630"></p>
-<h1 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h1><p><a href="https://leetcode.cn/problems/sort-an-array/submissions/">https://leetcode.cn/problems/sort-an-array/submissions/</a></p>
-<p><strong>使用「快速排序」解决的经典问题（非常重要）：</strong></p>
-<ul>
-<li>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</li>
-</ul>
-<p>​		<a href="https://leetcode.cn/problems/kth-largest-element-in-an-array/description/">https://leetcode.cn/problems/kth-largest-element-in-an-array/description/</a></p>
-<ul>
-<li>荷兰国旗问题：「力扣」第 75 题：颜色分类</li>
-</ul>
-<p>​		<a href="https://leetcode.cn/problems/sort-colors/description/">https://leetcode.cn/problems/sort-colors/description/</a></p>
-<h1 id="4-堆排序"><a href="#4-堆排序" class="headerlink" title="4. 堆排序"></a>4. 堆排序</h1><p>堆排序的细节和复杂度分析</p>
-<p>时间复杂度O(N*logN)，额外空间复杂度O(1) </p>
-<p>堆结构非常重要</p>
-<p>1，堆结构的heapInsert与heapify </p>
-<p>2，堆结构的增大和减少 </p>
-<p>3，如果只是建立堆的过程，时间复杂度为O(N) </p>
-<p>4，优先级队列结构，就是堆结构</p>
-<p>使用堆排序解决的经典问题：</p>
-<ul>
-<li><p>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</p>
-<p><a href="https://leetcode.cn/problems/sort-an-array/submissions/560152694/">https://leetcode.cn/problems/sort-an-array/submissions/560152694/</a></p>
-</li>
-<li><p>排序几乎有序的数组</p>
-</li>
-</ul>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831184709207.png" alt="image-20240831184709207"></p>
-<p>假设要求升序排列，由题意，数组最小的数一定在下标。0–k 的范围内，所以将 0–k 范围内的数建立成小根堆，则下标0的数即为数组最小值，然后 k 窗口依次往右移动</p>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831185648360.png" alt="image-20240831185648360"></p>
-<h1 id="5-归并排序"><a href="#5-归并排序" class="headerlink" title="5. 归并排序"></a>5. 归并排序</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902160735736.png" alt="image-20240902160735736"></p>
-<p><a href="https://leetcode.cn/problems/sort-an-array/submissions/560674602/">https://leetcode.cn/problems/sort-an-array/submissions/560674602/</a>. – 用归并排序解决数组排序问题题解</p>
-<ul>
-<li><a href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">LCR 170. 交易逆序对的总数</a></li>
-</ul>
-<p>​		<a href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/">https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/</a></p>
-<ul>
-<li><p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/">315. 计算右侧小于当前元素的个数</a></p>
-<p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/</a></p>
-</li>
-</ul>
-<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
-<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png" alt="image-20240830152141731"></p>
-<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png" alt="image-20240830152152732"></p>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编程基础随想录</title>
-    <url>/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="1-如何理解同步和异步？"><a href="#1-如何理解同步和异步？" class="headerlink" title="1. 如何理解同步和异步？"></a>1. 如何理解同步和异步？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MC411a7rY/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012145437.png" alt="image-20240829012145437"></p>
-<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012334628.png" alt="image-20240829012334628"></p>
-<p><strong>追问：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">什么情况下用同步？</span><br><span class="line">什么情况下用异步？</span><br><span class="line">两者有什么差异？</span><br><span class="line">怎么在用户态层面实现异步？内核态又是怎么实现异步的？</span><br><span class="line">rpc接口是同步的还是异步的，为什么？该如何实现？</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-如何理解阻塞和非阻塞？"><a href="#2-如何理解阻塞和非阻塞？" class="headerlink" title="2. 如何理解阻塞和非阻塞？"></a>2. 如何理解阻塞和非阻塞？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MK421x7Sa/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-什么是回调函数？"><a href="#3-什么是回调函数？" class="headerlink" title="3. 什么是回调函数？"></a>3. 什么是回调函数？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1cW421N7P2/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-什么是IO多路复用？"><a href="#4-什么是IO多路复用？" class="headerlink" title="4. 什么是IO多路复用？"></a>4. 什么是IO多路复用？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1RJ4m1b7cy/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-如何理解并行和并发？"><a href="#5-如何理解并行和并发？" class="headerlink" title="5. 如何理解并行和并发？"></a>5. 如何理解并行和并发？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1fA4m1c7YT/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"><a href="#6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？" class="headerlink" title="6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"></a>6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？</h2><p><a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3</a></p>
-]]></content>
-      <categories>
-        <category>基础知识</category>
-      </categories>
-      <tags>
-        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
@@ -622,6 +373,255 @@
       <tags>
         <tag>golang</tag>
         <tag>golang基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>golang随想录</title>
+    <url>/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="1-关于make是否指定容量"><a href="#1-关于make是否指定容量" class="headerlink" title="1. 关于make是否指定容量"></a>1. 关于make是否指定容量</h1><p><strong>在 Go 语言中，make 函数用于创建通道（channel）、切片（slice）和映射（map）。 根据是否指定size，channel分为非缓冲通道 和 缓冲通道； 那么对于切片（slice）和映射（map）来说，make时是否指定size，有什么区别呢？</strong></p>
+<p>在 Go 语言中，<code>make</code> 函数用于创建通道（channel）、切片（slice）和映射（map）。对于切片和映射，<code>make</code> 函数的行为在是否指定大小（size）时有所不同。下面分别讨论切片和映射在使用 <code>make</code> 函数时是否指定大小的区别。</p>
+<h3 id="切片（Slice）"><a href="#切片（Slice）" class="headerlink" title="切片（Slice）"></a>切片（Slice）</h3><ul>
+<li><p><strong>未指定大小</strong>：当你使用 <code>make([]T, len)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 的切片，并且容量（capacity）等于长度。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个长度和容量均为 5 的切片。切片的所有元素都会被初始化为类型 <code>T</code> 的零值（比如对于 <code>int</code> 类型，零值是 0）。</p>
+</li>
+<li><p><strong>指定容量</strong>：当你使用 <code>make([]T, len, cap)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 且容量为 <code>cap</code> 的切片。容量可以比长度大。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个长度为 5、容量为 10 的切片。这意味着虽然切片的当前长度是 5，但它最多可以扩展到 10 个元素而无需重新分配内存。</p>
+</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>如果不指定容量，Go 会将容量设置为与长度相同。</li>
+<li>如果指定了容量，Go 会为切片预留更多的空间。这在切片需要频繁追加元素的场景下非常有用，因为预先指定较大的容量可以减少在追加元素时的内存重新分配操作，提高性能。</li>
+</ul>
+<h3 id="映射（Map）"><a href="#映射（Map）" class="headerlink" title="映射（Map）"></a>映射（Map）</h3><ul>
+<li><p><strong>未指定大小</strong>：当你使用 <code>make(map[T1]T2)</code> 创建映射时，Go 会创建一个初始大小适合较小规模使用的映射。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个空的映射。虽然初始容量是非零的，但如果往映射中插入了超出初始容量的元素，映射会自动扩展。</p>
+</li>
+<li><p><strong>指定大小</strong>：当你使用 <code>make(map[T1]T2, cap)</code> 创建映射时，<code>cap</code> 表示预估的元素数量。Go 会为映射预分配足够的空间来存储 <code>cap</code> 个元素，以减少在实际使用过程中发生的扩展操作。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个初始容量为 10 的映射。这意味着 Go 会为至少 10 个键值对分配内存，减少当实际插入元素数量接近或超过 10 时的内存重新分配次数。</p>
+</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>如果不指定容量，Go 会为映射分配一个默认的小容量，并在需要时自动扩展。</li>
+<li>如果指定了容量，Go 会为映射预分配足够的内存以存储指定数量的元素，从而提高性能，尤其是在已知需要存储大量元素的场景下。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>切片</strong>：指定容量可以让切片在追加元素时减少内存重新分配，从而提高性能。未指定容量时，容量等于长度。</li>
+<li><strong>映射</strong>：指定容量可以减少映射在插入大量元素时的扩展次数，从而提高性能。未指定容量时，映射的容量是初始的小值，并会根据需要自动扩展。</li>
+</ul>
+<h1 id="2-切片是否指定size有什么区别？"><a href="#2-切片是否指定size有什么区别？" class="headerlink" title="2. 切片是否指定size有什么区别？"></a>2. 切片是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
+<p>在 Go 语言中，<code>make</code> 函数用于创建切片时，是否指定 <code>size</code>（即长度）会影响切片的初始状态。下面解释两种情况下的区别：</p>
+<h3 id="1-不指定长度"><a href="#1-不指定长度" class="headerlink" title="1. 不指定长度"></a>1. 不指定长度</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：如果你这样创建切片，由于没有指定长度和容量，Go 将会报错，因为 <code>make([]int)</code> 语法是无效的。</li>
+<li><strong>原因</strong>：<code>make</code> 函数在用于创建切片时至少需要一个参数（长度），你必须指定切片的初始长度。</li>
+</ul>
+<p>因此，你需要至少指定长度，像下面这样：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个长度为 0 的切片，其容量也为 0。这是一个空的切片，但仍然可以追加元素。</p>
+<h3 id="2-指定长度"><a href="#2-指定长度" class="headerlink" title="2. 指定长度"></a>2. 指定长度</h3><figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：这段代码创建了一个长度为 5 的切片，其容量也为 5。切片中的 5 个元素会被初始化为类型 <code>int</code> 的零值（即 0）。切片的底层数组会包含 5 个元素。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">fmt.Println(slice) <span class="comment">// 输出: [0 0 0 0 0]</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(slice)) <span class="comment">// 输出: 5</span></span><br><span class="line">fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ol>
+<li><p><strong>未指定长度（非法操作）</strong>：如果你不指定长度并直接调用 <code>make([]int)</code>，Go 编译器会报错，因为这种用法是不合法的。你至少需要指定长度。</p>
+</li>
+<li><p><strong>指定长度</strong>：当你指定长度时，切片会被创建并初始化为指定长度的切片。它的容量和长度都等于你指定的长度。如果你在创建切片时指定的长度为 5，那么切片将包含 5 个元素，所有元素的初始值为 0。</p>
+</li>
+<li><p><strong>创建空切片</strong>：如果你需要一个空切片（长度为 0），你可以这样写：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>这个切片的长度和容量都为 0，可以使用 <code>append</code> 函数向其中添加元素，容量会根据需要自动扩展。</p>
+</li>
+</ol>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
+]]></content>
+      <categories>
+        <category>golang</category>
+        <category>golang基础</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>golang基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pprof使用指南</title>
+    <url>/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>golang</category>
+        <category>golang调试</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>golang调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编程基础随想录</title>
+    <url>/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="1-如何理解同步和异步？"><a href="#1-如何理解同步和异步？" class="headerlink" title="1. 如何理解同步和异步？"></a>1. 如何理解同步和异步？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MC411a7rY/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012145437.png" alt="image-20240829012145437"></p>
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012334628.png" alt="image-20240829012334628"></p>
+<p><strong>追问：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">什么情况下用同步？</span><br><span class="line">什么情况下用异步？</span><br><span class="line">两者有什么差异？</span><br><span class="line">怎么在用户态层面实现异步？内核态又是怎么实现异步的？</span><br><span class="line">rpc接口是同步的还是异步的，为什么？该如何实现？</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-如何理解阻塞和非阻塞？"><a href="#2-如何理解阻塞和非阻塞？" class="headerlink" title="2. 如何理解阻塞和非阻塞？"></a>2. 如何理解阻塞和非阻塞？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MK421x7Sa/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-什么是回调函数？"><a href="#3-什么是回调函数？" class="headerlink" title="3. 什么是回调函数？"></a>3. 什么是回调函数？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1cW421N7P2/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-什么是IO多路复用？"><a href="#4-什么是IO多路复用？" class="headerlink" title="4. 什么是IO多路复用？"></a>4. 什么是IO多路复用？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1RJ4m1b7cy/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-如何理解并行和并发？"><a href="#5-如何理解并行和并发？" class="headerlink" title="5. 如何理解并行和并发？"></a>5. 如何理解并行和并发？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1fA4m1c7YT/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"><a href="#6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？" class="headerlink" title="6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"></a>6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？</h2><p><a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3</a></p>
+]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Goland远程调试</title>
+    <url>/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
+<li><p>配置代码同步</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
+</li>
+<li><p>添加Go Remote</p>
+<span id="more"></span>
+
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225246673.png" alt="image-20240823225246673"></p>
+</li>
+</ol>
+<h2 id="1-2-Linux-侧配置"><a href="#1-2-Linux-侧配置" class="headerlink" title="1.2 Linux 侧配置"></a>1.2 Linux 侧配置</h2><ol>
+<li><p>安装go</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225501448.png" alt="image-20240823225501448"></p>
+</li>
+<li><p>配置环境变量</p>
+</li>
+</ol>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225711804.png" alt="image-20240823225711804"></p>
+<ol start="3">
+<li><p>安装dlv</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225759957.png" alt="image-20240823225759957"></p>
+</li>
+<li><p>编译用于调试的go二进制</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225923905.png" alt="image-20240823225923905"></p>
+</li>
+<li><p>打开2345端口的防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=2345/tcp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop xxx.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>服务端开启dlv调试</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230501230.png" alt="image-20240823230501230"></p>
+</li>
+</ol>
+<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230835485.png" alt="image-20240823230835485"></p>
+<h1 id="2-Goland远程执行单元测试"><a href="#2-Goland远程执行单元测试" class="headerlink" title="2. Goland远程执行单元测试"></a>2. Goland远程执行单元测试</h1><ol>
+<li><p>全量执行</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231615455.png" alt="image-20240823231615455"></p>
+</li>
+<li><p>单个测试文件执行</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231956910.png" alt="image-20240823231956910"></p>
+</li>
+</ol>
+<p><strong>注意：如果本地单测文件有改动，记得将改动同步上传至远程服务器</strong></p>
+]]></content>
+      <categories>
+        <category>golang</category>
+        <category>golang调试</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>golang调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法-1排序</title>
+    <url>/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="1-选择排序与冒泡排序"><a href="#1-选择排序与冒泡排序" class="headerlink" title="1. 选择排序与冒泡排序"></a>1. 选择排序与冒泡排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png" alt="image-20240826170655954"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170729362.png" alt="image-20240826170729362"></p>
+<h1 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2. 插入排序"></a>2. 插入排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p>最好情况：O(N)，最坏情况：O(N^2)</p>
+<p>算法流程按照最差情况来估计时间复杂度</p>
+<p>类似于打扑克牌抓牌时的插入</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240829164912630.png" alt="image-20240829164912630"></p>
+<h1 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h1><p><a href="https://leetcode.cn/problems/sort-an-array/submissions/">https://leetcode.cn/problems/sort-an-array/submissions/</a></p>
+<p><strong>使用「快速排序」解决的经典问题（非常重要）：</strong></p>
+<ul>
+<li>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</li>
+</ul>
+<p>​		<a href="https://leetcode.cn/problems/kth-largest-element-in-an-array/description/">https://leetcode.cn/problems/kth-largest-element-in-an-array/description/</a></p>
+<ul>
+<li>荷兰国旗问题：「力扣」第 75 题：颜色分类</li>
+</ul>
+<p>​		<a href="https://leetcode.cn/problems/sort-colors/description/">https://leetcode.cn/problems/sort-colors/description/</a></p>
+<h1 id="4-堆排序"><a href="#4-堆排序" class="headerlink" title="4. 堆排序"></a>4. 堆排序</h1><p>堆排序的细节和复杂度分析</p>
+<p>时间复杂度O(N*logN)，额外空间复杂度O(1) </p>
+<p>堆结构非常重要</p>
+<p>1，堆结构的heapInsert与heapify </p>
+<p>2，堆结构的增大和减少 </p>
+<p>3，如果只是建立堆的过程，时间复杂度为O(N) </p>
+<p>4，优先级队列结构，就是堆结构</p>
+<p>使用堆排序解决的经典问题：</p>
+<ul>
+<li><p>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</p>
+<p><a href="https://leetcode.cn/problems/sort-an-array/submissions/560152694/">https://leetcode.cn/problems/sort-an-array/submissions/560152694/</a></p>
+</li>
+<li><p>排序几乎有序的数组</p>
+</li>
+</ul>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831184709207.png" alt="image-20240831184709207"></p>
+<p>假设要求升序排列，由题意，数组最小的数一定在下标。0–k 的范围内，所以将 0–k 范围内的数建立成小根堆，则下标0的数即为数组最小值，然后 k 窗口依次往右移动</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831185648360.png" alt="image-20240831185648360"></p>
+<h1 id="5-归并排序"><a href="#5-归并排序" class="headerlink" title="5. 归并排序"></a>5. 归并排序</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902160735736.png" alt="image-20240902160735736"></p>
+<p><a href="https://leetcode.cn/problems/sort-an-array/submissions/560674602/">https://leetcode.cn/problems/sort-an-array/submissions/560674602/</a>. – 用归并排序解决数组排序问题题解</p>
+<ul>
+<li><a href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">LCR 170. 交易逆序对的总数</a></li>
+</ul>
+<p>​		<a href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/">https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/</a></p>
+<ul>
+<li><p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/">315. 计算右侧小于当前元素的个数</a></p>
+<p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/</a></p>
+</li>
+</ul>
+<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
+<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png" alt="image-20240830152141731"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png" alt="image-20240830152152732"></p>
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
       </tags>
   </entry>
   <entry>
