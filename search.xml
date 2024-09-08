@@ -64,48 +64,61 @@
       </tags>
   </entry>
   <entry>
-    <title>linux系统编程</title>
-    <url>/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="1-如何理解Linux中的一切皆文件？"><a href="#1-如何理解Linux中的一切皆文件？" class="headerlink" title="1. 如何理解Linux中的一切皆文件？"></a>1. 如何理解Linux中的一切皆文件？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1db411E72q/?spm_id_from=333.337.search-card.all.click&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+    <title>Goland远程调试</title>
+    <url>/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
+<li><p>配置代码同步</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
+</li>
+<li><p>添加Go Remote</p>
+<span id="more"></span>
 
-<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829004845341.png" alt="image-20240829004845341"></p>
-<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829005053280.png" alt="image-20240829005053280"></p>
-<h2 id="10P-grep和xargs"><a href="#10P-grep和xargs" class="headerlink" title="10P-grep和xargs"></a>10P-grep和xargs</h2><p>grep命令：找文件内容</p>
-<p>grep -r ‘copy’ .&#x2F; -n</p>
-<p>-n参数：:显示行号</p>
-<p>ps监控后台进程工作情况，默认只显示当前可以和用户交互的进程</p>
-<p>ps aux | grep ‘cupsd’  – 检索进程结果集。</p>
-<p>下图显示和内核相关进程</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508074765-13709755-d1e9-4819-a105-21ebff745367.png" alt="img"></p>
-<p>使用grep搜索进程，有一条结果是搜索进程本身</p>
-<p>find … | xargs ls -l 对find操作的结果集进行操作</p>
-<p>等价于</p>
-<p>find … -exec ls -l {} \；</p>
-<p>两者差别在于当结果集合很大的时候，xargs会对结果进行分段处理，所以性能好些</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1631080505786-1e6cd36f-111a-4634-b4ea-fd8ff03839b3.png" alt="img"></p>
-<p>-xargs：将find搜索的结果集执行某一指定命令。  当结果集数量过大时，可以分片映射。</p>
-<p>find &#x2F;usr&#x2F; -name ‘<em>tmp</em>‘ | xargs ls -ld </p>
-<p>创建名字带空格的文件方法：</p>
-<ul>
-<li>第一个方法，文件名加引号</li>
-<li>第二个方法，转义</li>
-</ul>
-<p>但xargs也有缺陷，xargs默认用【空格】来分割结果集，当文件名有空格的时候，会因为文件名被切割失效</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508074980-2ee210b5-f1d6-4200-a6e6-737fa10d96e8.png" alt="img"></p>
-<p>xargs缺陷演示</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508076210-69645e68-93fa-4d0f-8f2e-9d8d40a73e9d.png" alt="img"></p>
-<p>解决xargs的缺陷，指定切分符号位null</p>
-<p>-print0：</p>
-<p>​	<code>find /usr/ -name &#39;*tmp*&#39; -print0 | xargs  -print0 ls -l</code></p>
-<p>   第一个print0指定结果集分隔为null，第二个print0指定xargs分隔为null</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508076505-9dfd7102-ed2c-4b5c-8409-b04a323f4da0.png" alt="img"></p>
-<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240830223525803.png" alt="image-20240830223525803"></p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225246673.png" alt="image-20240823225246673"></p>
+</li>
+</ol>
+<h2 id="1-2-Linux-侧配置"><a href="#1-2-Linux-侧配置" class="headerlink" title="1.2 Linux 侧配置"></a>1.2 Linux 侧配置</h2><ol>
+<li><p>安装go</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225501448.png" alt="image-20240823225501448"></p>
+</li>
+<li><p>配置环境变量</p>
+</li>
+</ol>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225711804.png" alt="image-20240823225711804"></p>
+<ol start="3">
+<li><p>安装dlv</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225759957.png" alt="image-20240823225759957"></p>
+</li>
+<li><p>编译用于调试的go二进制</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225923905.png" alt="image-20240823225923905"></p>
+</li>
+<li><p>打开2345端口的防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=2345/tcp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>停服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop xxx.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>服务端开启dlv调试</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230501230.png" alt="image-20240823230501230"></p>
+</li>
+</ol>
+<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230835485.png" alt="image-20240823230835485"></p>
+<h1 id="2-Goland远程执行单元测试"><a href="#2-Goland远程执行单元测试" class="headerlink" title="2. Goland远程执行单元测试"></a>2. Goland远程执行单元测试</h1><ol>
+<li><p>全量执行</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231615455.png" alt="image-20240823231615455"></p>
+</li>
+<li><p>单个测试文件执行</p>
+<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231956910.png" alt="image-20240823231956910"></p>
+</li>
+</ol>
+<p><strong>注意：如果本地单测文件有改动，记得将改动同步上传至远程服务器</strong></p>
 ]]></content>
       <categories>
-        <category>linux系统编程</category>
+        <category>golang</category>
+        <category>golang调试</category>
       </categories>
       <tags>
-        <tag>linux系统编程</tag>
+        <tag>golang</tag>
+        <tag>golang调试</tag>
       </tags>
   </entry>
   <entry>
@@ -455,115 +468,52 @@
       </tags>
   </entry>
   <entry>
-    <title>pprof使用指南</title>
-    <url>/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>golang</category>
-        <category>golang调试</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>golang调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编程基础随想录</title>
-    <url>/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="1-如何理解同步和异步？"><a href="#1-如何理解同步和异步？" class="headerlink" title="1. 如何理解同步和异步？"></a>1. 如何理解同步和异步？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MC411a7rY/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+    <title>linux系统编程</title>
+    <url>/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="1-如何理解Linux中的一切皆文件？"><a href="#1-如何理解Linux中的一切皆文件？" class="headerlink" title="1. 如何理解Linux中的一切皆文件？"></a>1. 如何理解Linux中的一切皆文件？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1db411E72q/?spm_id_from=333.337.search-card.all.click&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012145437.png" alt="image-20240829012145437"></p>
-<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012334628.png" alt="image-20240829012334628"></p>
-<p><strong>追问：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">什么情况下用同步？</span><br><span class="line">什么情况下用异步？</span><br><span class="line">两者有什么差异？</span><br><span class="line">怎么在用户态层面实现异步？内核态又是怎么实现异步的？</span><br><span class="line">rpc接口是同步的还是异步的，为什么？该如何实现？</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-如何理解阻塞和非阻塞？"><a href="#2-如何理解阻塞和非阻塞？" class="headerlink" title="2. 如何理解阻塞和非阻塞？"></a>2. 如何理解阻塞和非阻塞？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MK421x7Sa/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="3-什么是回调函数？"><a href="#3-什么是回调函数？" class="headerlink" title="3. 什么是回调函数？"></a>3. 什么是回调函数？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1cW421N7P2/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-什么是IO多路复用？"><a href="#4-什么是IO多路复用？" class="headerlink" title="4. 什么是IO多路复用？"></a>4. 什么是IO多路复用？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1RJ4m1b7cy/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-如何理解并行和并发？"><a href="#5-如何理解并行和并发？" class="headerlink" title="5. 如何理解并行和并发？"></a>5. 如何理解并行和并发？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1fA4m1c7YT/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"><a href="#6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？" class="headerlink" title="6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"></a>6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？</h2><p><a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3</a></p>
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829004845341.png" alt="image-20240829004845341"></p>
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829005053280.png" alt="image-20240829005053280"></p>
+<h2 id="10P-grep和xargs"><a href="#10P-grep和xargs" class="headerlink" title="10P-grep和xargs"></a>10P-grep和xargs</h2><p>grep命令：找文件内容</p>
+<p>grep -r ‘copy’ .&#x2F; -n</p>
+<p>-n参数：:显示行号</p>
+<p>ps监控后台进程工作情况，默认只显示当前可以和用户交互的进程</p>
+<p>ps aux | grep ‘cupsd’  – 检索进程结果集。</p>
+<p>下图显示和内核相关进程</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508074765-13709755-d1e9-4819-a105-21ebff745367.png" alt="img"></p>
+<p>使用grep搜索进程，有一条结果是搜索进程本身</p>
+<p>find … | xargs ls -l 对find操作的结果集进行操作</p>
+<p>等价于</p>
+<p>find … -exec ls -l {} \；</p>
+<p>两者差别在于当结果集合很大的时候，xargs会对结果进行分段处理，所以性能好些</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1631080505786-1e6cd36f-111a-4634-b4ea-fd8ff03839b3.png" alt="img"></p>
+<p>-xargs：将find搜索的结果集执行某一指定命令。  当结果集数量过大时，可以分片映射。</p>
+<p>find &#x2F;usr&#x2F; -name ‘<em>tmp</em>‘ | xargs ls -ld </p>
+<p>创建名字带空格的文件方法：</p>
+<ul>
+<li>第一个方法，文件名加引号</li>
+<li>第二个方法，转义</li>
+</ul>
+<p>但xargs也有缺陷，xargs默认用【空格】来分割结果集，当文件名有空格的时候，会因为文件名被切割失效</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508074980-2ee210b5-f1d6-4200-a6e6-737fa10d96e8.png" alt="img"></p>
+<p>xargs缺陷演示</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508076210-69645e68-93fa-4d0f-8f2e-9d8d40a73e9d.png" alt="img"></p>
+<p>解决xargs的缺陷，指定切分符号位null</p>
+<p>-print0：</p>
+<p>​	<code>find /usr/ -name &#39;*tmp*&#39; -print0 | xargs  -print0 ls -l</code></p>
+<p>   第一个print0指定结果集分隔为null，第二个print0指定xargs分隔为null</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/12581134/1630508076505-9dfd7102-ed2c-4b5c-8409-b04a323f4da0.png" alt="img"></p>
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240830223525803.png" alt="image-20240830223525803"></p>
 ]]></content>
       <categories>
-        <category>基础知识</category>
+        <category>linux系统编程</category>
       </categories>
       <tags>
-        <tag>基础知识</tag>
+        <tag>linux系统编程</tag>
       </tags>
   </entry>
   <entry>
-    <title>Goland远程调试</title>
-    <url>/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
-<li><p>配置代码同步</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
-</li>
-<li><p>添加Go Remote</p>
-<span id="more"></span>
-
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225246673.png" alt="image-20240823225246673"></p>
-</li>
-</ol>
-<h2 id="1-2-Linux-侧配置"><a href="#1-2-Linux-侧配置" class="headerlink" title="1.2 Linux 侧配置"></a>1.2 Linux 侧配置</h2><ol>
-<li><p>安装go</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225501448.png" alt="image-20240823225501448"></p>
-</li>
-<li><p>配置环境变量</p>
-</li>
-</ol>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225711804.png" alt="image-20240823225711804"></p>
-<ol start="3">
-<li><p>安装dlv</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225759957.png" alt="image-20240823225759957"></p>
-</li>
-<li><p>编译用于调试的go二进制</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225923905.png" alt="image-20240823225923905"></p>
-</li>
-<li><p>打开2345端口的防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --add-port=2345/tcp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>停服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop xxx.service</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>服务端开启dlv调试</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230501230.png" alt="image-20240823230501230"></p>
-</li>
-</ol>
-<h2 id="1-3-踩坑记录"><a href="#1-3-踩坑记录" class="headerlink" title="1.3 踩坑记录"></a>1.3 踩坑记录</h2><p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823230835485.png" alt="image-20240823230835485"></p>
-<h1 id="2-Goland远程执行单元测试"><a href="#2-Goland远程执行单元测试" class="headerlink" title="2. Goland远程执行单元测试"></a>2. Goland远程执行单元测试</h1><ol>
-<li><p>全量执行</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231615455.png" alt="image-20240823231615455"></p>
-</li>
-<li><p>单个测试文件执行</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823231956910.png" alt="image-20240823231956910"></p>
-</li>
-</ol>
-<p><strong>注意：如果本地单测文件有改动，记得将改动同步上传至远程服务器</strong></p>
-]]></content>
-      <categories>
-        <category>golang</category>
-        <category>golang调试</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>golang调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构与算法-1排序</title>
+    <title>数据结构与算法</title>
     <url>/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="1-选择排序与冒泡排序"><a href="#1-选择排序与冒泡排序" class="headerlink" title="1. 选择排序与冒泡排序"></a>1. 选择排序与冒泡排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
 <p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png" alt="image-20240826170655954"></p>
@@ -612,16 +562,87 @@
 <p><a href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/</a></p>
 </li>
 </ul>
-<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
-<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png" alt="image-20240830152141731"></p>
 <p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png" alt="image-20240830152152732"></p>
+<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
+<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
+<h1 id="8-链表"><a href="#8-链表" class="headerlink" title="8. 链表"></a>8. 链表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907221407142.png" alt="image-20240907221407142"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907221424840.png" alt="image-20240907221424840"></p>
+<h2 id="8-1-反转单向链表"><a href="#8-1-反转单向链表" class="headerlink" title="8.1 反转单向链表"></a>8.1 反转单向链表</h2><p><a href="https://leetcode.cn/problems/reverse-linked-list/?envType=problem-list-v2&envId=linked-list">https://leetcode.cn/problems/reverse-linked-list/?envType=problem-list-v2&amp;envId=linked-list</a></p>
+<h2 id="8-2-反转单向链表进阶"><a href="#8-2-反转单向链表进阶" class="headerlink" title="8.2 反转单向链表进阶"></a>8.2 反转单向链表进阶</h2><p><a href="https://leetcode.cn/problems/reverse-linked-list-ii/submissions/562860540/?envType=problem-list-v2&envId=linked-list">https://leetcode.cn/problems/reverse-linked-list-ii/submissions/562860540/?envType=problem-list-v2&amp;envId=linked-list</a></p>
+<p><a href="https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908155521318.png" alt="image-20240908155521318"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908162630023.png" alt="image-20240908162630023"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908162707744.png" alt="image-20240908162707744"></p>
+<h2 id="8-3-反转单向链表hard"><a href="#8-3-反转单向链表hard" class="headerlink" title="8.3 反转单向链表hard"></a>8.3 反转单向链表hard</h2><p><a href="https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><a href="https://leetcode.cn/problems/reverse-nodes-in-k-group/submissions/562862051/">https://leetcode.cn/problems/reverse-nodes-in-k-group/submissions/562862051/</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909021915991.png" alt="image-20240909021915991"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909021945636.png" alt="image-20240909021945636"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909022011490.png" alt="image-20240909022011490"></p>
+<h2 id="8-4-反转双向链表"><a href="#8-4-反转双向链表" class="headerlink" title="8.4 反转双向链表"></a>8.4 反转双向链表</h2><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908142553406.png" alt="image-20240908142553406"></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> DoubleListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val  <span class="type">int</span></span><br><span class="line">	Next *DoubleListNode</span><br><span class="line">	Last *DoubleListNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *DoubleListNode)</span></span> *DoubleListNode &#123;</span><br><span class="line">	<span class="keyword">var</span> pre, next *DoubleListNode = <span class="literal">nil</span>, <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">		next = head.Next</span><br><span class="line">		head.Next = pre</span><br><span class="line">		head.Last = next</span><br><span class="line">		pre = head</span><br><span class="line">		head = next</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pre</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printList</span><span class="params">(head *DoubleListNode)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(head.Val)</span><br><span class="line">		head = head.Next</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	node1 := &amp;DoubleListNode&#123;Val: <span class="number">1</span>&#125;</span><br><span class="line">	node2 := &amp;DoubleListNode&#123;Val: <span class="number">2</span>&#125;</span><br><span class="line">	node3 := &amp;DoubleListNode&#123;Val: <span class="number">3</span>&#125;</span><br><span class="line">	node4 := &amp;DoubleListNode&#123;Val: <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line">	node1.Next = node2</span><br><span class="line">	node1.Last = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">	node2.Next = node3</span><br><span class="line">	node2.Last = node1</span><br><span class="line"></span><br><span class="line">	node3.Next = node4</span><br><span class="line">	node3.Last = node2</span><br><span class="line"></span><br><span class="line">	node4.Next = <span class="literal">nil</span></span><br><span class="line">	node4.Last = node3</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;原始链表：&quot;</span>)</span><br><span class="line">	printList(node1)</span><br><span class="line"></span><br><span class="line">	head := reverseList(node1)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;翻转后：&quot;</span>)</span><br><span class="line">	printList(head)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907221639998.png" alt="image-20240907221639998"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907222511091.png" alt="image-20240907222511091"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907223456704.png" alt="image-20240907223456704"></p>
 ]]></content>
       <categories>
         <category>数据结构与算法</category>
       </categories>
       <tags>
-        <tag>排序</tag>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编程基础随想录</title>
+    <url>/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="1-如何理解同步和异步？"><a href="#1-如何理解同步和异步？" class="headerlink" title="1. 如何理解同步和异步？"></a>1. 如何理解同步和异步？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MC411a7rY/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012145437.png" alt="image-20240829012145437"></p>
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012334628.png" alt="image-20240829012334628"></p>
+<p><strong>追问：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">什么情况下用同步？</span><br><span class="line">什么情况下用异步？</span><br><span class="line">两者有什么差异？</span><br><span class="line">怎么在用户态层面实现异步？内核态又是怎么实现异步的？</span><br><span class="line">rpc接口是同步的还是异步的，为什么？该如何实现？</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-如何理解阻塞和非阻塞？"><a href="#2-如何理解阻塞和非阻塞？" class="headerlink" title="2. 如何理解阻塞和非阻塞？"></a>2. 如何理解阻塞和非阻塞？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MK421x7Sa/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-什么是回调函数？"><a href="#3-什么是回调函数？" class="headerlink" title="3. 什么是回调函数？"></a>3. 什么是回调函数？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1cW421N7P2/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-什么是IO多路复用？"><a href="#4-什么是IO多路复用？" class="headerlink" title="4. 什么是IO多路复用？"></a>4. 什么是IO多路复用？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1RJ4m1b7cy/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-如何理解并行和并发？"><a href="#5-如何理解并行和并发？" class="headerlink" title="5. 如何理解并行和并发？"></a>5. 如何理解并行和并发？</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1fA4m1c7YT/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"><a href="#6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？" class="headerlink" title="6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"></a>6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？</h2><p><a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3</a></p>
+]]></content>
+      <categories>
+        <category>基础知识</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pprof使用指南</title>
+    <url>/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>golang</category>
+        <category>golang调试</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>golang调试</tag>
       </tags>
   </entry>
   <entry>
