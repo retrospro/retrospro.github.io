@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/retrospro.png">
+  <link rel="mask-icon" href="/images/retrospro.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1. 在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？在Socket网络编程中，服务端产生两个socket，而客户端只产生一个socket，原因在于服务端和客户端的角色及其通信机制的不同。下面具体解释： 1. 服务端的两个socket 监听（Listen）Socket：服务端在初始化时会首先创建一个用于监听的socket，通常称为监听socket（或称为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux网络编程">
+<meta property="og:url" content="http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="RETROSPRO">
+<meta property="og:description" content="1. 在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？在Socket网络编程中，服务端产生两个socket，而客户端只产生一个socket，原因在于服务端和客户端的角色及其通信机制的不同。下面具体解释： 1. 服务端的两个socket 监听（Listen）Socket：服务端在初始化时会首先创建一个用于监听的socket，通常称为监听socket（或称为">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-10T06:20:20.000Z">
+<meta property="article:modified_time" content="2024-09-10T06:40:00.614Z">
+<meta property="article:author" content="Eric Hao">
+<meta property="article:tag" content="linux网络编程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/","path":"2024/09/10/linux网络编程/","title":"linux网络编程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux网络编程 | RETROSPRO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">RETROSPRO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%9C%A8socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BA%A7%E7%94%9F%E4%B8%A4%E4%B8%AAsocket%EF%BC%8C%E8%80%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%AA%E4%BA%A7%E7%94%9F%E4%B8%80%E4%B8%AAsocket%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E4%B8%A4%E4%B8%AAsocket"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 服务端的两个socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%B8%80%E4%B8%AAsocket"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 客户端的一个socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9Aman-2-listen-%E5%87%BD%E6%95%B0%E7%9A%84%E6%8F%8F%E8%BF%B0%E7%BF%BB%E8%AF%91%E4%B8%8E%E8%AE%B2%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.0.4.</span> <span class="nav-text">补充：man 2 listen 函数的描述翻译与讲解：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%EF%BC%9A"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">翻译：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">讲解：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%BD%E9%97%AE%EF%BC%9A"><span class="nav-number">1.0.5.</span> <span class="nav-text">追问：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#listen-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.0.6.</span> <span class="nav-text">listen() 函数的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#accept-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.0.7.</span> <span class="nav-text">accept() 函数的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E8%AF%B4%E6%B3%95%EF%BC%9A"><span class="nav-number">1.0.8.</span> <span class="nav-text">正确说法：</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Eric Hao"
+      src="/images/retrospro.png">
+  <p class="site-author-name" itemprop="name">Eric Hao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/retrospro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;retrospro" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="linux网络编程 | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux网络编程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-10 14:20:20 / 修改时间：14:40:00" itemprop="dateCreated datePublished" datetime="2024-09-10T14:20:20+08:00">2024-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">linux网络编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？"><a href="#1-在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？" class="headerlink" title="1. 在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？"></a>1. 在socket网络编程中，为什么服务端产生两个socket，而客户端只产生一个socket？</h1><p>在Socket网络编程中，服务端产生两个socket，而客户端只产生一个socket，原因在于服务端和客户端的角色及其通信机制的不同。下面具体解释：</p>
+<h3 id="1-服务端的两个socket"><a href="#1-服务端的两个socket" class="headerlink" title="1. 服务端的两个socket"></a>1. 服务端的两个socket</h3><ul>
+<li><p><strong>监听（Listen）Socket</strong>：<br>服务端在初始化时会首先创建一个用于监听的socket，通常称为监听socket（或称为被动socket）。它的主要职责是<strong>等待客户端连接请求</strong>。这个socket绑定到一个特定的IP地址和端口，并开始监听来自客户端的连接。这个socket不会直接参与数据传输，而是负责处理新的连接请求。</p>
+<p>调用顺序通常是：</p>
+<ul>
+<li><code>socket()</code>: 创建socket。</li>
+<li><code>bind()</code>: 绑定到一个特定的地址和端口。</li>
+<li><code>listen()</code>: 开始监听连接请求。</li>
+</ul>
+</li>
+<li><p><strong>连接（Connected）Socket</strong>：<br>当监听socket收到客户端的连接请求时，服务端会调用<code>accept()</code>，此时会产生一个新的socket，称为连接socket（或称为主动socket）。这个socket用于和特定客户端之间的通信。每当一个新的客户端连接到服务器时，服务器就会为这个客户端创建一个新的连接socket，用来专门处理该客户端的数据收发。</p>
+<p>调用顺序通常是：</p>
+<ul>
+<li><code>accept()</code>: 从监听socket中提取客户端连接请求，返回一个新的连接socket，服务端可以通过该socket与客户端通信。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-客户端的一个socket"><a href="#2-客户端的一个socket" class="headerlink" title="2. 客户端的一个socket"></a>2. 客户端的一个socket</h3><p>客户端的操作要简单得多。客户端只需要一个socket，它通过这个socket向服务端发起连接请求并与服务端通信。</p>
+<p>客户端的调用顺序通常是：</p>
+<ul>
+<li><code>socket()</code>: 创建一个socket。</li>
+<li><code>connect()</code>: 通过这个socket向服务端发起连接请求。</li>
+<li>当连接建立后，客户端通过这个唯一的socket与服务端通信。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>服务端的两个socket</strong>：一个是监听socket，负责监听新的连接请求；另一个是连接socket，负责与某个客户端通信。</li>
+<li><strong>客户端的一个socket</strong>：客户端只需要一个socket，通过它向服务端发起连接并进行通信。</li>
+</ul>
+<p>这种设计的好处在于：服务端可以同时监听多个客户端的连接请求，并且通过多个连接socket与不同的客户端同时通信，而不会混淆不同客户端的数据。</p>
+<h3 id="补充：man-2-listen-函数的描述翻译与讲解："><a href="#补充：man-2-listen-函数的描述翻译与讲解：" class="headerlink" title="补充：man 2 listen 函数的描述翻译与讲解："></a>补充：man 2 listen 函数的描述翻译与讲解：</h3><h4 id="翻译："><a href="#翻译：" class="headerlink" title="翻译："></a>翻译：</h4><p><strong>名称</strong></p>
+<ul>
+<li><code>listen</code> – 在一个套接字上监听连接</li>
+</ul>
+<p><strong>函数原型</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">listen</span><span class="params">(<span class="type">int</span> socket, <span class="type">int</span> backlog)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>描述</strong></p>
+<ul>
+<li><p>创建基于套接字的连接需要多个操作。首先，通过<code>socket(2)</code>创建一个套接字。接下来，通过<code>listen()</code>指定接受传入连接的意愿，以及传入连接队列的限制。最后，使用<code>accept(2)</code>来接受连接。<code>listen()</code>调用仅适用于<code>SOCK_STREAM</code>类型的套接字。</p>
+</li>
+<li><p><code>backlog</code> 参数定义了传入连接队列的最大长度。如果在连接请求到达时，队列已满，客户端可能会收到一个带有 <code>ECONNREFUSED</code> 错误的提示。或者，如果底层协议支持重传，请求可能会被忽略，以便重试可能成功。</p>
+</li>
+</ul>
+<p><strong>返回值</strong></p>
+<ul>
+<li>如果成功，<code>listen()</code> 函数返回值为 <code>0</code>；否则返回值为 <code>-1</code>，并且全局变量 <code>errno</code> 被设置为指示错误的值。</li>
+</ul>
+<h4 id="讲解："><a href="#讲解：" class="headerlink" title="讲解："></a>讲解：</h4><ol>
+<li><p><strong>功能解释</strong>：</p>
+<ul>
+<li><code>listen()</code> 函数的作用是使套接字（socket）进入监听状态，准备接受客户端的连接请求。它是服务器端网络编程中的一个关键步骤。</li>
+</ul>
+</li>
+<li><p><strong>参数</strong>：</p>
+<ul>
+<li><code>socket</code>：由 <code>socket(2)</code> 创建的套接字描述符，它指定了要监听的那个套接字。</li>
+<li><code>backlog</code>：指定了传入连接的队列长度，即在服务器处理连接请求之前，最多可以有多少个等待处理的连接请求。如果连接请求的数量超过此限制，多余的请求将被拒绝或者忽略，等待重试。</li>
+</ul>
+</li>
+<li><p><strong>适用场景</strong>：</p>
+<ul>
+<li><code>listen()</code> 只适用于 <code>SOCK_STREAM</code> 类型的套接字，通常用于基于 TCP 的连接，因为 <code>SOCK_STREAM</code> 代表流式数据传输协议（比如 TCP）。</li>
+</ul>
+</li>
+<li><p><strong>backlog 参数的作用</strong>：</p>
+<ul>
+<li><code>backlog</code> 设置了等待处理的连接请求队列的最大长度。客户端尝试连接时，如果队列已满，有两种可能：<ul>
+<li>客户端直接收到 <code>ECONNREFUSED</code> 错误。</li>
+<li>如果底层的协议支持自动重试，连接请求可能被忽略，以等待后续重试成功。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>返回值</strong>：</p>
+<ul>
+<li>如果调用成功，<code>listen()</code> 返回 0；如果失败，返回 -1 并设置 <code>errno</code> 来指示具体错误原因。</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结</strong>：<br><code>listen()</code> 函数的主要功能是让服务端的套接字进入监听状态，并允许服务端设置一个队列长度来限制在处理连接之前，最多能积压多少个连接请求。</p>
+<h3 id="追问："><a href="#追问：" class="headerlink" title="追问："></a>追问：</h3><p><strong>你说 listen() 函数的作用是使套接字（socket）进入监听状态，也有说法说 accept 函数才是使套接字（socket）进入监听状态，到底哪个说法正确？</strong></p>
+<p>在网络编程中，**<code>listen()</code>** 函数和 <strong><code>accept()</code></strong> 函数的作用是不同的，它们在服务器套接字生命周期中的角色也不一样。让我们明确一下各自的职责和作用：</p>
+<h3 id="listen-函数的作用"><a href="#listen-函数的作用" class="headerlink" title="listen() 函数的作用"></a><code>listen()</code> 函数的作用</h3><ul>
+<li><strong><code>listen()</code> 是使套接字进入监听状态的函数</strong>。</li>
+<li>它的作用是告诉操作系统，这个套接字将被用于监听传入的连接请求。</li>
+<li>在调用 <code>listen()</code> 之前，套接字是处于非监听状态的（通常是刚通过 <code>socket()</code> 创建的普通套接字）。一旦调用了 <code>listen()</code>，这个套接字会被标记为“被动套接字”，也就是专门用于等待和接受客户端连接请求的套接字。</li>
+<li><code>listen()</code> 函数<strong>并不会直接接收连接</strong>，它只是开启了一个“接受连接请求的准备状态”。</li>
+</ul>
+<h3 id="accept-函数的作用"><a href="#accept-函数的作用" class="headerlink" title="accept() 函数的作用"></a><code>accept()</code> 函数的作用</h3><ul>
+<li><strong><code>accept()</code> 是用于接受连接的函数</strong>。</li>
+<li>当一个客户端发出连接请求后，操作系统会将这个连接放入监听队列中（该队列的大小由 <code>listen()</code> 函数的 <code>backlog</code> 参数定义）。<code>accept()</code> 从这个队列中取出一个等待的连接，并为这个连接创建一个新的套接字（连接套接字），用于与该客户端进行数据通信。</li>
+<li>这个新的套接字是与特定客户端的连接通道，而原来的监听套接字继续监听其他的连接请求。</li>
+</ul>
+<h3 id="正确说法："><a href="#正确说法：" class="headerlink" title="正确说法："></a>正确说法：</h3><ul>
+<li><strong><code>listen()</code> 是让套接字进入监听状态的函数</strong>，它使套接字可以接受客户端的连接请求。</li>
+<li><strong><code>accept()</code> 则是实际处理这些连接请求</strong>，从等待队列中取出一个连接，生成一个新的套接字，用于和客户端进行通信。</li>
+</ul>
+<p>所以，**<code>listen()</code> 函数才是使套接字进入监听状态的函数**。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag"># linux网络编程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/08/29/golang%E9%9D%A2%E8%AF%95/" rel="prev" title="golang面试">
+                  <i class="fa fa-angle-left"></i> golang面试
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Eric Hao</span>
+  </div>
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"retrospro","repo":"gitalk","client_id":"Ov23liOgrSkahiDbuNEk","client_secret":"af23b916424a5d6cb8b5e4e0f2f69eb66562e5eb","admin_user":"retrospro","distraction_free_mode":true,"proxy":"https://vercel.prohibitorum.top/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f5796d84ba51253353b9c6679bbeb6e6"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
