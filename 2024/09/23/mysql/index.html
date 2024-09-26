@@ -20,23 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="RETROSPRO">
-<meta property="og:url" content="http://example.com/categories/golang/golang%E8%B0%83%E8%AF%95/index.html">
+    <meta name="description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="http://example.com/2024/09/23/mysql/index.html">
 <meta property="og:site_name" content="RETROSPRO">
+<meta property="og:description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20240923040709070.png">
+<meta property="article:published_time" content="2024-09-22T20:04:23.000Z">
+<meta property="article:modified_time" content="2024-09-22T20:07:17.726Z">
 <meta property="article:author" content="Eric Hao">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/23/mysql/image-20240923040709070.png">
 
 
-<link rel="canonical" href="http://example.com/categories/golang/golang%E8%B0%83%E8%AF%95/">
+<link rel="canonical" href="http://example.com/2024/09/23/mysql/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/golang/golang调试/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/23/mysql/","path":"2024/09/23/mysql/","title":"mysql"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: golang调试 | RETROSPRO</title>
+<title>mysql | RETROSPRO</title>
   
 
 
@@ -122,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -135,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8B-tree%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么InnoDB存储引擎选择使用B+tree索引结构？</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -181,71 +189,112 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">golang调试
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/23/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="mysql | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mysql
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-09-23 04:04:23 / 修改时间：04:07:17" itemprop="dateCreated datePublished" datetime="2024-09-23T04:04:23+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-为什么InnoDB存储引擎选择使用B-tree索引结构？"><a href="#1-为什么InnoDB存储引擎选择使用B-tree索引结构？" class="headerlink" title="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？"></a>1. 为什么InnoDB存储引擎选择使用B+tree索引结构？</h1><ul>
+<li><p>A. 相对于二叉树，层级更少，搜索效率高；</p>
+</li>
+<li><p>B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储</p>
+</li>
+</ul>
+<p>的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；</p>
+<ul>
+<li>C. 相对Hash索引，B+tree支持范围匹配及排序操作；</li>
+</ul>
+<p><img src="/2024/09/23/mysql/image-20240923040709070.png" alt="image-20240923040709070"></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-23T23:37:35+08:00"
-              content="2024-08-23">
-          08-23
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" itemprop="url">
-            <span itemprop="name">pprof使用指南</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="prev" title="linux网络编程">
+                  <i class="fa fa-angle-left"></i> linux网络编程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-08-23T12:25:25+08:00"
-              content="2024-08-23">
-          08-23
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/" itemprop="url">
-            <span itemprop="name">Goland远程调试</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-    </div>
-  </div>
-  
-  
-  
 
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -303,7 +352,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"retrospro","repo":"gitalk","client_id":"Ov23liOgrSkahiDbuNEk","client_secret":"af23b916424a5d6cb8b5e4e0f2f69eb66562e5eb","admin_user":"retrospro","distraction_free_mode":true,"proxy":"https://vercel.prohibitorum.top/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"742af4b65c4afb552167468febd53b41"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"retrospro","repo":"gitalk","client_id":"Ov23liOgrSkahiDbuNEk","client_secret":"af23b916424a5d6cb8b5e4e0f2f69eb66562e5eb","admin_user":"retrospro","distraction_free_mode":true,"proxy":"https://vercel.prohibitorum.top/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"49f2752ff6e763fb9b7e564561500e88"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

@@ -149,18 +149,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -182,6 +182,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/23/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/09/23/mysql/" class="post-title-link" itemprop="url">mysql</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-23 04:04:23 / 修改时间：04:07:17" itemprop="dateCreated datePublished" datetime="2024-09-23T04:04:23+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-为什么InnoDB存储引擎选择使用B-tree索引结构？"><a href="#1-为什么InnoDB存储引擎选择使用B-tree索引结构？" class="headerlink" title="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？"></a>1. 为什么InnoDB存储引擎选择使用B+tree索引结构？</h1><ul>
+<li><p>A. 相对于二叉树，层级更少，搜索效率高；</p>
+</li>
+<li><p>B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储</p>
+</li>
+</ul>
+<p>的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；</p>
+<ul>
+<li>C. 相对Hash索引，B+tree支持范围匹配及排序操作；</li>
+</ul>
+<p><img src="/2024/09/23/mysql/image-20240923040709070.png" alt="image-20240923040709070"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -219,9 +308,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-10 14:20:20 / 修改时间：14:40:00" itemprop="dateCreated datePublished" datetime="2024-09-10T14:20:20+08:00">2024-09-10</time>
+      <time title="创建时间：2024-09-10 14:20:20" itemprop="dateCreated datePublished" datetime="2024-09-10T14:20:20+08:00">2024-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-18 07:17:47" itemprop="dateModified" datetime="2024-09-18T07:17:47+08:00">2024-09-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -341,6 +436,9 @@
 <li><strong><code>accept()</code> 则是实际处理这些连接请求</strong>，从等待队列中取出一个连接，生成一个新的套接字，用于和客户端进行通信。</li>
 </ul>
 <p>所以，**<code>listen()</code> 函数才是使套接字进入监听状态的函数**。</p>
+<h1 id="2-select-poll-epoll-待学习"><a href="#2-select-poll-epoll-待学习" class="headerlink" title="2. select poll epoll (待学习)"></a>2. select poll epoll (待学习)</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1gN411e7gd/?spm_id_from=333.788&vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1gN411e7gd/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/GCoczkOzDA2xfp8Nzb04dw">https://mp.weixin.qq.com/s/GCoczkOzDA2xfp8Nzb04dw</a></p>
+<h2 id="2-1-在io多路复用中，为什么select有文件描述符的限制，而poll-和-epoll-没有文件描述符的限制"><a href="#2-1-在io多路复用中，为什么select有文件描述符的限制，而poll-和-epoll-没有文件描述符的限制" class="headerlink" title="2.1 在io多路复用中，为什么select有文件描述符的限制，而poll 和 epoll 没有文件描述符的限制"></a>2.1 在io多路复用中，为什么select有文件描述符的限制，而poll 和 epoll 没有文件描述符的限制</h2><p> <a href="../../../Downloads/ChatGPT-0918.html">ChatGPT-0918.html</a> </p>
 
       
     </div>
@@ -3088,7 +3186,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-14 01:39:42" itemprop="dateModified" datetime="2024-09-14T01:39:42+08:00">2024-09-14</time>
+      <time title="修改时间：2024-09-26 08:56:14" itemprop="dateModified" datetime="2024-09-26T08:56:14+08:00">2024-09-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -3222,8 +3320,40 @@
 
 
 
-<h1 id="9-二叉树"><a href="#9-二叉树" class="headerlink" title="9. 二叉树"></a>9. 二叉树</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240914013524406.png" alt="image-20240914013524406"></p>
-<h2 id="9-1-144-二叉树的前序遍历"><a href="#9-1-144-二叉树的前序遍历" class="headerlink" title="9.1 144. 二叉树的前序遍历"></a>9.1 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h2><h2 id="9-2-94-二叉树的中序遍历"><a href="#9-2-94-二叉树的中序遍历" class="headerlink" title="9.2 94. 二叉树的中序遍历"></a>9.2 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h2><h2 id="9-3-145-二叉树的后序遍历"><a href="#9-3-145-二叉树的后序遍历" class="headerlink" title="9.3 145. 二叉树的后序遍历"></a>9.3 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><h2 id="9-4-LCR-152-验证二叉搜索树的后序遍历序列"><a href="#9-4-LCR-152-验证二叉搜索树的后序遍历序列" class="headerlink" title="9.4 LCR 152. 验证二叉搜索树的后序遍历序列"></a>9.4 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">LCR 152. 验证二叉搜索树的后序遍历序列</a></h2>
+<h1 id="9-二叉树"><a href="#9-二叉树" class="headerlink" title="9. 二叉树"></a>9. 二叉树</h1><h2 id="9-1-144-二叉树的前序遍历"><a href="#9-1-144-二叉树的前序遍历" class="headerlink" title="9.1 144. 二叉树的前序遍历"></a>9.1 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/566221642/">https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/566221642/</a></p>
+<h2 id="9-2-94-二叉树的中序遍历"><a href="#9-2-94-二叉树的中序遍历" class="headerlink" title="9.2 94. 二叉树的中序遍历"></a>9.2 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/submissions/566260507/">https://leetcode.cn/problems/binary-tree-inorder-traversal/submissions/566260507/</a></p>
+<h2 id="9-3-145-二叉树的后序遍历"><a href="#9-3-145-二叉树的后序遍历" class="headerlink" title="9.3 145. 二叉树的后序遍历"></a>9.3 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><p>每棵子树，整棵树左边界进栈，依次弹出的过程中，打印，对弹出节点的右树重复上述操作</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/submissions/566248493/">https://leetcode.cn/problems/binary-tree-postorder-traversal/submissions/566248493/</a></p>
+<h2 id="9-4-102-二叉树的层序遍历"><a href="#9-4-102-二叉树的层序遍历" class="headerlink" title="9.4 102. 二叉树的层序遍历"></a>9.4 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/submissions/566466618/">https://leetcode.cn/problems/binary-tree-level-order-traversal/submissions/566466618/</a></p>
+<h2 id="9-5-662-二叉树最大宽度"><a href="#9-5-662-二叉树最大宽度" class="headerlink" title="9.5 662. 二叉树最大宽度"></a>9.5 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/">662. 二叉树最大宽度</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/submissions/566748187/">https://leetcode.cn/problems/maximum-width-of-binary-tree/submissions/566748187/</a></p>
+<h2 id="9-6-104-二叉树的最大深度"><a href="#9-6-104-二叉树的最大深度" class="headerlink" title="9.6 104. 二叉树的最大深度"></a>9.6 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">104. 二叉树的最大深度</a></h2><p>非递归的解法，思路类似上面两题，此处不再赘述</p>
+<h2 id="9-7-98-验证二叉搜索树"><a href="#9-7-98-验证二叉搜索树" class="headerlink" title="9.7 98. 验证二叉搜索树"></a>9.7 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/submissions/568133510/">https://leetcode.cn/problems/validate-binary-search-tree/submissions/568133510/</a></p>
+<h2 id="9-8-958-二叉树的完全性检验"><a href="#9-8-958-二叉树的完全性检验" class="headerlink" title="9.8 958. 二叉树的完全性检验"></a>9.8 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><strong>思路：</strong></p>
+<p>按照层序遍历</p>
+<ol>
+<li>任一节点，有右无左，返回false</li>
+<li>在满足条件1的情况下，如果遇到了第一个左右子不全的节点，那么后续节点皆为叶节点</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/submissions/568132810/">https://leetcode.cn/problems/check-completeness-of-a-binary-tree/submissions/568132810/</a></p>
+<h2 id="9-9-判断一颗二叉树是否是满二叉树"><a href="#9-9-判断一颗二叉树是否是满二叉树" class="headerlink" title="9.9 判断一颗二叉树是否是满二叉树"></a>9.9 判断一颗二叉树是否是满二叉树</h2><p>思路：</p>
+<p>满二叉树满足 n &#x3D; 2^h - 1，其中n为节点个数，h为树的高度</p>
+<p><strong>二叉树题目套路：</strong></p>
+<p>递归，</p>
+<p>找左树要信息（高度，节点个数），找右树也要同样的信息</p>
+<p>在当前递归中也得出上述同样的信息</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240926082313050.png" alt="image-20240926082313050"></p>
+<h2 id="9-10-110-平衡二叉树"><a href="#9-10-110-平衡二叉树" class="headerlink" title="9.10 110. 平衡二叉树"></a>9.10 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/">110. 平衡二叉树</a></h2><p><strong>平衡二叉树</strong> 是指该树所有节点的左右子树的深度相差不超过 1。</p>
+<p><strong>二叉树题目套路：</strong></p>
+<p>递归，</p>
+<p>找左树要信息（是否为平衡二叉树，高度），找右树也要同样的信息</p>
+<p>最后判断 左平衡 &amp; 右平衡 &amp; ｜左高度 - 右高度｜&lt;&#x3D; 1</p>
+<p>在当前递归中也得出上述同样的信息</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/submissions/568138327/">https://leetcode.cn/problems/balanced-binary-tree/submissions/568138327/</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> nodeInfo <span class="keyword">struct</span> &#123;</span><br><span class="line">    height <span class="type">int</span></span><br><span class="line">    isBalance <span class="type">bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isBalanced</span><span class="params">(root *TreeNode)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    info := process(root)</span><br><span class="line">    <span class="keyword">return</span> info.isBalance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(root *TreeNode)</span></span> *nodeInfo &#123;</span><br><span class="line">    <span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;nodeInfo&#123;<span class="number">0</span>, <span class="literal">true</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    lInfo := process(root.Left)</span><br><span class="line">    rInfo := process(root.Right)</span><br><span class="line"></span><br><span class="line">    height := max(lInfo.height, rInfo.height) + <span class="number">1</span></span><br><span class="line">    isBalance := lInfo.isBalance &amp;&amp; rInfo.isBalance &amp;&amp; absSub(lInfo.height, rInfo.height) &lt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &amp;nodeInfo&#123;height, isBalance&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">absSub</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a - b</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> b - a</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
       
     </div>
 
@@ -3965,106 +4095,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/retrospro.png">
-      <meta itemprop="name" content="Eric Hao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">Goland远程调试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-23 12:25:25" itemprop="dateCreated datePublished" datetime="2024-08-23T12:25:25+08:00">2024-08-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-24 00:01:59" itemprop="dateModified" datetime="2024-08-24T00:01:59+08:00">2024-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/golang%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">golang调试</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-Goland单步调试"><a href="#1-Goland单步调试" class="headerlink" title="1. Goland单步调试"></a>1. Goland单步调试</h1><h2 id="1-1-Goland侧配置"><a href="#1-1-Goland侧配置" class="headerlink" title="1.1 Goland侧配置"></a>1.1 Goland侧配置</h2><ol>
-<li><p>配置代码同步</p>
-<p><img src="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/image-20240823225107371.png" alt="image-20240823225107371"></p>
-</li>
-<li><p>添加Go Remote</p></li></ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/23/Goland%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
