@@ -2,9 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2024/09/23/mysql/</loc>
+    
+    <lastmod>2024-10-06T08:34:14.088Z</lastmod>
+    
+    <date>1727049863000</date>
+    <title>mysql | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/08/29/golang%E9%9D%A2%E8%AF%95/</loc>
+    
+    <lastmod>2024-10-06T08:29:25.404Z</lastmod>
+    
+    <date>1724867853000</date>
+    <title>golang面试 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
     
-    <lastmod>2024-09-26T00:56:14.597Z</lastmod>
+    <lastmod>2024-10-04T05:04:09.364Z</lastmod>
     
     <date>1724662938000</date>
     <title>数据结构与算法 | RETROSPRO</title>
@@ -13,23 +35,23 @@
   </url>
   
   <url>
-    <loc>http://example.com/2024/09/23/mysql/</loc>
+    <loc>http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
     
-    <lastmod>2024-09-22T20:07:17.726Z</lastmod>
+    <lastmod>2024-10-03T01:56:03.669Z</lastmod>
     
-    <date>1727035463000</date>
-    <title>mysql | RETROSPRO</title>
+    <date>1725949220000</date>
+    <title>linux网络编程 | RETROSPRO</title>
     
     <desc></desc>
   </url>
   
   <url>
-    <loc>http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    <loc>http://example.com/2024/09/29/redis/</loc>
     
-    <lastmod>2024-09-17T23:17:47.315Z</lastmod>
+    <lastmod>2024-10-02T06:05:53.319Z</lastmod>
     
-    <date>1725949220000</date>
-    <title>linux网络编程 | RETROSPRO</title>
+    <date>1727578289000</date>
+    <title>redis | RETROSPRO</title>
     
     <desc></desc>
   </url>
@@ -74,17 +96,6 @@
     
     <date>1724486633000</date>
     <title>golang并发编程--基础篇 | RETROSPRO</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/08/29/golang%E9%9D%A2%E8%AF%95/</loc>
-    
-    <lastmod>2024-08-29T08:14:35.890Z</lastmod>
-    
-    <date>1724867853000</date>
-    <title>golang面试 | RETROSPRO</title>
     
     <desc></desc>
   </url>

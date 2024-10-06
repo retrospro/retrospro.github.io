@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/retrospro.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/retrospro.png">
+  <link rel="mask-icon" href="/images/retrospro.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1. 缓存穿透、缓存雪崩、缓存击穿1.1 缓存穿透   1.2 缓存雪崩 1.3 缓存击穿   1. 乐观锁与悲观锁     1234567891011121314151617181920212223242526272829303132在电商秒杀系统中，为了解决超卖问题（售出商品数量大于库存），我使用了乐观锁的方案，核心代码如下：boolean success &#x3D; seckillVoucherSe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://example.com/2024/09/29/redis/index.html">
+<meta property="og:site_name" content="RETROSPRO">
+<meta property="og:description" content="1. 缓存穿透、缓存雪崩、缓存击穿1.1 缓存穿透   1.2 缓存雪崩 1.3 缓存击穿   1. 乐观锁与悲观锁     1234567891011121314151617181920212223242526272829303132在电商秒杀系统中，为了解决超卖问题（售出商品数量大于库存），我使用了乐观锁的方案，核心代码如下：boolean success &#x3D; seckillVoucherSe">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929105434393.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929105507109.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929105531012.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929105559263.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929110956937.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929111026578.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929111046644.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929215246188.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929215301769.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929215321940.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929215343463.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240929215357585.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240930101029204.png">
+<meta property="og:image" content="http://example.com/2024/09/29/redis/image-20240930110640799.png">
+<meta property="article:published_time" content="2024-09-29T02:51:29.000Z">
+<meta property="article:modified_time" content="2024-10-02T06:05:53.319Z">
+<meta property="article:author" content="Eric Hao">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/29/redis/image-20240929105434393.png">
+
+
+<link rel="canonical" href="http://example.com/2024/09/29/redis/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/09/29/redis/","path":"2024/09/29/redis/","title":"redis"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>redis | RETROSPRO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">RETROSPRO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9%E3%80%81%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="nav-number">1.</span> <span class="nav-text">1. 缓存穿透、缓存雪崩、缓存击穿</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 缓存穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 缓存雪崩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 缓存击穿</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-number">2.</span> <span class="nav-text">1. 乐观锁与悲观锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%8F%82%E8%80%83-redisson%EF%BC%8C%E6%80%BB%E7%BB%93%E8%99%9A%E6%8B%9FIP%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">3. 参考 redisson，总结虚拟IP项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E3%80%8A%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8B%E4%B9%8B-Redis-16%E9%97%AE"><span class="nav-number">4.</span> <span class="nav-text">4. 《面试八股文》之 Redis 16问</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Eric Hao"
+      src="/images/retrospro.png">
+  <p class="site-author-name" itemprop="name">Eric Hao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/retrospro" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;retrospro" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/29/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="redis | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          redis
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-29 10:51:29" itemprop="dateCreated datePublished" datetime="2024-09-29T10:51:29+08:00">2024-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-02 14:05:53" itemprop="dateModified" datetime="2024-10-02T14:05:53+08:00">2024-10-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="1-缓存穿透、缓存雪崩、缓存击穿"><a href="#1-缓存穿透、缓存雪崩、缓存击穿" class="headerlink" title="1. 缓存穿透、缓存雪崩、缓存击穿"></a>1. 缓存穿透、缓存雪崩、缓存击穿</h1><h2 id="1-1-缓存穿透"><a href="#1-1-缓存穿透" class="headerlink" title="1.1 缓存穿透"></a>1.1 缓存穿透</h2><p><img src="/2024/09/29/redis/image-20240929105434393.png" alt="image-20240929105434393"></p>
+<p><img src="/2024/09/29/redis/image-20240929105507109.png" alt="image-20240929105507109"></p>
+<p><img src="/2024/09/29/redis/image-20240929105531012.png" alt="image-20240929105531012"></p>
+<h2 id="1-2-缓存雪崩"><a href="#1-2-缓存雪崩" class="headerlink" title="1.2 缓存雪崩"></a>1.2 缓存雪崩</h2><p><img src="/2024/09/29/redis/image-20240929105559263.png" alt="image-20240929105559263"></p>
+<h2 id="1-3-缓存击穿"><a href="#1-3-缓存击穿" class="headerlink" title="1.3 缓存击穿"></a>1.3 缓存击穿</h2><p><img src="/2024/09/29/redis/image-20240929110956937.png" alt="image-20240929110956937"></p>
+<p><img src="/2024/09/29/redis/image-20240929111026578.png" alt="image-20240929111026578"></p>
+<p><img src="/2024/09/29/redis/image-20240929111046644.png" alt="image-20240929111046644"></p>
+<h1 id="1-乐观锁与悲观锁"><a href="#1-乐观锁与悲观锁" class="headerlink" title="1. 乐观锁与悲观锁"></a>1. 乐观锁与悲观锁</h1><p><img src="/2024/09/29/redis/image-20240929215246188.png" alt="image-20240929215246188"></p>
+<p><img src="/2024/09/29/redis/image-20240929215301769.png" alt="image-20240929215301769"></p>
+<p><img src="/2024/09/29/redis/image-20240929215321940.png" alt="image-20240929215321940"></p>
+<p><img src="/2024/09/29/redis/image-20240929215343463.png" alt="image-20240929215343463"></p>
+<p><img src="/2024/09/29/redis/image-20240929215357585.png" alt="image-20240929215357585"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">在电商秒杀系统中，为了解决超卖问题（售出商品数量大于库存），我使用了乐观锁的方案，核心代码如下：</span><br><span class="line"></span><br><span class="line">boolean success = seckillVoucherService.update()</span><br><span class="line">    .setSql(&quot;stock = stock - 1&quot;) // set stock = stock - 1</span><br><span class="line">    .eq(&quot;voucher_id&quot;, voucherId).gt(&quot;stock&quot;, 0) // where id = ? and stock &gt; 0</span><br><span class="line">    .update();</span><br><span class="line"></span><br><span class="line">乐观锁的核心在于将 stock &gt; 0 作为 where 条件的一部分</span><br><span class="line"></span><br><span class="line">这样确实解决了超卖问题，但是我不理解的是：如果有多个线程并发执行，且他们都符合 where id = ? and stock &gt; 0，那是不是还是会出现超卖问题？</span><br><span class="line"></span><br><span class="line">在你的电商秒杀系统中使用乐观锁的方式确实可以有效地解决超卖问题。你的担心是有道理的，但让我们详细分析一下这个实现的工作机制和其对并发情况的处理。</span><br><span class="line"></span><br><span class="line">乐观锁的核心思想是在更新时检查记录是否在读取数据后被其他事务修改过。如果是，那么更新操作将失败。这是通过在更新条件中加入一些检查来实现的，比如检查库存数量是否符合预期。在你的代码中，这种机制通过SQL条件 `stock &gt; 0` 实现。</span><br><span class="line"></span><br><span class="line">具体到你的SQL更新操作：</span><br><span class="line"></span><br><span class="line">```sql</span><br><span class="line">.update().setSql(&quot;stock = stock - 1&quot;).eq(&quot;voucher_id&quot;, voucherId).gt(&quot;stock&quot;, 0)</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">这段代码的执行逻辑如下：</span><br><span class="line"></span><br><span class="line">1. 检查商品库存（stock）是否大于0。</span><br><span class="line">2. 如果库存大于0，那么减少1（`stock = stock - 1`）。</span><br><span class="line">3. 更新操作是原子性的，即它在单个、不可分割的步骤中完成检查和更新。</span><br><span class="line"></span><br><span class="line">当多个线程（或多个请求）同时尝试执行这个更新操作时，数据库管理系统（DBMS）会确保每个更新操作都是独立执行的。假设现在有两个并发请求试图更新同一记录，并且当前`stock`的值为1。两个请求都会试图将`stock`从1减到0。但是，由于更新操作中包含了条件`stock &gt; 0`，因此只有第一个到达数据库并被处理的请求能够成功执行更新（将`stock`减到0）。第二个请求在尝试执行相同操作时，条件`stock &gt; 0`将不再为真（因为`stock`已经是0了），因此这个请求的更新操作将失败，不会进行任何更改。</span><br><span class="line"></span><br><span class="line">这意味着即使多个请求符合条件`id = ? AND stock &gt; 0`，数据库在实际执行更新前都会再次检查这个条件。由于这个检查-更新操作是原子性的，它确保了不会有两个请求同时减少库存，导致超卖。</span><br><span class="line"></span><br><span class="line">所以，你的实现方法有效地利用了乐观锁的特性来防止超卖问题。这种策略特别适用于库存数量不是非常大，而并发请求量也适中的场景。如果预计极高的并发量，可能还需要考虑其他策略（比如分布式锁或进一步优化事务控制）来确保系统的稳定性和性能。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h1 id="3-参考-redisson，总结虚拟IP项目"><a href="#3-参考-redisson，总结虚拟IP项目" class="headerlink" title="3. 参考 redisson，总结虚拟IP项目"></a>3. 参考 redisson，总结虚拟IP项目</h1><p>秒杀场景和虚拟IP的申请场景实际上的高度相似的</p>
+<p>解决什么问题？同一个用户只能获取一个虚拟IP，类比一人一单和超卖问题</p>
+<p>下面的这些原理可以映射到虚拟IP的golang的业务逻辑（即虚拟IP的申请，释放，续租逻辑）</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cr4y1671t?p=67&spm_id_from=pageDriver&vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1cr4y1671t?p=67&amp;spm_id_from=pageDriver&amp;vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><img src="/2024/09/29/redis/image-20240930101029204.png" alt="image-20240930101029204"></p>
+<p>golang 分布式锁</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Pm4y1b76u/?spm_id_from=333.337.search-card.all.click&vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1Pm4y1b76u/?spm_id_from=333.337.search-card.all.click&amp;vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wP411X7sc/?spm_id_from=333.337.search-card.all.click&vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1wP411X7sc/?spm_id_from=333.337.search-card.all.click&amp;vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p>项目有哪些可优化点，遇到了什么难点。。。</p>
+<p>回答思路：</p>
+<p><img src="/2024/09/29/redis/image-20240930110640799.png" alt="image-20240930110640799"></p>
+<p>multiLock 还有不理解的地方，如果一个 redis 节点挂了，那就不满足在所有节点获取到锁了，那和单个节点有什么区别？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`Redisson` 的 `multiLock` 是一个分布式锁实现，使用了多个 Redis 实例来提升锁的可靠性。你提到的情况涉及到在多个 Redis 节点上尝试获取锁时，某些节点不可用的情形。这实际上涉及到分布式系统中的可用性和一致性之间的权衡。</span><br><span class="line"></span><br><span class="line">首先，`multiLock` 的核心思想是通过同时在多个 Redis 节点上获取锁来增加锁的安全性，防止某个单节点故障导致锁失效或错误释放锁。在具体实现中，`multiLock` 要求在**所有节点**上都成功获取锁，才算整个锁获取成功，这种严格模式下保证了高一致性。</span><br><span class="line"></span><br><span class="line">### 关于节点挂掉的情况：</span><br><span class="line">- **如果一个节点挂了**，根据 `multiLock` 的机制，无法在所有节点上获取锁，所以这次锁获取会失败。这种设计的初衷是防止部分节点失效时锁状态的不一致性，确保只有在所有参与节点上都获得了锁的情况下，才能认为锁是成功获取的。</span><br><span class="line">- **和单节点的区别**：虽然一个节点挂了会导致锁获取失败，但在正常情况下，多个节点提高了锁的可靠性。例如，单节点 Redis 如果宕机，锁会直接失效，所有依赖这个锁的操作可能会出错或进入竞争状态。而通过多个节点获取锁，除非有多个节点宕机，系统依然能够正常运行。</span><br><span class="line"></span><br><span class="line">### 如何处理 Redis 节点故障：</span><br><span class="line">如果你的系统要求在部分 Redis 节点挂掉的情况下仍然能够获取锁，可以考虑使用 Redisson 提供的 `RedLock` 算法。`RedLock` 允许在大多数节点（通常是超过一半的节点）上获取锁，而不是要求所有节点。这在某些场景下可以提供更好的容错能力。</span><br><span class="line"></span><br><span class="line">简单总结：</span><br><span class="line">- **multiLock** 提供更高的锁一致性，但在任何一个节点不可用时，锁获取会失败。</span><br><span class="line">- **RedLock** 则是通过在大多数节点上获取锁来增加容错性，适合 Redis 节点可能不稳定的场景。</span><br><span class="line"></span><br><span class="line">因此，`multiLock` 和单节点的区别在于，`multiLock` 强调多个节点间的一致性，而不是依赖于单个节点来决定锁的状态。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="4-《面试八股文》之-Redis-16问"><a href="#4-《面试八股文》之-Redis-16问" class="headerlink" title="4. 《面试八股文》之 Redis 16问"></a>4. 《面试八股文》之 Redis 16问</h1><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15714244/5461657">https://blog.51cto.com/u_15714244/5461657</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/redis/" rel="tag"># redis</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/23/mysql/" rel="prev" title="mysql">
+                  <i class="fa fa-angle-left"></i> mysql
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Eric Hao</span>
+  </div>
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"retrospro","repo":"gitalk","client_id":"Ov23liOgrSkahiDbuNEk","client_secret":"af23b916424a5d6cb8b5e4e0f2f69eb66562e5eb","admin_user":"retrospro","distraction_free_mode":true,"proxy":"https://vercel.prohibitorum.top/github_access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"0c001c7528b58e71a26660b6b5015f11"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
