@@ -149,18 +149,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -182,6 +182,153 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/07/%E9%9D%A2%E7%BB%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/07/%E9%9D%A2%E7%BB%8F/" class="post-title-link" itemprop="url">面经</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-07 15:57:23 / 修改时间：16:00:59" itemprop="dateCreated datePublished" datetime="2024-10-07T15:57:23+08:00">2024-10-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">面经</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h1><p>来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tF41147cK/?spm_id_from=333.999.0.0&vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1tF41147cK/?spm_id_from=333.999.0.0&amp;vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p>mysql</p>
+<ol>
+<li>SQL 优化</li>
+<li>针对 SQL 语句如何建立索引（最左原则）</li>
+<li>索引数据结构（B+树）</li>
+</ol>
+<p>mq</p>
+<ol>
+<li>为什么选用 rocketMQ 进行日志采集</li>
+<li>为什么需要队列进行日志采集？</li>
+<li>日志采集的架构是怎样的？流程是怎样的？</li>
+<li>rocketMQ 如何保证消息的顺序？</li>
+</ol>
+<p>redis</p>
+<ol>
+<li>redis 的使用场景？</li>
+<li>内存不足有新数据缓存，redis 如何处理？</li>
+<li>redis 的淘汰策略</li>
+<li>redis 的缓存一致性</li>
+</ol>
+<p>go</p>
+<ol>
+<li>线上服务内存泄漏如何处理？</li>
+<li>go 为啥使用 CSP 模型来实现并发？</li>
+<li>channel 是线程安全的吗？</li>
+<li>channel 怎么保证的线程安全？</li>
+<li>channel 的底层数据结构</li>
+<li>mutex 是悲观锁还是乐观锁？</li>
+<li>rwmutex 的使用场景</li>
+<li>map 是线程安全的吗</li>
+<li>无锁，但是线程安全的 map 如何设计？（CAS）</li>
+<li>结构体能否进行比较？</li>
+<li>空结构体的使用场景</li>
+<li>给 channel 用空结构体的好处是什么？</li>
+<li>字符串转 byte 数组会发生内存拷贝吗？</li>
+<li>字符串转 byte 数组，如何避免发送内存拷贝？</li>
+<li>多核 CPU 如何保持 cache 一致？（MESI协议）</li>
+<li>GMP 调度模型，GMP 中的抢占机制</li>
+<li>GC 三色标记，stw 是什么意思？产生 stw 的原因是什么？小对象多了，为什么会造成 GC  压力？</li>
+</ol>
+<p>代码题</p>
+<ol>
+<li>go 函数中，返回值未命名，发生了 panic，但是在函数内 recover 了，函数返回什么值？怎么解决？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func test() error &#123;</span><br><span class="line">   var err error</span><br><span class="line">   defer func() &#123;</span><br><span class="line">      if r := recover(); r != nil &#123;</span><br><span class="line">         err = errors.New(fmt.Sprintf(&quot;%s&quot;, r))</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;()</span><br><span class="line">   raisePanic()</span><br><span class="line">   return err</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func raisePanic() &#123;</span><br><span class="line">   panic(&quot;发生了错误&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>打印值是多少？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">   var a uint = 0</span><br><span class="line">   var b uint = 1</span><br><span class="line">   c := a - b</span><br><span class="line">   fmt.Println(reflect.TypeOf(c))</span><br><span class="line">   fmt.Println(c)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">   a := [3]int&#123;1, 2, 3&#125;  // 数组</span><br><span class="line">   for k, v := range a &#123;</span><br><span class="line">      if k == 0 &#123;</span><br><span class="line">         a[0], a[1] = 100, 200</span><br><span class="line">         fmt.Print(a)</span><br><span class="line">      &#125;</span><br><span class="line">      a[k] = 100 + v</span><br><span class="line">   &#125;</span><br><span class="line">   fmt.Print(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">   a := []int&#123;1, 2, 3&#125;  // 切片</span><br><span class="line">   for k, v := range a &#123;</span><br><span class="line">      if k == 0 &#123;</span><br><span class="line">         a[0], a[1] = 100, 200</span><br><span class="line">         fmt.Print(a)</span><br><span class="line">      &#125;</span><br><span class="line">      a[k] = 100 + v</span><br><span class="line">   &#125;</span><br><span class="line">   fmt.Print(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>每个函数起一个 goroutine，轮流打印 cat、dog、fish 100 次</li>
+<li>手写 LRU 算法</li>
+</ol>
+<p>网络编程</p>
+<ol>
+<li>tcp 三次握手，四次挥手，四次挥手中 time_wait 可怕还是 close_wait 可怕</li>
+<li>用过哪些 Linux 命令</li>
+<li>tcp 的流量控制</li>
+<li>rpc 是什么？如何设计一个 rpc？</li>
+<li>如何处理 tcp 粘包问题？</li>
+<li>http1.1 和 http2 的区别</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -227,7 +374,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-02 14:05:53" itemprop="dateModified" datetime="2024-10-02T14:05:53+08:00">2024-10-02</time>
+      <time title="修改时间：2024-10-07 15:56:59" itemprop="dateModified" datetime="2024-10-07T15:56:59+08:00">2024-10-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -236,6 +383,10 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/redis/" itemprop="url" rel="index"><span itemprop="name">redis</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/redis/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
         </span>
     </span>
 
@@ -249,7 +400,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="1-缓存穿透、缓存雪崩、缓存击穿"><a href="#1-缓存穿透、缓存雪崩、缓存击穿" class="headerlink" title="1. 缓存穿透、缓存雪崩、缓存击穿"></a>1. 缓存穿透、缓存雪崩、缓存击穿</h1><h2 id="1-1-缓存穿透"><a href="#1-1-缓存穿透" class="headerlink" title="1.1 缓存穿透"></a>1.1 缓存穿透</h2><p><img src="/2024/09/29/redis/image-20240929105434393.png" alt="image-20240929105434393"></p>
+          <h1 id="1-在你的项目中是如何使用redis的？"><a href="#1-在你的项目中是如何使用redis的？" class="headerlink" title="1. 在你的项目中是如何使用redis的？"></a>1. 在你的项目中是如何使用redis的？</h1><p>ew</p>
+<h1 id="1-缓存穿透、缓存雪崩、缓存击穿"><a href="#1-缓存穿透、缓存雪崩、缓存击穿" class="headerlink" title="1. 缓存穿透、缓存雪崩、缓存击穿"></a>1. 缓存穿透、缓存雪崩、缓存击穿</h1><h2 id="1-1-缓存穿透"><a href="#1-1-缓存穿透" class="headerlink" title="1.1 缓存穿透"></a>1.1 缓存穿透</h2><p><img src="/2024/09/29/redis/image-20240929105434393.png" alt="image-20240929105434393"></p>
 <p><img src="/2024/09/29/redis/image-20240929105507109.png" alt="image-20240929105507109"></p>
 <p><img src="/2024/09/29/redis/image-20240929105531012.png" alt="image-20240929105531012"></p>
 <h2 id="1-2-缓存雪崩"><a href="#1-2-缓存雪崩" class="headerlink" title="1.2 缓存雪崩"></a>1.2 缓存雪崩</h2><p><img src="/2024/09/29/redis/image-20240929105559263.png" alt="image-20240929105559263"></p>
@@ -350,7 +502,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 16:34:14" itemprop="dateModified" datetime="2024-10-06T16:34:14+08:00">2024-10-06</time>
+      <time title="修改时间：2024-10-06 18:48:11" itemprop="dateModified" datetime="2024-10-06T18:48:11+08:00">2024-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -387,6 +539,76 @@
 <li>C. 相对Hash索引，B+tree支持范围匹配及排序操作；</li>
 </ul>
 <p><img src="/2024/09/23/mysql/image-20240923040709070.png" alt="image-20240923040709070"></p>
+<h1 id="2-sql优化"><a href="#2-sql优化" class="headerlink" title="2. sql优化"></a>2. sql优化</h1><p>MySQL-进阶篇（3. SQL优化）</p>
+<p>首先可以查看mysql的慢查询日志，定位到需要优化的 sql 语句的范围</p>
+<h2 id="2-1-插入数据"><a href="#2-1-插入数据" class="headerlink" title="2.1 插入数据"></a>2.1 插入数据</h2><ul>
+<li><p>使用insert插入数据时，尽可能得选择批量插入，主键顺序插入，性能要高于乱序插入。</p>
+</li>
+<li><p>大批量插入数据时，比如几百万记录，使用insert插入性能较低，此时可以选择使用 load 命令进行插入。</p>
+<p><img src="/2024/09/23/mysql/image-20241006164714937.png" alt="image-20241006164714937"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 客户端连接服务器时，加上参数 --local-infile</span></span><br><span class="line">mysql <span class="comment">--local-infile -u root -p</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 设置全局参数local_infile为1, 开启从本地加载文件导入数据的开关</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> local_infile <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 执行load指令将准备好的数据，加载到表结构中</span></span><br><span class="line">load data <span class="keyword">local</span> infile <span class="string">&#x27;/root/sql1.log&#x27;</span> <span class="keyword">into</span> <span class="keyword">table</span> tb_user fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span> lines terminated <span class="keyword">by</span> <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-2-主键优化"><a href="#2-2-主键优化" class="headerlink" title="2.2 主键优化"></a>2.2 主键优化</h2><p><strong>主键设计原则：</strong></p>
+<ul>
+<li><p>满足业务需求的情况下，尽量降低主键的长度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">存储效率： 在InnoDB存储引擎中，主键会在每个索引（包括聚簇索引和二级索引）中被引用。也就是说，主键的长度越长，每个索引中的记录会占用更多的存储空间。这会导致数据量大的时候存储开销变高。</span><br><span class="line">索引性能： 较短的主键能够使B+树结构（MySQL中用于实现索引的数据结构）更加紧凑。较小的索引占用更少的内存，查询时内存访问也会更高效。索引越短，查询时能更快定位到具体的数据页，从而提升查询速度。</span><br><span class="line">I/O 负担： 较长的主键会导致磁盘I/O操作增多，因为数据页变大或更多的页需要被访问，这会降低性能。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入数据时，尽量选择顺序插入，选择使用<code>AUTO_INCREMENT</code>自增主键。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">乱序插入容易导致页分裂</span><br><span class="line">减少磁盘碎片</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尽量不要使用<code>UUID</code>做主键或者是其他自然主键，如身份证号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">UUID的无序性导致频繁的页分裂：</span><br><span class="line">UUID（通用唯一标识符）是一种无序的、128位的字符串，通常被用作唯一标识符。如果将UUID作为主键，每次插入的数据会是乱序的，B+树无法保证有序性，导致频繁的页分裂。每次插入时，系统都需要在B+树中找到合适的位置插入，重新调整索引结构，这会导致显著的性能下降。</span><br><span class="line"></span><br><span class="line">UUID的长度较大：</span><br><span class="line">UUID通常由16字节（128位）构成，相比自增整数主键（通常是4字节的整数），UUID的长度要大得多。这意味着不仅主键占用的存储空间更多，而且所有引用该主键的二级索引也会变得臃肿，进一步增加了存储和查询的成本。</span><br><span class="line"></span><br><span class="line">自然主键不适合做主键：</span><br><span class="line">例如身份证号或电话号码等自然主键虽然能保证唯一性，但它们通常存在以下问题：</span><br><span class="line"></span><br><span class="line">长度过长： 自然主键通常比自增ID长很多，增加了存储开销和索引的维护成本。</span><br><span class="line">业务变动风险： 自然主键有可能会因业务需求发生变化（如人换身份证号、电话号码等），这会导致主键变更带来的额外复杂性。而且，主键一旦改变，相关的二级索引和引用的表都会受到影响，导致复杂的数据维护工作。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-3-order-by-优化"><a href="#2-3-order-by-优化" class="headerlink" title="2.3 order by 优化"></a>2.3 order by 优化</h2><p>MySQL的排序，有两种方式：</p>
+<p>Using filesort：通过表的索引或全表扫描，读取满足条件的数据行，然后在排序缓冲区sort buffer中完成排序操作，所有不是通过索引直接返回排序结果的排序都叫 FileSort 排序。</p>
+<p>Using index：通过有序索引顺序扫描直接返回有序数据，这种情况即为 using index，不需要额外排序，操作效率高。</p>
+<p>对于以上的两种排序方式，Using index的性能高，而Using filesort的性能低，我们在优化排序操作时，尽量要优化为 Using index。</p>
+<p><img src="/2024/09/23/mysql/image-20241006173741475.png" alt="image-20241006173741475"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建索引</span></span><br><span class="line"><span class="keyword">create</span> index idx_user_age_phone_aa <span class="keyword">on</span> tb_user(age,phone);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/23/mysql/image-20241006174051145.png" alt="image-20241006174051145"></p>
+<p><strong>order by优化原则：</strong></p>
+<ul>
+<li><p>根据排序字段建立合适的索引，多字段排序时，也遵循最左前缀法则。</p>
+</li>
+<li><p>尽量使用覆盖索引，避免出现回表查询。（覆盖索引是指，查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到。）</p>
+</li>
+<li><p>多字段排序，一个升序一个降序，此时需要注意联合索引在创建时的规则（ASC&#x2F;DESC）。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建索引</span></span><br><span class="line"><span class="keyword">create</span> index idx_user_age_phone_ad <span class="keyword">on</span> tb_user(age <span class="keyword">asc</span>,phone <span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不可避免的出现filesort，大数据量排序时，可以适当增大排序缓冲区大小sort_buffer_size（默认256k）。</p>
+</li>
+</ul>
+<p><img src="/2024/09/23/mysql/image-20241006175253654.png" alt="image-20241006175253654"></p>
+<h2 id="2-4-group-by优化"><a href="#2-4-group-by优化" class="headerlink" title="2.4 group by优化"></a>2.4 group by优化</h2><ul>
+<li>在分组操作时，可以通过索引来提高效率。</li>
+<li>分组操作时，索引的使用也是满足最左前缀法则的。</li>
+</ul>
+<h2 id="2-5-limit优化"><a href="#2-5-limit优化" class="headerlink" title="2.5 limit优化"></a>2.5 limit优化</h2><p>在数据量较大时，如果进行limit分页查询，越往后，分页查询的效率越低。</p>
+<p><img src="/2024/09/23/mysql/image-20241006180417124.png" alt="image-20241006180417124"></p>
+<p>因为，当在进行分页查询时，如果执行 <code>limit 2000000,10</code>，此时需要MySQL排序前2000010记录，仅返回2000000 - 2000010的记录，其他记录丢弃，查询排序的代价非常大。</p>
+<p>优化思路：一般分页查询时，通过创建覆盖索引能够比较好地提高性能，可以通过覆盖索引加子查询形式进行优化。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 优化前</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_sku limit <span class="number">2000000</span>,<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 优化后</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_sku t, (<span class="keyword">select</span> id <span class="keyword">from</span> tb_sku <span class="keyword">order</span> <span class="keyword">by</span> id limit <span class="number">2000000</span>,<span class="number">10</span>) a <span class="keyword">where</span> t.id <span class="operator">=</span> a.id;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-6-count优化"><a href="#2-6-count优化" class="headerlink" title="2.6 count优化"></a>2.6 count优化</h2><blockquote>
+<p>按照效率排序的话，count(字段) &lt; count(主键 ID) &lt; count(1) ~ count(<em>), 所以尽量使用 count(</em>)。</p>
+</blockquote>
+<p><img src="/2024/09/23/mysql/image-20241006182020266.png" alt="image-20241006182020266"></p>
+<h1 id="3-最左前缀法则易错点"><a href="#3-最左前缀法则易错点" class="headerlink" title="3. 最左前缀法则易错点"></a>3. 最左前缀法则易错点</h1><p>已知：</p>
+<p><img src="/2024/09/23/mysql/image-20241006184656719.png" alt="image-20241006184656719"></p>
+<p>当执行SQL语句： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from tb_user where age = 31 and status = &#x27;0&#x27; and profession = &#x27;软件工程&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>上述的联合索引，索引长度？</p>
+<p><img src="/2024/09/23/mysql/image-20241006184419876.png" alt="image-20241006184419876"></p>
+<p>可以看到，是完全满足是最左前缀法则的，索引长度54，联合索引是有效的。</p>
+<p><strong>注意：最左前缀法则中指的最左边的列，是指在查询时，联合索引的最左边的字段（即第一个字符）必须存在，与我们编写SQL时，条件编写的先后顺序无关。</strong></p>
 
       
     </div>
@@ -3807,348 +4029,6 @@
 <h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
 <h1 id="3-golang哈希表"><a href="#3-golang哈希表" class="headerlink" title="3. golang哈希表"></a>3. golang哈希表</h1><p><strong>golang 中的映射（map）是哈希表吗？</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.joxrays.com/go-map/">https://www.joxrays.com/go-map/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/retrospro.png">
-      <meta itemprop="name" content="Eric Hao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">golang并发编程--基础篇</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-24 16:03:53" itemprop="dateCreated datePublished" datetime="2024-08-24T16:03:53+08:00">2024-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-07 07:22:35" itemprop="dateModified" datetime="2024-09-07T07:22:35+08:00">2024-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/golang%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">golang基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240824160554038.png" alt="image-20240824160554038"></p>
-<p>有缓冲channel和无缓冲channel</p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240824161109182.png" alt="image-20240824161109182"></p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825222826148.png" alt="image-20240825222826148"></p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825223113423.png" alt="image-20240825223113423"></p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825223516012.png" alt="image-20240825223516012"></p>
-<p>1、并行与并发</p>
-<ol>
-<li>并行<br>要求CPU具备多核计算的能力<br>在同一时刻需要多个线程在多个CPU上同时执行指令，无论宏观上还是微观上都会看到多个线程在同时运行</li>
-<li>并发<br>并不要求CPU具备多核计算的能力<br>单核CPU都是独立的，CPU与CPU之间不需要交互</li>
-</ol>
-<p>2、CSP并发模型</p>
-<ol>
-<li>Communicating Sequential Process: 通信顺序进程模型</li>
-<li>Go语言中有两种并发模型:<br>1、线程与锁的并发模型<br>2、CSP通信顺序进程模型</li>
-</ol>
-<p>3、根据资源访问权限的不同，内存分为:</p>
-<ol>
-<li>内核空间<br>可以直接调用计算机底层资源，比如: I&#x2F;O资源</li>
-<li>用户空间<br>没有权限调用底层资源，需要通过系统调用等方式切换为内核态从而调用底层资源</li>
-</ol>
-<p>4、线程是操作系统能调度的最小单位</p>
-<ol>
-<li>用户线程<ol>
-<li>用户空间的代码创建、管理、销毁</li>
-<li>同一进程下创建的多个线程对CPU的争夺是进程为单位的，</li>
-<li>这只能够对其用户进程被分配的CPU时间，无论很好的利用多线程计算</li>
-<li>我们一般情况下说的线程其实是指用户线程</li>
-<li>用户线程无法被系统感知，用户线程所属的进程或者内核线程才能被系统直接调用</li>
-</ol>
-</li>
-<li>内核线程<ol>
-<li>由操作系统创建、管理、调度</li>
-<li>能够直接获取系统底层资源</li>
-<li>线程切换时的CPU需要切换到内核态</li>
-<li>能够很好的利用多核CPU进行计算的优势</li>
-<li>开发人员可以通过系统调用的方式使用内核线程</li>
-</ol>
-</li>
-</ol>
-<p>5、线程模型</p>
-<ol>
-<li><p>用户级线程模型  </p>
-<ol>
-<li>一个进程对应一个内核线程  </li>
-<li>进程内的多线程由用户代码完成，这使得线程的创建、管理，同时等工作量得异常显著级和高效  </li>
-<li>进程内的多线程无法很好利用CPU多核运算的优势，只能通过分时复用的方式轮换执行  </li>
-<li>如果进程内有线程阻塞，很可能会导致整个进程范围内的阻塞</li>
-</ol>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825223737636.png" alt="image-20240825223737636"></p>
-</li>
-<li><p>内核级线程模型</p>
-<ol>
-<li><p>进程中的每个线程都会对应一个内核线程  </p>
-</li>
-<li><p>进程内部创建一个线程程序会调用操作系统的线程库，在内核创建一个新的内核线程与之对应  </p>
-</li>
-<li><p>线程的管理和调度由内核系统负责  </p>
-<p>这会导致每个线程切换上下文的代价较大，产生不小的资源消耗  </p>
-<p>同时创建线程的数量需要限制在系统可创建的线程的数量  </p>
-</li>
-<li><p>优点是多线程可以充分利用CPU的多核并行计算能力  </p>
-</li>
-<li><p>进程内某个线程挂起并不会影响到其他线程的工作执行</p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825232418190.png" alt="image-20240825232418190"></p>
-</li>
-</ol>
-</li>
-<li><p>两级线程模型</p>
-<ol>
-<li>相当于用户级线程和内核级线程的结合  </li>
-<li>一个进程将会对应多个内核级线程，由进程内的调度器来决定进程内线程与内核线程的对应  </li>
-<li>进程会先申请一定数量的内核级线程，然后将自己创建的线程与之对应  </li>
-<li>线程的调度与管理由进程的调度器负责，而内核级线程的调度由操作系统负责  </li>
-<li>这种模型能够有效降低线程创建和管理的资源消耗，也能够很好的提供程序并行计算的能力</li>
-</ol>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825232639991.png" alt="image-20240825232639991"></p>
-</li>
-<li><p>MPG模型</p>
-<ol>
-<li><p>go语言的mpg模型是一种特殊的两级线程模型，它将CPU、内核线程、用户线程之间的管理，描述为M、P、G三者的关系  </p>
-</li>
-<li><p>M：machine，一个对应一个内核级线程，相当于内核级线程在go中的的映射  </p>
-</li>
-<li><p>P：processor，一个P代表执行go代码所需要的上下文环境  </p>
-</li>
-<li><p>G：goroutine，是一个代码片段，相当于用户级线程  </p>
-</li>
-<li><p>go func aaa() { }，这里的aaa相当于一个用户级线程</p>
-</li>
-</ol>
-</li>
-<li><p>MPG  </p>
-<ol>
-<li>每个M都与一个内核级线程绑定，在运行时，一个M同时只能绑定一个P  </li>
-<li>P和G的关系可以是一对多的  </li>
-<li>在程序运行过程中，M和内核级线程的绑定关系不会发生变化，在M的生命周期内只会与一个内核级线程绑定</li>
-<li>M和P P和G之间的关系都是动态可变的  </li>
-<li>在实际的运行过程中，M和P的组合才能为G提供有效的运行环境  </li>
-<li>多个可执行的G将会顺序排成一个队列挂在某个P上面，等待调度和执行</li>
-</ol>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825233553727.png" alt="image-20240825233553727"></p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825233652269.png" alt="image-20240825233652269"></p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240825233710063.png" alt="image-20240825233710063"></p>
-</li>
-<li><p>并发编程实践</p>
-<ol>
-<li>goroutine</li>
-<li>channel</li>
-<li>select</li>
-<li>sync包</li>
-<li>atomic包</li>
-<li>context包</li>
-</ol>
-</li>
-<li><p>goroutine简介<br>协程goroutine在go语言中属于是轻量级的线程<br>在运行时由runtime管理<br>每个go程序至少启动一个goroutine，main函数也在goroutine上运行  </p>
-</li>
-<li><p>启动goroutine  </p>
-<ol>
-<li>关键字 go  </li>
-<li>模式  <ol>
-<li>go 变量  </li>
-<li>go 匿名函数</li>
-<li>go 函数</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>需要注意的地方  </p>
-<ol>
-<li>main的goroutine结束后就意味着整个程序的运行已经结束了，换言之，go的执行是非阻塞的，不会等待  </li>
-<li>goroutine之间的代码顺序并不能代表其真实的执行顺序  </li>
-<li>go后面的函数的返回值会被忽略，也就是说协程不能有返回值，但是可以通过channel实现有返回值的效果</li>
-<li>没有父子goroutine的概念，所有的goroutine是平等的被调度和执行的  </li>
-<li>go程序在执行时会单独为main创建一个goroutine，遇到其他go关键字再去创建其他的goroutine  </li>
-<li>go没有暴露goroutine id给用户，所以不能在一个goroutine里面显式地操作另一个goroutine</li>
-</ol>
-</li>
-<li><p>channel<br>go语言当中使用channel作为goroutine之间同步和通信的手段</p>
-<p>channel属于引用类型</p>
-<p>每个channel只能传递固定类型的数据</p>
-<p>声明格式：var channelName chan T  </p>
-</li>
-<li><p>channel的发送与接收</p>
-<p>channel作为一个队列，会保证数据收发顺序总是遵循先入先出的原则进行<br>也会保证同一时刻只有一个goroutine访问channel来发送和获取数据<br>channel发送数据格式：channel &lt;- value<br>接收channel数据格式：value :&#x3D; &lt;- channel    value, ok :&#x3D; &lt;- channel<br>创建channel格式：ch :&#x3D; make(chan T, sizeOfChannel)  ch :&#x3D; make(chan string, 10)</p>
-</li>
-</ol>
-<p>注意：</p>
-<p>在业务代码中应使用 value, ok :&#x3D; &lt;- channel，而避免使用 value :&#x3D; &lt;- channel</p>
-<p>在下面的情形中，将导致刷屏现象！</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>)</span><br><span class="line">	<span class="keyword">go</span> test1(ch)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		val := &lt;-ch</span><br><span class="line">		fmt.Println(<span class="string">&quot;value is&quot;</span>, val)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test1</span><span class="params">(ch <span class="keyword">chan</span> <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	GOTIME := <span class="string">&quot;2006-01-02 15:04:05&quot;</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(ch)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		ch &lt;- time.Now().Format(GOTIME)</span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确示例如下：</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">string</span>)</span><br><span class="line">	<span class="keyword">go</span> test1(ch)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		val, ok := &lt;-ch</span><br><span class="line">		<span class="keyword">if</span> ok &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;value is&quot;</span>, val, <span class="string">&quot;, ok is&quot;</span>, ok)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;value is&quot;</span>, val, <span class="string">&quot;, ok is&quot;</span>, ok)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;over.......&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test1</span><span class="params">(ch <span class="keyword">chan</span> <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	GOTIME := <span class="string">&quot;2006-01-02 15:04:05&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;i am test1, new close chan.&quot;</span>)</span><br><span class="line">		<span class="built_in">close</span>(ch)</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		ch &lt;- time.Now().Format(GOTIME)</span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>by the way， channel一般是写入方进行关闭，而不是读取方进行关闭</strong></p>
-<ol>
-<li><p>案例<br>无缓冲区channel – 阻塞</p>
-<p>ch :&#x3D; make(chan string)</p>
-<p>有缓冲区channel – 不阻塞</p>
-<p>ch :&#x3D; make(chan string, 5)</p>
-</li>
-<li><p>select  </p>
-<ol>
-<li>需要接收多个goroutine中的消息时可以使用select  </li>
-<li>当多个case同时到达，select将会执行一个随机算法随机选择一个case  </li>
-<li>select与switch的区别：  <ol>
-<li>select的每个case必须是一个操作  </li>
-<li>select后边不带判断条件  </li>
-<li>select中如果多个case同时到达，那么select将会执行一个随机算法，随机选择一个case执行</li>
-</ol>
-</li>
-</ol>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240826012532525.png" alt="image-20240826012532525"></p>
-</li>
-</ol>
-<h1 id="1-sync包"><a href="#1-sync包" class="headerlink" title="1. sync包"></a>1. sync包</h1><h2 id="1-1-Mutex-互斥锁"><a href="#1-1-Mutex-互斥锁" class="headerlink" title="1.1 Mutex 互斥锁"></a>1.1 Mutex 互斥锁</h2><p>确保在同一时间段内有且仅有一个goroutine持有锁<br>这就保证了在某一时间段内有且仅有一个goroutine访问共享资源，其他申请锁的goroutine将会被阻塞直到锁被释放</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> lock sync.Mutex</span><br><span class="line">	GOTIME := <span class="string">&quot;2006-01-02 15:04:05&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;start func1 at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		<span class="keyword">defer</span> lock.Unlock()</span><br><span class="line">		lock.Lock()</span><br><span class="line">		fmt.Println(<span class="string">&quot;func1 get lcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">		fmt.Println(<span class="string">&quot;func1 release lcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">1</span> * time.Second / <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;start func2 at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		<span class="keyword">defer</span> lock.Unlock()</span><br><span class="line">		lock.Lock()</span><br><span class="line">		fmt.Println(<span class="string">&quot;func2 get lcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">		fmt.Println(<span class="string">&quot;func2 release lcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">	&#125;()</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;over.......&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="1-2-RWMutex-读写锁"><a href="#1-2-RWMutex-读写锁" class="headerlink" title="1.2 RWMutex 读写锁"></a>1.2 RWMutex 读写锁</h2><ol>
-<li>在同一时间段内只能有一个goroutine获取到写锁  </li>
-<li>在同一时间段内可以有多个goroutine获取到读锁  </li>
-<li>在同一时间段只能存在写锁或读锁（读锁和写锁互斥）</li>
-</ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> lock sync.RWMutex</span><br><span class="line">	GOTIME := <span class="string">&quot;2006-01-02 15:04:05&quot;</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;start read lock at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> lock.RUnlock()</span><br><span class="line">			lock.RLock()</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;get rlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">			time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;release rlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">1</span> * time.Second / <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;start write lock at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> lock.Unlock()</span><br><span class="line">			lock.Lock()</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;get wlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">			time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;release wlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">10</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;over.......&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240826015036876.png" alt="image-20240826015036876"></p>
-<h2 id="1-3-WaitGroup-并发等待组"><a href="#1-3-WaitGroup-并发等待组" class="headerlink" title="1.3 WaitGroup 并发等待组"></a>1.3 WaitGroup 并发等待组</h2><p>使用WaitGroup的goroutine会被预设好数量的goroutine都提交执行结束后，才会继续往下执行代码</p>
-<p>在goroutine调用WaitGroup之前需要保证WaitGroup中等待数量大于1</p>
-<p>保证WaitGroup.Done()执行的次数与WaitGroup.Add()相同，WaitGroup.Done()过少会导致等待goroutine死锁，WaitGroup.Done()过多导致panic</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	GOTIME := <span class="string">&quot;2006-01-02 15:04:05&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 正确的做法是把 wg.Add(1)，写到for循环中去，这样可以尽可能地保证 Add和Done的数量是一致的</span></span><br><span class="line">	wg.Add(<span class="number">5</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> wg.Done()</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;get rlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">			time.Sleep(<span class="number">1</span> * time.Second)</span><br><span class="line">			fmt.Println(<span class="string">&quot;func&quot;</span>, i, <span class="string">&quot;release rlcok at&quot;</span>, time.Now().Format(GOTIME))</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;over.......&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="1-4-Map-并发安全字典"><a href="#1-4-Map-并发安全字典" class="headerlink" title="1.4 Map 并发安全字典"></a>1.4 Map 并发安全字典</h2><ul>
-<li>go语言中原生的Map并不是并发安全的， 在多个goroutine同时往Map中添加数据时，可能会导致部分添加数据的丢失，甚至程序崩溃。</li>
-<li>对键值的类型没有限制，在同一个map中可以存储多种不同的键值对</li>
-</ul>
-<ol>
-<li><p>go语言中原生的Map并不是并发安全的，示例：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//dict := make(map[int]int)</span></span><br><span class="line">	<span class="keyword">var</span> dict sync.Map</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;thread id is &quot;</span>, i)</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> wg.Done()</span><br><span class="line">			<span class="comment">//dict[i] = i</span></span><br><span class="line">			dict.Store(i, fmt.Sprintf(<span class="string">&quot;%daaa&quot;</span>, i))</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	wg.Wait()</span><br><span class="line"></span><br><span class="line">	value, ok := dict.Load(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">if</span> ok &#123;</span><br><span class="line">		fmt.Println(value)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240824224252751.png" alt="image-20240824224252751"></p>
-</li>
-<li><p>sync包中的Map</p>
-<p>Map对应的接口中的方法：</p>
-<p><img src="/2024/08/24/golang%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20240824225149901.png" alt="image-20240824225149901"></p>
-<p>常用的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func (m *Map) Load(key any) (value any, ok bool)</span><br><span class="line">根据k获取value，相当于get</span><br><span class="line"></span><br><span class="line">func (m *Map) Store(key, value any)</span><br><span class="line">存储，相当于set，对键值的类型没有限制，在同一个map中可以存储多种不同的键值对</span><br><span class="line"></span><br><span class="line">func (m *Map) LoadOrStore(key, value any) (actual any, loaded bool)</span><br><span class="line">如果key存在则返回对应的value，如果key不存在则设置key-value对</span><br><span class="line"></span><br><span class="line">func (m *Map) Range(f func(key, value any) bool)</span><br><span class="line">无序遍历map</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="1-5-Once-单例模式"><a href="#1-5-Once-单例模式" class="headerlink" title="1.5 Once 单例模式"></a>1.5 Once 单例模式</h2><h2 id="1-6-Cond-条件变量"><a href="#1-6-Cond-条件变量" class="headerlink" title="1.6 Cond 条件变量"></a>1.6 Cond 条件变量</h2><p><a target="_blank" rel="noopener" href="https://geektutu.com/post/hpg-sync-cond.html">https://geektutu.com/post/hpg-sync-cond.html</a></p>
-<h2 id="1-7-Pool-临时对象池"><a href="#1-7-Pool-临时对象池" class="headerlink" title="1.7 Pool 临时对象池"></a>1.7 Pool 临时对象池</h2><h1 id="2-atomic包"><a href="#2-atomic包" class="headerlink" title="2. atomic包"></a>2. atomic包</h1><ol>
-<li><strong>atomic简介</strong></li>
-</ol>
-<p>当我们想要对某个变量并发安全的修改,除了使用官方提供的 mutex,还可以使用 sync&#x2F;atomic 包的原子操作,它能够<br>保证对变量的读取或修改期间不被其他的协程所影响。</p>
-<p>Golang提供的原子操作都是非侵入式的,由标准库sync&#x2F;atmoic包提供,直接由底层CPU硬件支持。<br>也就是在硬件层次去实现的,性能较好,不需要像 mutex 那样记录很多状态。当然,mutex 不止是对变量的并发控制,更多的是<br>对代码块的并发控制,2者侧重点不一样。</p>
-<ol start="2">
-<li><strong>原子操作</strong></li>
-</ol>
-<ul>
-<li><p>原子操作即是进行过程中不能被中断的操作,针对某个值的原子操作在被进行的过程中,CPU绝不会再去进行其他的针对<br>该值的操作。</p>
-</li>
-<li><p>具体的原子操作在不同的操作系统中实现是不同的。比如在Intel的CPU架构机器上,主要是使用总线锁的方式<br>实现的。大致的意思就是当一个CPU需要操作一个内存块的时候,向总线发送一个LOCK信号,所有CPU收到这个信号后就不对<br>这个内存块进行操作了。等待操作的CPU执行完操作后,发送UNLOCK信号,才结束。在AMD的CPU架构机器上就是使用MESI<br>一致性协议的方式来保证原子操作。所以我们在看atomic源码的时候,我们看到它针对不同的操作系统有不同汇编语言文件。</p>
-</li>
-</ul>
-<ol start="3">
-<li><p><strong>Golang在sync包中已经提供了锁,为什么还需要使用atomic原子操作呢?</strong></p>
-<ul>
-<li><p>加锁的代价比较高,耗时多,需要上下文切换。</p>
-</li>
-<li><p>原子操作只针对基本数据类型,不支持结构体、自定义数据类型。</p>
-</li>
-<li><p>原子操作在用户态可以完成,性能比互斥锁要高。</p>
-</li>
-<li><p>针对特定需求原子操作步骤简单,无需加锁解锁步骤。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>为什么 atomic 比mutex快?</strong></p>
-<ul>
-<li>原子操作很快,因为它们依赖于 CPU 指令而不是依赖外部锁。使用互斥锁时,每次获得锁时, goroutine 都会短暂暂停<br>或中断,这种阻塞占使用互斥锁所花费时间的很大一部分。原子操作可以在没有任何中断的情况下执行。</li>
-<li>原子操作是能够保证执行期间是连续且不会被中断的,临界区只能保证访问共享数据是按顺序访问的,但并不能保证访问期间<br>不会被切换上下文。</li>
-</ul>
-</li>
-<li><p>CAS<br>CAS是cpu硬件同步原语,是Compare And Swap的缩写</p>
-<p>go中的Cas操作,是借用了CPU提供的原子性指令来实现。</p>
-<p>CAS操作修改共享变量时候不需要对共享变量加锁，而是通过类似乐观锁的方式进行检查。本质还是不断的占用CPU资源换取加锁带来的开销(比如上下文切换开销)。</p>
-<p>原子操作中的CAS,在sync&#x2F;atomic包中,这类原子操作由名称以CompareAndSwap为前缀的若干个函数提供</p>
-<p><strong>优势:</strong><br>可以在不形成临界区和创建互斥量的情况下完成并发安全的值替换操作。这可以大大的减少同步对程序性能的损耗。</p>
-<p><strong>劣势:</strong><br>在被操作值被频繁变更的情况下,CAS操作并不那么容易成功。因为需要对old值进行匹配,只有匹配成功了才进行下一步的修改。</p>
-<p>当前atomic 包有以下几种原子操作: Add、CompareAndSwap、Load、Store、Swap</p>
-</li>
-</ol>
 
       
     </div>

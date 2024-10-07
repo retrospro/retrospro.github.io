@@ -20,19 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；">
+    <meta name="description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；   2. sql优化MySQL-进阶篇（3. SQL优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql">
 <meta property="og:url" content="http://example.com/2024/09/23/mysql/index.html">
 <meta property="og:site_name" content="RETROSPRO">
-<meta property="og:description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；">
+<meta property="og:description" content="1. 为什么InnoDB存储引擎选择使用B+tree索引结构？ A. 相对于二叉树，层级更少，搜索效率高；  B. 对于B-tree，无论是叶子节点还是非叶子节点，都会保存数据，这样导致一页中存储   的键值减少，指针跟着减少，要同样保存大量数据，只能增加树的高度，导致性能降低；  C. 相对Hash索引，B+tree支持范围匹配及排序操作；   2. sql优化MySQL-进阶篇（3. SQL优">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20240923040709070.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006164714937.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006173741475.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006174051145.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006175253654.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006180417124.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006182020266.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006184656719.png">
+<meta property="og:image" content="http://example.com/2024/09/23/mysql/image-20241006184419876.png">
 <meta property="article:published_time" content="2024-09-23T00:04:23.000Z">
-<meta property="article:modified_time" content="2024-10-06T08:34:14.088Z">
+<meta property="article:modified_time" content="2024-10-06T10:48:11.663Z">
 <meta property="article:author" content="Eric Hao">
-<meta property="article:tag" content="面试">
 <meta property="article:tag" content="mysql">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2024/09/23/mysql/image-20240923040709070.png">
 
@@ -143,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8B-tree%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么InnoDB存储引擎选择使用B+tree索引结构？</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8B-tree%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么InnoDB存储引擎选择使用B+tree索引结构？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-sql%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">2. sql优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 插入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E4%B8%BB%E9%94%AE%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 主键优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-order-by-%E4%BC%98%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 order by 优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-group-by%E4%BC%98%E5%8C%96"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 group by优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-limit%E4%BC%98%E5%8C%96"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 limit优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-count%E4%BC%98%E5%8C%96"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 count优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E6%B3%95%E5%88%99%E6%98%93%E9%94%99%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">3. 最左前缀法则易错点</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,18 +166,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -237,7 +245,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 16:34:14" itemprop="dateModified" datetime="2024-10-06T16:34:14+08:00">2024-10-06</time>
+      <time title="修改时间：2024-10-06 18:48:11" itemprop="dateModified" datetime="2024-10-06T18:48:11+08:00">2024-10-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -273,6 +281,76 @@
 <li>C. 相对Hash索引，B+tree支持范围匹配及排序操作；</li>
 </ul>
 <p><img src="/2024/09/23/mysql/image-20240923040709070.png" alt="image-20240923040709070"></p>
+<h1 id="2-sql优化"><a href="#2-sql优化" class="headerlink" title="2. sql优化"></a>2. sql优化</h1><p>MySQL-进阶篇（3. SQL优化）</p>
+<p>首先可以查看mysql的慢查询日志，定位到需要优化的 sql 语句的范围</p>
+<h2 id="2-1-插入数据"><a href="#2-1-插入数据" class="headerlink" title="2.1 插入数据"></a>2.1 插入数据</h2><ul>
+<li><p>使用insert插入数据时，尽可能得选择批量插入，主键顺序插入，性能要高于乱序插入。</p>
+</li>
+<li><p>大批量插入数据时，比如几百万记录，使用insert插入性能较低，此时可以选择使用 load 命令进行插入。</p>
+<p><img src="/2024/09/23/mysql/image-20241006164714937.png" alt="image-20241006164714937"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 客户端连接服务器时，加上参数 --local-infile</span></span><br><span class="line">mysql <span class="comment">--local-infile -u root -p</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 设置全局参数local_infile为1, 开启从本地加载文件导入数据的开关</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> local_infile <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 执行load指令将准备好的数据，加载到表结构中</span></span><br><span class="line">load data <span class="keyword">local</span> infile <span class="string">&#x27;/root/sql1.log&#x27;</span> <span class="keyword">into</span> <span class="keyword">table</span> tb_user fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span> lines terminated <span class="keyword">by</span> <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-2-主键优化"><a href="#2-2-主键优化" class="headerlink" title="2.2 主键优化"></a>2.2 主键优化</h2><p><strong>主键设计原则：</strong></p>
+<ul>
+<li><p>满足业务需求的情况下，尽量降低主键的长度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">存储效率： 在InnoDB存储引擎中，主键会在每个索引（包括聚簇索引和二级索引）中被引用。也就是说，主键的长度越长，每个索引中的记录会占用更多的存储空间。这会导致数据量大的时候存储开销变高。</span><br><span class="line">索引性能： 较短的主键能够使B+树结构（MySQL中用于实现索引的数据结构）更加紧凑。较小的索引占用更少的内存，查询时内存访问也会更高效。索引越短，查询时能更快定位到具体的数据页，从而提升查询速度。</span><br><span class="line">I/O 负担： 较长的主键会导致磁盘I/O操作增多，因为数据页变大或更多的页需要被访问，这会降低性能。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入数据时，尽量选择顺序插入，选择使用<code>AUTO_INCREMENT</code>自增主键。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">乱序插入容易导致页分裂</span><br><span class="line">减少磁盘碎片</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尽量不要使用<code>UUID</code>做主键或者是其他自然主键，如身份证号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">UUID的无序性导致频繁的页分裂：</span><br><span class="line">UUID（通用唯一标识符）是一种无序的、128位的字符串，通常被用作唯一标识符。如果将UUID作为主键，每次插入的数据会是乱序的，B+树无法保证有序性，导致频繁的页分裂。每次插入时，系统都需要在B+树中找到合适的位置插入，重新调整索引结构，这会导致显著的性能下降。</span><br><span class="line"></span><br><span class="line">UUID的长度较大：</span><br><span class="line">UUID通常由16字节（128位）构成，相比自增整数主键（通常是4字节的整数），UUID的长度要大得多。这意味着不仅主键占用的存储空间更多，而且所有引用该主键的二级索引也会变得臃肿，进一步增加了存储和查询的成本。</span><br><span class="line"></span><br><span class="line">自然主键不适合做主键：</span><br><span class="line">例如身份证号或电话号码等自然主键虽然能保证唯一性，但它们通常存在以下问题：</span><br><span class="line"></span><br><span class="line">长度过长： 自然主键通常比自增ID长很多，增加了存储开销和索引的维护成本。</span><br><span class="line">业务变动风险： 自然主键有可能会因业务需求发生变化（如人换身份证号、电话号码等），这会导致主键变更带来的额外复杂性。而且，主键一旦改变，相关的二级索引和引用的表都会受到影响，导致复杂的数据维护工作。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-3-order-by-优化"><a href="#2-3-order-by-优化" class="headerlink" title="2.3 order by 优化"></a>2.3 order by 优化</h2><p>MySQL的排序，有两种方式：</p>
+<p>Using filesort：通过表的索引或全表扫描，读取满足条件的数据行，然后在排序缓冲区sort buffer中完成排序操作，所有不是通过索引直接返回排序结果的排序都叫 FileSort 排序。</p>
+<p>Using index：通过有序索引顺序扫描直接返回有序数据，这种情况即为 using index，不需要额外排序，操作效率高。</p>
+<p>对于以上的两种排序方式，Using index的性能高，而Using filesort的性能低，我们在优化排序操作时，尽量要优化为 Using index。</p>
+<p><img src="/2024/09/23/mysql/image-20241006173741475.png" alt="image-20241006173741475"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建索引</span></span><br><span class="line"><span class="keyword">create</span> index idx_user_age_phone_aa <span class="keyword">on</span> tb_user(age,phone);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/23/mysql/image-20241006174051145.png" alt="image-20241006174051145"></p>
+<p><strong>order by优化原则：</strong></p>
+<ul>
+<li><p>根据排序字段建立合适的索引，多字段排序时，也遵循最左前缀法则。</p>
+</li>
+<li><p>尽量使用覆盖索引，避免出现回表查询。（覆盖索引是指，查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到。）</p>
+</li>
+<li><p>多字段排序，一个升序一个降序，此时需要注意联合索引在创建时的规则（ASC&#x2F;DESC）。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建索引</span></span><br><span class="line"><span class="keyword">create</span> index idx_user_age_phone_ad <span class="keyword">on</span> tb_user(age <span class="keyword">asc</span>,phone <span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不可避免的出现filesort，大数据量排序时，可以适当增大排序缓冲区大小sort_buffer_size（默认256k）。</p>
+</li>
+</ul>
+<p><img src="/2024/09/23/mysql/image-20241006175253654.png" alt="image-20241006175253654"></p>
+<h2 id="2-4-group-by优化"><a href="#2-4-group-by优化" class="headerlink" title="2.4 group by优化"></a>2.4 group by优化</h2><ul>
+<li>在分组操作时，可以通过索引来提高效率。</li>
+<li>分组操作时，索引的使用也是满足最左前缀法则的。</li>
+</ul>
+<h2 id="2-5-limit优化"><a href="#2-5-limit优化" class="headerlink" title="2.5 limit优化"></a>2.5 limit优化</h2><p>在数据量较大时，如果进行limit分页查询，越往后，分页查询的效率越低。</p>
+<p><img src="/2024/09/23/mysql/image-20241006180417124.png" alt="image-20241006180417124"></p>
+<p>因为，当在进行分页查询时，如果执行 <code>limit 2000000,10</code>，此时需要MySQL排序前2000010记录，仅返回2000000 - 2000010的记录，其他记录丢弃，查询排序的代价非常大。</p>
+<p>优化思路：一般分页查询时，通过创建覆盖索引能够比较好地提高性能，可以通过覆盖索引加子查询形式进行优化。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 优化前</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_sku limit <span class="number">2000000</span>,<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 优化后</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> tb_sku t, (<span class="keyword">select</span> id <span class="keyword">from</span> tb_sku <span class="keyword">order</span> <span class="keyword">by</span> id limit <span class="number">2000000</span>,<span class="number">10</span>) a <span class="keyword">where</span> t.id <span class="operator">=</span> a.id;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-6-count优化"><a href="#2-6-count优化" class="headerlink" title="2.6 count优化"></a>2.6 count优化</h2><blockquote>
+<p>按照效率排序的话，count(字段) &lt; count(主键 ID) &lt; count(1) ~ count(<em>), 所以尽量使用 count(</em>)。</p>
+</blockquote>
+<p><img src="/2024/09/23/mysql/image-20241006182020266.png" alt="image-20241006182020266"></p>
+<h1 id="3-最左前缀法则易错点"><a href="#3-最左前缀法则易错点" class="headerlink" title="3. 最左前缀法则易错点"></a>3. 最左前缀法则易错点</h1><p>已知：</p>
+<p><img src="/2024/09/23/mysql/image-20241006184656719.png" alt="image-20241006184656719"></p>
+<p>当执行SQL语句： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from tb_user where age = 31 and status = &#x27;0&#x27; and profession = &#x27;软件工程&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>上述的联合索引，索引长度？</p>
+<p><img src="/2024/09/23/mysql/image-20241006184419876.png" alt="image-20241006184419876"></p>
+<p>可以看到，是完全满足是最左前缀法则的，索引长度54，联合索引是有效的。</p>
+<p><strong>注意：最左前缀法则中指的最左边的列，是指在查询时，联合索引的最左边的字段（即第一个字符）必须存在，与我们编写SQL时，条件编写的先后顺序无关。</strong></p>
 
     </div>
 
@@ -282,8 +360,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
               <a href="/tags/mysql/" rel="tag"># mysql</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
           </div>
 
         
