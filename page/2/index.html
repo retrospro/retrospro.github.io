@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -182,6 +182,162 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/" class="post-title-link" itemprop="url">golang随想录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-24 16:32:07" itemprop="dateCreated datePublished" datetime="2024-08-24T16:32:07+08:00">2024-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-12 03:22:44" itemprop="dateModified" datetime="2024-09-12T03:22:44+08:00">2024-09-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/golang/golang%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">golang基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-关于make是否指定容量"><a href="#1-关于make是否指定容量" class="headerlink" title="1. 关于make是否指定容量"></a>1. 关于make是否指定容量</h1><p><strong>在 Go 语言中，make 函数用于创建通道（channel）、切片（slice）和映射（map）。 根据是否指定size，channel分为非缓冲通道 和 缓冲通道； 那么对于切片（slice）和映射（map）来说，make时是否指定size，有什么区别呢？</strong></p>
+<p>在 Go 语言中，<code>make</code> 函数用于创建通道（channel）、切片（slice）和映射（map）。对于切片和映射，<code>make</code> 函数的行为在是否指定大小（size）时有所不同。下面分别讨论切片和映射在使用 <code>make</code> 函数时是否指定大小的区别。</p>
+<h3 id="切片（Slice）"><a href="#切片（Slice）" class="headerlink" title="切片（Slice）"></a>切片（Slice）</h3><ul>
+<li><p><strong>未指定大小</strong>：当你使用 <code>make([]T, len)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 的切片，并且容量（capacity）等于长度。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个长度和容量均为 5 的切片。切片的所有元素都会被初始化为类型 <code>T</code> 的零值（比如对于 <code>int</code> 类型，零值是 0）。</p>
+</li>
+<li><p><strong>指定容量</strong>：当你使用 <code>make([]T, len, cap)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 且容量为 <code>cap</code> 的切片。容量可以比长度大。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个长度为 5、容量为 10 的切片。这意味着虽然切片的当前长度是 5，但它最多可以扩展到 10 个元素而无需重新分配内存。</p>
+</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>如果不指定容量，Go 会将容量设置为与长度相同。</li>
+<li>如果指定了容量，Go 会为切片预留更多的空间。这在切片需要频繁追加元素的场景下非常有用，因为预先指定较大的容量可以减少在追加元素时的内存重新分配操作，提高性能。</li>
+</ul>
+<h3 id="映射（Map）"><a href="#映射（Map）" class="headerlink" title="映射（Map）"></a>映射（Map）</h3><ul>
+<li><p><strong>未指定大小</strong>：当你使用 <code>make(map[T1]T2)</code> 创建映射时，Go 会创建一个初始大小适合较小规模使用的映射。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个空的映射。虽然初始容量是非零的，但如果往映射中插入了超出初始容量的元素，映射会自动扩展。</p>
+</li>
+<li><p><strong>指定大小</strong>：当你使用 <code>make(map[T1]T2, cap)</code> 创建映射时，<code>cap</code> 表示预估的元素数量。Go 会为映射预分配足够的空间来存储 <code>cap</code> 个元素，以减少在实际使用过程中发生的扩展操作。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>这段代码创建了一个初始容量为 10 的映射。这意味着 Go 会为至少 10 个键值对分配内存，减少当实际插入元素数量接近或超过 10 时的内存重新分配次数。</p>
+</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>如果不指定容量，Go 会为映射分配一个默认的小容量，并在需要时自动扩展。</li>
+<li>如果指定了容量，Go 会为映射预分配足够的内存以存储指定数量的元素，从而提高性能，尤其是在已知需要存储大量元素的场景下。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>切片</strong>：指定容量可以让切片在追加元素时减少内存重新分配，从而提高性能。未指定容量时，容量等于长度。</li>
+<li><strong>映射</strong>：指定容量可以减少映射在插入大量元素时的扩展次数，从而提高性能。未指定容量时，映射的容量是初始的小值，并会根据需要自动扩展。</li>
+</ul>
+<h1 id="2-切片是否指定size有什么区别？"><a href="#2-切片是否指定size有什么区别？" class="headerlink" title="2. 切片是否指定size有什么区别？"></a>2. 切片是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
+<p>在 Go 语言中，<code>make</code> 函数用于创建切片时，是否指定 <code>size</code>（即长度）会影响切片的初始状态。下面解释两种情况下的区别：</p>
+<h3 id="1-不指定长度"><a href="#1-不指定长度" class="headerlink" title="1. 不指定长度"></a>1. 不指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：如果你这样创建切片，由于没有指定长度和容量，Go 将会报错，因为 <code>make([]int)</code> 语法是无效的。</li>
+<li><strong>原因</strong>：<code>make</code> 函数在用于创建切片时至少需要一个参数（长度），你必须指定切片的初始长度。</li>
+</ul>
+<p>因此，你需要至少指定长度，像下面这样：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个长度为 0 的切片，其容量也为 0。这是一个空的切片，但仍然可以追加元素。</p>
+<h3 id="2-指定长度"><a href="#2-指定长度" class="headerlink" title="2. 指定长度"></a>2. 指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：这段代码创建了一个长度为 5 的切片，其容量也为 5。切片中的 5 个元素会被初始化为类型 <code>int</code> 的零值（即 0）。切片的底层数组会包含 5 个元素。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(slice) <span class="comment">// 输出: [0 0 0 0 0]</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(slice)) <span class="comment">// 输出: 5</span></span><br><span class="line">fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ol>
+<li><p><strong>未指定长度（非法操作）</strong>：如果你不指定长度并直接调用 <code>make([]int)</code>，Go 编译器会报错，因为这种用法是不合法的。你至少需要指定长度。</p>
+</li>
+<li><p><strong>指定长度</strong>：当你指定长度时，切片会被创建并初始化为指定长度的切片。它的容量和长度都等于你指定的长度。如果你在创建切片时指定的长度为 5，那么切片将包含 5 个元素，所有元素的初始值为 0。</p>
+</li>
+<li><p><strong>创建空切片</strong>：如果你需要一个空切片（长度为 0），你可以这样写：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>这个切片的长度和容量都为 0，可以使用 <code>append</code> 函数向其中添加元素，容量会根据需要自动扩展。</p>
+</li>
+</ol>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
+<h1 id="3-golang哈希表"><a href="#3-golang哈希表" class="headerlink" title="3. golang哈希表"></a>3. golang哈希表</h1><p><strong>golang 中的映射（map）是哈希表吗？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.joxrays.com/go-map/">https://www.joxrays.com/go-map/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

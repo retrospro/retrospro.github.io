@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -182,6 +182,161 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/" class="post-title-link" itemprop="url">扒简历</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-14 18:24:31" itemprop="dateCreated datePublished" datetime="2024-10-14T18:24:31+08:00">2024-10-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-15 02:18:00" itemprop="dateModified" datetime="2024-10-15T02:18:00+08:00">2024-10-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="项目一：虚拟-IP"><a href="#项目一：虚拟-IP" class="headerlink" title="项目一：虚拟 IP"></a>项目一：虚拟 IP</h1><h3 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h3><p>VPN 代理网关设备在转发用户访问服务器的数据时，会使用 VPN 代理网关的IP作为源 IP 去访问业务服务器，此时对业务服务器来说，所有访问请求的数据包源IP都是 VPN 网关的 IP，一旦发生安全事件，无法通过 IP 审计溯源到具体的用户。虚拟 IP 功能能够将用户和虚拟 IP 绑定，解决了业务服务器前置 VPN 代理网关场景下无法审计溯源的问题。</p>
+<h3 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h3><ul>
+<li><p>项目主要使用 golang 开发，基于 gin 框架，同时还涉及部分 c 和 lua 代码</p>
+</li>
+<li><p>项目主要功能点包括：虚拟 IP 申请，释放，续租；共享虚拟IP，独享虚拟 IP；虚拟释放策略与抢占策略；防火墙与路由规则生效等</p>
+</li>
+</ul>
+<h3 id="项目亮点"><a href="#项目亮点" class="headerlink" title="项目亮点"></a>项目亮点</h3><h4 id="1-创造性地提出-tproxy-透明代理方案"><a href="#1-创造性地提出-tproxy-透明代理方案" class="headerlink" title="1. 创造性地提出 tproxy 透明代理方案"></a>1. 创造性地提出 tproxy 透明代理方案</h4><p><a target="_blank" rel="noopener" href="https://www.zhaohuabing.com/learning-linux/docs/tproxy/">https://www.zhaohuabing.com/learning-linux/docs/tproxy/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">为了解决什么问题？</span><br><span class="line">原来的虚拟IP方案基于 nginx+snat 模块实现虚拟IP透明代理，通过下发虚拟IP转换规则到snat实现，此方案存在缺陷，即nginx创建socket只能绑定网关设备的IP，并发数受到了端口数的限制（小于65535）。</span><br><span class="line"></span><br><span class="line">新方案需要满足：</span><br><span class="line"> 1. socket能够直接绑定虚拟IP</span><br><span class="line"> 2. 使用虚拟IP能够对外进行网络通信</span><br><span class="line"> 3. 轻量级</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/image-20241014221012170.png" alt="image-20241014221012170"></p>
+<p><strong>包从proxy发往服务器之前通过iptables规则打上标记</strong></p>
+<p><strong>包从服务器回给proxy时通过路由表引流</strong></p>
+<p>上述方案埋下了一个隐患：</p>
+<p>proxy在调用connect() 函数连接上游之前，通过bind() 函数绑定虚拟IP，这个操作会关联一个proxy的端口用作listen，connect() 连接上游的时候也需要占用一个端口，connect()分配端口会跳过 bind() 操作已经使用的端口，由于bind占用的端口过多，导致connect无端口可用。</p>
+<h4 id="2-修改-linux-内核源码，解决大流量场景源端口不足的问题"><a href="#2-修改-linux-内核源码，解决大流量场景源端口不足的问题" class="headerlink" title="2. 修改 linux 内核源码，解决大流量场景源端口不足的问题"></a>2. 修改 linux 内核源码，解决大流量场景源端口不足的问题</h4><p>修改内核setsockopt系统调用，新增 sock 选项 SO_BIND_VIP，使用该配置将虚拟IP传到内核中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> SO_BIND_VIP:</span><br><span class="line">	...</span><br><span class="line">  <span class="keyword">if</span> (copy_from_user(&amp;s_vip, optval, <span class="keyword">sizeof</span>(s_vip)))</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="comment">// 设置VIP</span></span><br><span class="line">	ret = __inet_bind(sk, &amp;s_vip, optlen, <span class="literal">true</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>其中调用内核 __inet_bind 接口，该接口支持参数（仅绑定IP不绑定端口）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __inet_bind(<span class="keyword">struct</span> sock *sk, <span class="keyword">struct</span> sockaddr *uaddr, <span class="type">int</span> addr_len,</span><br><span class="line">        <span class="type">bool</span> force_bind_address_no_port, <span class="type">bool</span> with_lock) </span><br></pre></td></tr></table></figure>
+
+<p>将原来connect前的bind 操作，修改为 setsockopt 并传入新增的选项 SO_BIND_VIP  以及虚拟IP的地址结构体</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 虚拟IP地址结构体 a_addr 赋值</span></span><br><span class="line">...</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> (setsockopt(sockfd, SOL_SOCKET, SO_BIND_VIP, &amp;a_addr, <span class="keyword">sizeof</span>(a_addr)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">   err...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述方案优缺点：</p>
+<ul>
+<li>有效解决问题，改动小，方案足够轻量级</li>
+<li>但是导致虚拟IP功能和内核强耦合，其他内核环境也需要一并修改。</li>
+</ul>
+<p>进一步优化思路：</p>
+<ul>
+<li><p>将虚拟IP功能和内核改动解耦</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> bind_address_no_port = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span> (setsockopt(s, IPPROTO_IP, IP_BIDN_ADDRESS_NO_PORT, (<span class="type">const</span> <span class="type">void</span> *) &amp;bind_address_no_port, <span class="keyword">sizeof</span>(<span class="type">int</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line">  error...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">  </span><br><span class="line">ret = bind(s, (<span class="keyword">struct</span> sockaddr*)&amp;vip_addr, <span class="keyword">sizeof</span>(vip_addr));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-改进防火墙规则与路由规则，解决虚拟IP池配置过多导致的设备负载高与防火墙规则加载超时的问题"><a href="#3-改进防火墙规则与路由规则，解决虚拟IP池配置过多导致的设备负载高与防火墙规则加载超时的问题" class="headerlink" title="3. 改进防火墙规则与路由规则，解决虚拟IP池配置过多导致的设备负载高与防火墙规则加载超时的问题"></a>3. 改进防火墙规则与路由规则，解决虚拟IP池配置过多导致的设备负载高与防火墙规则加载超时的问题</h4><p>之前存在的问题：</p>
+<p><img src="/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/image-20241015011009379.png" alt="image-20241015011009379"></p>
+<p><img src="/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/image-20241015011041949.png" alt="image-20241015011041949"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[admin@aTrust ~]# ip rule</span><br><span class="line">0:			from all lookup local</span><br><span class="line">50:			from all fwmark 0x1 lookup 200</span><br><span class="line">1000:			from all fwmark 0x38 lookup 1000</span><br><span class="line">1001:			from all fwmark 0x3e9 lookup 1001</span><br><span class="line">1002:			from all fwmark 0x3ea lookup 1002</span><br><span class="line">1003:			from all fwmark 0x3eb lookup 1003</span><br><span class="line">1999:			from all lookup 1999</span><br><span class="line">32766:		from all lookup main</span><br><span class="line">32767:		from all lookup default</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[admin@aTrust ~]# ip route show table 1999</span><br><span class="line">1.1.1.1 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.1 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.2/31 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.4/30 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.8/29 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.16/28 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.32/27 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.64/26 dev tun0 scope <span class="built_in">link</span></span><br><span class="line">2.0.0.128/25 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.1.0/24 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.2.0/23 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.4.0/22 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.8.0/21 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.16.0/20 dev tun1 scope <span class="built_in">link</span></span><br><span class="line">2.0.32.0/19 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">2.0.64.0/18 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">2.0.128.0/17 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">2.1.0.0/16 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">2.2.0.0/15 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">2.4.0.0/14 dev tun2 scope <span class="built_in">link</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+<p>改进方案：</p>
+<ul>
+<li><p>防火墙规则优化</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;rule ipv=<span class="string">&quot;ipv4&quot;</span> table=<span class="string">&quot;mangle&quot;</span> chain=<span class="string">&quot;INPUT&quot;</span> priority=<span class="string">&quot;20&quot;</span>&gt;-i l0 -m <span class="built_in">set</span> --match-set tunproxy_ipv4_userlist src -j CONNMARK --set-mark 0x1 -m comment <span class="string">&quot;tcp tunnel&quot;</span>&lt;/rule&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">这条`iptables`规则用于在`mangle`表的`INPUT`链中处理网络数据包，具体解析如下：</span><br><span class="line"></span><br><span class="line">### 规则拆解：</span><br><span class="line">1. **表 (`table=mangle`)**: </span><br><span class="line">   - `mangle` 表主要用于修改数据包的内容，例如设置`TOS（服务类型）`或`TTL（存活时间）`，以及标记数据包。</span><br><span class="line"></span><br><span class="line">2. **链 (`chain=INPUT`)**:</span><br><span class="line">   - `INPUT` 链负责处理进入本机的流量。即，这条规则作用于发送到本机的网络流量，而不是转发流量。</span><br><span class="line"></span><br><span class="line">3. **优先级 (`priority=20`)**：</span><br><span class="line">   - `priority=20` 设置规则的执行顺序。`iptables` 允许定义同一链中的不同优先级，数值越低的规则越早执行。这里的`20`表示该规则的优先级顺序。</span><br><span class="line"></span><br><span class="line">4. **接口 (`-i l0`)**:</span><br><span class="line">   - `-i l0`表示流量来自本机的`lo`接口（即回环接口，通常用于本机内部的通信）。</span><br><span class="line"></span><br><span class="line">5. **IP 集合匹配 (`-m set --match-set tunproxy_ipv4_userlist src`)**：</span><br><span class="line">   - `-m set`：使用 `ipset` 的 `match-set` 模块。</span><br><span class="line">   - `--match-set tunproxy_ipv4_userlist src`：这表示只匹配来自名为`tunproxy_ipv4_userlist`的`ipset`集合中的IP地址。`src`表示这些IP是数据包的源地址。</span><br><span class="line">   - `ipset` 是一个高效的工具，用于管理大量IP地址和网络的集合。</span><br><span class="line"></span><br><span class="line">6. **CONNMARK (`-j CONNMARK --set-mark 0x1`)**:</span><br><span class="line">   - `-j CONNMARK`：表示目标动作是标记该连接。</span><br><span class="line">   - `--set-mark 0x1`：将数据包的连接标记（`CONNMARK`）设置为`0x1`。标记后，可以在后续规则或其他表中基于这个标记做进一步的处理。</span><br><span class="line"></span><br><span class="line">7. **注释 (`-m comment &quot;tcp tunnel&quot;`)**：</span><br><span class="line">   - `-m comment &quot;tcp tunnel&quot;`：这是为这条规则加的注释，便于管理员理解规则的用途。在此，注释是“tcp tunnel”，可能表示这条规则用于处理某个与 TCP 隧道（如 VPN、代理）相关的流量。</span><br><span class="line"></span><br><span class="line">### 总结：</span><br><span class="line">这条规则的作用是，当流量从本机的`lo`（回环）接口进入，并且源IP地址属于`tunproxy_ipv4_userlist`这个`ipset`集合时，给该连接设置一个标记（`0x1`）。这个标记可以用于后续的规则，可能用于特殊处理、路由或流量控制。</span><br><span class="line"></span><br><span class="line">规则的注释表明它可能与某个TCP隧道的流量有关。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>路由表规则优化</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route add default scope <span class="built_in">link</span> table 1999 nexthop via 0.0.0.0 dev tun0 weight 1 nexthop via 0.0.0.0 dev tun1 weight 1...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[admin@aTrust ~]# ip route show table 1999</span><br><span class="line">default scope <span class="built_in">link</span></span><br><span class="line">	nexthop dev tund weight 1 </span><br><span class="line">	nexthop dev tun1 weight 1 </span><br><span class="line">	nexthop dev tun2 weight 1 </span><br><span class="line">	nexthop dev tun3 weight 1 </span><br><span class="line">	nexthop dev tun4 weight 1 </span><br><span class="line">	nexthop dev tun5 weight 1 </span><br><span class="line">	nexthop dev tun6 weight 1 </span><br><span class="line">	nexthop dev tun7 weight 1</span><br></pre></td></tr></table></figure>
+
+<p>之前存在的问题：将所有未匹配上1999前面几个规则的流量，走到1999路由表中去匹配，优化为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[admin@aTrust ~]# ip rule</span><br><span class="line">0:			from all lookup <span class="built_in">local</span></span><br><span class="line">50:			from all fwmark 0x1 lookup 200</span><br><span class="line">1000:			from all fwmark 0x38 lookup 1000</span><br><span class="line">1001:			from all fwmark 0x3e9 lookup 1001</span><br><span class="line">1002:			from all fwmark 0x3ea lookup 1002</span><br><span class="line">1003:			from all fwmark 0x3eb lookup 1003</span><br><span class="line">1999:			from all fwmark 0x7cf lookup 1999</span><br><span class="line">32766:		from all lookup main</span><br><span class="line">32767:		from all lookup default</span><br></pre></td></tr></table></figure>
+
+<p>为命中上述防火墙规则，还需要给数据包打上 0x7cf 的标记</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;rule ipv=<span class="string">&quot;ipv4&quot;</span> table=<span class="string">&quot;mangle&quot;</span> chain=<span class="string">&quot;PREROUTING&quot;</span> priority=<span class="string">&quot;20&quot;</span>&gt;-m mark ! --mark 0x1 ! -i tun+ -m <span class="built_in">set</span> --match-set tunproxy_ipv4_userlist dst -j MARK --set-mark 0x7cf -m comment --comment <span class="string">&quot;tcp tunnel&quot;</span>&lt;/rule&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">这条 `iptables` 规则在 `mangle` 表的 `PREROUTING` 链中处理数据包，涉及匹配和设置数据包的标记（`mark`）。具体解析如下：</span><br><span class="line"></span><br><span class="line">### 规则拆解：</span><br><span class="line"></span><br><span class="line">1. **表 (`table=mangle`)**:</span><br><span class="line">   - `mangle` 表用于修改数据包的内容或标记，比如修改`TOS`（服务类型）、`TTL`（生存时间）或者给数据包设置标记。</span><br><span class="line"></span><br><span class="line">2. **链 (`chain=PREROUTING`)**:</span><br><span class="line">   - `PREROUTING` 链用于处理刚进入网络接口的数据包，尚未被路由处理。该链会在数据包到达路由决策之前进行处理，因此非常适合修改或标记数据包以影响后续的路由行为。</span><br><span class="line"></span><br><span class="line">3. **优先级 (`priority=20`)**:</span><br><span class="line">   - 该规则的优先级为`20`，这决定了它在规则链中的执行顺序。较低的数字表示更早执行，较高的数字表示稍后执行。</span><br><span class="line"></span><br><span class="line">4. **条件匹配模块 (`-m mark ! --mark 0x1`)**:</span><br><span class="line">   - `-m mark ! --mark 0x1`：这是一个反向匹配条件，表示数据包不能已经被标记为`0x1`。如果数据包已经具有`mark=0x1`的标记，那么这条规则将不会匹配该数据包。</span><br><span class="line"></span><br><span class="line">5. **接口匹配 (`! -i tun+`)**:</span><br><span class="line">   - `! -i tun+`：这是一个反向匹配，表示这条规则仅应用于**不**通过名为`tun+`的接口的数据包。`tun+`通常表示所有以`tun`开头的网络接口，常用于 VPN 隧道或其他虚拟网络设备。</span><br><span class="line">   - 因此，这条规则不会匹配通过`tun`接口的数据包。</span><br><span class="line"></span><br><span class="line">6. **IP 集合匹配 (`-m set --match-set tunproxy_ipv4_userlist dst`)**:</span><br><span class="line">   - `-m set --match-set tunproxy_ipv4_userlist dst`：这表示数据包的目标地址必须匹配`ipset`集合`tunproxy_ipv4_userlist`中的IP地址。`dst`表示这些IP是数据包的目的地。</span><br><span class="line">   - `ipset` 是一个高效的方式，用于处理大量 IP 地址集合。`tunproxy_ipv4_userlist` 是这个集合的名称，可能是一个特定的用户列表或代理列表。</span><br><span class="line"></span><br><span class="line">7. **设置标记 (`-j MARK --set-mark 0x7cf`)**:</span><br><span class="line">   - `-j MARK --set-mark 0x7cf`：如果数据包符合上述所有条件，它会被标记为 `0x7cf`。标记（`MARK`）是一种用于在数据包传输过程中打上特定标记的方式，这个标记可以被用来影响后续的路由决策、QoS（服务质量）控制等。</span><br><span class="line"></span><br><span class="line">8. **注释 (`-m comment --comment &quot;tcp tunnel&quot;`)**:</span><br><span class="line">   - 这是规则的注释，注明该规则可能与“tcp tunnel”（TCP 隧道）有关。注释只是为了给管理员提供说明，实际不影响规则执行。</span><br><span class="line"></span><br><span class="line">### 总结：</span><br><span class="line">这条规则的作用是：</span><br><span class="line">- **不**匹配已经带有标记 `0x1` 的数据包。</span><br><span class="line">- **不**匹配通过`tun`开头的网络接口（通常是VPN隧道）的数据包。</span><br><span class="line">- 匹配目的地是 `ipset` 集合 `tunproxy_ipv4_userlist` 中的 IP 地址。</span><br><span class="line">- 当满足上述条件时，数据包会被标记为 `0x7cf`，并且这个标记可能在后续的路由或防火墙规则中被使用，来决定如何处理这些数据包。</span><br><span class="line"></span><br><span class="line">注释表明这条规则可能用于处理和标记与 TCP 隧道相关的流量。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用到的ipset命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">“伪命令”：</span><br><span class="line">create name hash:net maxelem 1000000</span><br><span class="line">ipset flush name</span><br><span class="line">ipset restore -! input:ipsetList</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="4-支持-ipv4-ipv6-双栈"><a href="#4-支持-ipv4-ipv6-双栈" class="headerlink" title="4. 支持 ipv4 + ipv6 双栈"></a>4. 支持 ipv4 + ipv6 双栈</h4><h4 id="5-采用-redis-分布式锁及消息队列等机制实现了项目的高并发与高性能"><a href="#5-采用-redis-分布式锁及消息队列等机制实现了项目的高并发与高性能" class="headerlink" title="5. 采用 redis 分布式锁及消息队列等机制实现了项目的高并发与高性能"></a>5. 采用 redis 分布式锁及消息队列等机制实现了项目的高并发与高性能</h4><h4 id="6-采用-mysql-与-redis-的分布式集群部署模式保证了业务的高可用"><a href="#6-采用-mysql-与-redis-的分布式集群部署模式保证了业务的高可用" class="headerlink" title="6. 采用 mysql 与 redis 的分布式集群部署模式保证了业务的高可用"></a>6. 采用 mysql 与 redis 的分布式集群部署模式保证了业务的高可用</h4><h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><p>golang, lua, c, gin, mysql, redis, nginx, openresty, tproxy, linux网络, iptables, ipv6</p>
+<h1 id="项目二：TCP隧道代理桌面云流量"><a href="#项目二：TCP隧道代理桌面云流量" class="headerlink" title="项目二：TCP隧道代理桌面云流量"></a>项目二：TCP隧道代理桌面云流量</h1><h3 id="项目概述-1"><a href="#项目概述-1" class="headerlink" title="项目概述"></a>项目概述</h3><p>桌面云客户端流量通过深信服 VPN 代理网关进行代理；用户要求对SSL加密流量进行校验，并将校验相关的信息内置于 SSL 的 Client Hello握手包中；代理网关需要解密 TLS 协议的 Client Hello 握手包并向第三方发起校验请求，代理网关建立与上游的 TCP 隧道并代理桌面云流量。</p>
+<h3 id="功能描述-1"><a href="#功能描述-1" class="headerlink" title="功能描述"></a>功能描述</h3><ul>
+<li>在 openssl 中校验 Client Hello 包的合法性，从 Client Hello 拓展字段获取桌面云客户端插入的校验相关信息，并将其写入堆内存</li>
+<li>在 nginx 中从当前 TLS 连接中取出上述校验相关信息，并封装函数供 golang 业务层调用</li>
+<li>golang 业务层通过 cgo 调用 nginx 层封装的函数，完成对校验相关信息的获取和校验，并通过 golang socket 网络编程实现代理</li>
+<li>golang 业务层通过 redis 实现对校验结果的缓存，减少不必要的 http 请求，从而提高程序并发性能</li>
+</ul>
+<h3 id="项目亮点-1"><a href="#项目亮点-1" class="headerlink" title="项目亮点"></a>项目亮点</h3><ul>
+<li>深入 openssl 与 nginx c 语言源码</li>
+<li>通过 golang socket 网络编程实现对桌面云客户端流量的代理</li>
+<li>利用 redis 缓存机制提高程序并发性能</li>
+</ul>
+<h3 id="技术栈-1"><a href="#技术栈-1" class="headerlink" title="技术栈"></a>技术栈</h3><p>golang, c, gin, redis, nginx</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3699,162 +3854,6 @@
 </ul>
 <h2 id="3-slice避坑指南"><a href="#3-slice避坑指南" class="headerlink" title="3. slice避坑指南"></a>3. slice避坑指南</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1EL4y1P7hh?p=5&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/retrospro.png">
-      <meta itemprop="name" content="Eric Hao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | RETROSPRO">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/08/24/golang%E9%9A%8F%E6%83%B3%E5%BD%95/" class="post-title-link" itemprop="url">golang随想录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-24 16:32:07" itemprop="dateCreated datePublished" datetime="2024-08-24T16:32:07+08:00">2024-08-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-12 03:22:44" itemprop="dateModified" datetime="2024-09-12T03:22:44+08:00">2024-09-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/golang/golang%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">golang基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-关于make是否指定容量"><a href="#1-关于make是否指定容量" class="headerlink" title="1. 关于make是否指定容量"></a>1. 关于make是否指定容量</h1><p><strong>在 Go 语言中，make 函数用于创建通道（channel）、切片（slice）和映射（map）。 根据是否指定size，channel分为非缓冲通道 和 缓冲通道； 那么对于切片（slice）和映射（map）来说，make时是否指定size，有什么区别呢？</strong></p>
-<p>在 Go 语言中，<code>make</code> 函数用于创建通道（channel）、切片（slice）和映射（map）。对于切片和映射，<code>make</code> 函数的行为在是否指定大小（size）时有所不同。下面分别讨论切片和映射在使用 <code>make</code> 函数时是否指定大小的区别。</p>
-<h3 id="切片（Slice）"><a href="#切片（Slice）" class="headerlink" title="切片（Slice）"></a>切片（Slice）</h3><ul>
-<li><p><strong>未指定大小</strong>：当你使用 <code>make([]T, len)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 的切片，并且容量（capacity）等于长度。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个长度和容量均为 5 的切片。切片的所有元素都会被初始化为类型 <code>T</code> 的零值（比如对于 <code>int</code> 类型，零值是 0）。</p>
-</li>
-<li><p><strong>指定容量</strong>：当你使用 <code>make([]T, len, cap)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 且容量为 <code>cap</code> 的切片。容量可以比长度大。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个长度为 5、容量为 10 的切片。这意味着虽然切片的当前长度是 5，但它最多可以扩展到 10 个元素而无需重新分配内存。</p>
-</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>如果不指定容量，Go 会将容量设置为与长度相同。</li>
-<li>如果指定了容量，Go 会为切片预留更多的空间。这在切片需要频繁追加元素的场景下非常有用，因为预先指定较大的容量可以减少在追加元素时的内存重新分配操作，提高性能。</li>
-</ul>
-<h3 id="映射（Map）"><a href="#映射（Map）" class="headerlink" title="映射（Map）"></a>映射（Map）</h3><ul>
-<li><p><strong>未指定大小</strong>：当你使用 <code>make(map[T1]T2)</code> 创建映射时，Go 会创建一个初始大小适合较小规模使用的映射。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个空的映射。虽然初始容量是非零的，但如果往映射中插入了超出初始容量的元素，映射会自动扩展。</p>
-</li>
-<li><p><strong>指定大小</strong>：当你使用 <code>make(map[T1]T2, cap)</code> 创建映射时，<code>cap</code> 表示预估的元素数量。Go 会为映射预分配足够的空间来存储 <code>cap</code> 个元素，以减少在实际使用过程中发生的扩展操作。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>这段代码创建了一个初始容量为 10 的映射。这意味着 Go 会为至少 10 个键值对分配内存，减少当实际插入元素数量接近或超过 10 时的内存重新分配次数。</p>
-</li>
-</ul>
-<p><strong>区别</strong>：</p>
-<ul>
-<li>如果不指定容量，Go 会为映射分配一个默认的小容量，并在需要时自动扩展。</li>
-<li>如果指定了容量，Go 会为映射预分配足够的内存以存储指定数量的元素，从而提高性能，尤其是在已知需要存储大量元素的场景下。</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong>切片</strong>：指定容量可以让切片在追加元素时减少内存重新分配，从而提高性能。未指定容量时，容量等于长度。</li>
-<li><strong>映射</strong>：指定容量可以减少映射在插入大量元素时的扩展次数，从而提高性能。未指定容量时，映射的容量是初始的小值，并会根据需要自动扩展。</li>
-</ul>
-<h1 id="2-切片是否指定size有什么区别？"><a href="#2-切片是否指定size有什么区别？" class="headerlink" title="2. 切片是否指定size有什么区别？"></a>2. 切片是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
-<p>在 Go 语言中，<code>make</code> 函数用于创建切片时，是否指定 <code>size</code>（即长度）会影响切片的初始状态。下面解释两种情况下的区别：</p>
-<h3 id="1-不指定长度"><a href="#1-不指定长度" class="headerlink" title="1. 不指定长度"></a>1. 不指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>行为</strong>：如果你这样创建切片，由于没有指定长度和容量，Go 将会报错，因为 <code>make([]int)</code> 语法是无效的。</li>
-<li><strong>原因</strong>：<code>make</code> 函数在用于创建切片时至少需要一个参数（长度），你必须指定切片的初始长度。</li>
-</ul>
-<p>因此，你需要至少指定长度，像下面这样：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这段代码创建了一个长度为 0 的切片，其容量也为 0。这是一个空的切片，但仍然可以追加元素。</p>
-<h3 id="2-指定长度"><a href="#2-指定长度" class="headerlink" title="2. 指定长度"></a>2. 指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>行为</strong>：这段代码创建了一个长度为 5 的切片，其容量也为 5。切片中的 5 个元素会被初始化为类型 <code>int</code> 的零值（即 0）。切片的底层数组会包含 5 个元素。</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(slice) <span class="comment">// 输出: [0 0 0 0 0]</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(slice)) <span class="comment">// 输出: 5</span></span><br><span class="line">fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ol>
-<li><p><strong>未指定长度（非法操作）</strong>：如果你不指定长度并直接调用 <code>make([]int)</code>，Go 编译器会报错，因为这种用法是不合法的。你至少需要指定长度。</p>
-</li>
-<li><p><strong>指定长度</strong>：当你指定长度时，切片会被创建并初始化为指定长度的切片。它的容量和长度都等于你指定的长度。如果你在创建切片时指定的长度为 5，那么切片将包含 5 个元素，所有元素的初始值为 0。</p>
-</li>
-<li><p><strong>创建空切片</strong>：如果你需要一个空切片（长度为 0），你可以这样写：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>这个切片的长度和容量都为 0，可以使用 <code>append</code> 函数向其中添加元素，容量会根据需要自动扩展。</p>
-</li>
-</ol>
-<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
-<h1 id="3-golang哈希表"><a href="#3-golang哈希表" class="headerlink" title="3. golang哈希表"></a>3. golang哈希表</h1><p><strong>golang 中的映射（map）是哈希表吗？</strong></p>
-<p><a target="_blank" rel="noopener" href="https://www.joxrays.com/go-map/">https://www.joxrays.com/go-map/</a></p>
 
       
     </div>
