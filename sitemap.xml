@@ -2,9 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2024/10/27/nginx/</loc>
+    
+    <lastmod>2024-10-27T08:46:45.559Z</lastmod>
+    
+    <date>1730017784000</date>
+    <title>nginx | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/10/23/apisix/</loc>
+    
+    <lastmod>2024-10-27T08:27:15.120Z</lastmod>
+    
+    <date>1729613336000</date>
+    <title>apisix | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/09/23/mysql/</loc>
+    
+    <lastmod>2024-10-24T05:28:15.977Z</lastmod>
+    
+    <date>1727049863000</date>
+    <title>mysql | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2024-10-21T05:36:19.974Z</lastmod>
+    
+    <date>1724662938000</date>
+    <title>数据结构与算法 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/08/29/golang%E9%9D%A2%E8%AF%95/</loc>
+    
+    <lastmod>2024-10-19T18:12:55.798Z</lastmod>
+    
+    <date>1724867853000</date>
+    <title>golang面试 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://example.com/2024/10/14/%E6%89%92%E7%AE%80%E5%8E%86/</loc>
     
-    <lastmod>2024-10-14T18:18:00.283Z</lastmod>
+    <lastmod>2024-10-17T19:00:13.977Z</lastmod>
     
     <date>1728901471000</date>
     <title>扒简历 | RETROSPRO</title>
@@ -13,23 +68,67 @@
   </url>
   
   <url>
-    <loc>http://example.com/2024/10/07/%E9%9D%A2%E7%BB%8F/</loc>
+    <loc>http://example.com/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
     
-    <lastmod>2024-10-14T09:39:58.003Z</lastmod>
+    <lastmod>2024-10-16T06:24:20.011Z</lastmod>
     
-    <date>1728287843000</date>
-    <title>面经 | RETROSPRO</title>
+    <date>1724427455000</date>
+    <title>pprof使用指南 | RETROSPRO</title>
     
     <desc></desc>
   </url>
   
   <url>
-    <loc>http://example.com/2024/08/29/golang%E9%9D%A2%E8%AF%95/</loc>
+    <loc>http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
     
-    <lastmod>2024-10-14T09:21:06.541Z</lastmod>
+    <lastmod>2024-10-16T06:01:21.597Z</lastmod>
     
-    <date>1724867853000</date>
-    <title>golang面试 | RETROSPRO</title>
+    <date>1725949220000</date>
+    <title>linux网络编程 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/09/29/redis/</loc>
+    
+    <lastmod>2024-10-15T18:39:53.477Z</lastmod>
+    
+    <date>1727578289000</date>
+    <title>redis | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/10/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2024-10-15T16:46:21.824Z</lastmod>
+    
+    <date>1729010441000</date>
+    <title>设计模式 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/10/15/%E5%BC%80%E6%94%BE%E5%9C%BA%E6%99%AF%E9%A2%98/</loc>
+    
+    <lastmod>2024-10-15T16:27:54.148Z</lastmod>
+    
+    <date>1729007484000</date>
+    <title>开放场景题 | RETROSPRO</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/10/07/%E9%9D%A2%E7%BB%8F/</loc>
+    
+    <lastmod>2024-10-15T15:52:01.554Z</lastmod>
+    
+    <date>1728287843000</date>
+    <title>面经 | RETROSPRO</title>
     
     <desc></desc>
   </url>
@@ -41,50 +140,6 @@
     
     <date>1724783122000</date>
     <title>linux系统编程 | RETROSPRO</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2024-10-11T02:36:32.123Z</lastmod>
-    
-    <date>1724662938000</date>
-    <title>数据结构与算法 | RETROSPRO</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/09/29/redis/</loc>
-    
-    <lastmod>2024-10-07T07:56:59.464Z</lastmod>
-    
-    <date>1727578289000</date>
-    <title>redis | RETROSPRO</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/09/23/mysql/</loc>
-    
-    <lastmod>2024-10-06T10:48:11.663Z</lastmod>
-    
-    <date>1727049863000</date>
-    <title>mysql | RETROSPRO</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/09/10/linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
-    
-    <lastmod>2024-10-03T01:56:03.669Z</lastmod>
-    
-    <date>1725949220000</date>
-    <title>linux网络编程 | RETROSPRO</title>
     
     <desc></desc>
   </url>
@@ -142,17 +197,6 @@
     <title>Goland远程调试 | RETROSPRO</title>
     
     <desc>1. Goland单步调试1.1 Goland侧配置 配置代码同步 添加Go Remote</desc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2024/08/23/pprof%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</loc>
-    
-    <lastmod>2024-08-23T16:00:09.615Z</lastmod>
-    
-    <date>1724427455000</date>
-    <title>pprof使用指南 | RETROSPRO</title>
-    
-    <desc></desc>
   </url>
   
   <url>

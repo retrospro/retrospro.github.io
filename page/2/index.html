@@ -149,13 +149,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -182,6 +182,628 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/" class="post-title-link" itemprop="url">编程基础随想录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-29 01:18:25" itemprop="dateCreated datePublished" datetime="2024-08-29T01:18:25+08:00">2024-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-07 21:23:37" itemprop="dateModified" datetime="2024-09-07T21:23:37+08:00">2024-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-如何理解同步和异步？"><a href="#1-如何理解同步和异步？" class="headerlink" title="1. 如何理解同步和异步？"></a>1. 如何理解同步和异步？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MC411a7rY/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012145437.png" alt="image-20240829012145437"></p>
+<p><img src="/2024/08/29/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E9%9A%8F%E6%83%B3%E5%BD%95/image-20240829012334628.png" alt="image-20240829012334628"></p>
+<p><strong>追问：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">什么情况下用同步？</span><br><span class="line">什么情况下用异步？</span><br><span class="line">两者有什么差异？</span><br><span class="line">怎么在用户态层面实现异步？内核态又是怎么实现异步的？</span><br><span class="line">rpc接口是同步的还是异步的，为什么？该如何实现？</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-如何理解阻塞和非阻塞？"><a href="#2-如何理解阻塞和非阻塞？" class="headerlink" title="2. 如何理解阻塞和非阻塞？"></a>2. 如何理解阻塞和非阻塞？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1MK421x7Sa/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-什么是回调函数？"><a href="#3-什么是回调函数？" class="headerlink" title="3. 什么是回调函数？"></a>3. 什么是回调函数？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1cW421N7P2/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-什么是IO多路复用？"><a href="#4-什么是IO多路复用？" class="headerlink" title="4. 什么是IO多路复用？"></a>4. 什么是IO多路复用？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1RJ4m1b7cy/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-如何理解并行和并发？"><a href="#5-如何理解并行和并发？" class="headerlink" title="5. 如何理解并行和并发？"></a>5. 如何理解并行和并发？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1fA4m1c7YT/?spm_id_from=333.788&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"><a href="#6-什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？" class="headerlink" title="6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？"></a>6. 什么是哈希表？如何解决哈希冲突？golang中的哈希表结构是什么？</h2><p><a target="_blank" rel="noopener" href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-hashmap/#%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">linux系统编程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-28 02:25:22" itemprop="dateCreated datePublished" datetime="2024-08-28T02:25:22+08:00">2024-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-12 23:38:45" itemprop="dateModified" datetime="2024-10-12T23:38:45+08:00">2024-10-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">linux系统编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="1-如何理解Linux中的一切皆文件？"><a href="#1-如何理解Linux中的一切皆文件？" class="headerlink" title="1. 如何理解Linux中的一切皆文件？"></a>1. 如何理解Linux中的一切皆文件？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1db411E72q/?spm_id_from=333.337.search-card.all.click&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829004845341.png" alt="image-20240829004845341"></p>
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240829005053280.png" alt="image-20240829005053280"></p>
+<p>从实际的开发经验来说：</p>
+<p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/image-20240910022957764.png" alt="image-20240910022957764"></p>
+<h2 id="2-虚拟内存与物理内存"><a href="#2-虚拟内存与物理内存" class="headerlink" title="2. 虚拟内存与物理内存"></a>2. 虚拟内存与物理内存</h2><p><img src="/2024/08/28/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/640.png" alt="图片"></p>
+<p>操作系统内存管理中，另一个重要概念是虚拟内存，其作用如下：</p>
+<ul>
+<li>• 在用户与硬件间添加中间代理层（没有什么是加一个中间层解决不了的）</li>
+<li>• 优化用户体验（进程感知到获得的内存空间是“连续”的）</li>
+<li>• “放大”可用内存（虚拟内存可以由物理内存+磁盘补足，并根据冷热动态置换，用户无感知）</li>
+</ul>
+<h2 id="3-进程与线程"><a href="#3-进程与线程" class="headerlink" title="3. 进程与线程"></a>3. 进程与线程</h2><p>进程：独立地址空间，拥有PCB<br>线程：也有PCB，但没有独立的地址空间(共享)<br>Linux下：	<br>​	线程：最小的执行单<br>​	进程：最小分配资源单位，可看成是只有一个线程的进程。</p>
+<p>实际上，无论是创建进程的fork，还是创建线程的pthread_create，底层实现都是调用同一个内核函数clone。<br>如果复制对方的地址空间，那么就产出一个“进程”；如果共享对方的地址空间，就产生一个“线程”。<br>因此：Linux内核是不区分进程和线程的。只在用户层面上进行区分。所以，线程所有操作函数 pthread_* 是库函数，而非系统调用。</p>
+<h3 id="线程共享资源"><a href="#线程共享资源" class="headerlink" title="*线程共享资源*"></a><em><strong>*线程共享资源*</strong></em></h3><p>​	1.文件描述符表<br>​	2.每种信号的处理方式<br>​	3.当前工作目录<br>​	4.用户ID和组ID<br>​	5.内存地址空间 (.text&#x2F;.data&#x2F;.bss&#x2F;heap&#x2F;共享库) （即：0-3G进程虚拟地址空间，栈除外）</p>
+<h3 id="线程非共享资源"><a href="#线程非共享资源" class="headerlink" title="*线程非共享资源*"></a><em><strong>*线程非共享资源*</strong></em></h3><p>​	1.线程id<br>​	2.处理器现场和栈指针(内核栈)<br>​	3.独立的栈空间(用户空间栈)<br>​	4.errno变量<br>​	5.信号屏蔽字<br>​	6.调度优先级</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-26 17:02:18" itemprop="dateCreated datePublished" datetime="2024-08-26T17:02:18+08:00">2024-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-21 13:36:19" itemprop="dateModified" datetime="2024-10-21T13:36:19+08:00">2024-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-选择排序与冒泡排序"><a href="#1-选择排序与冒泡排序" class="headerlink" title="1. 选择排序与冒泡排序"></a>1. 选择排序与冒泡排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170655954.png" alt="image-20240826170655954"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240826170729362.png" alt="image-20240826170729362"></p>
+<h1 id="2-插入排序"><a href="#2-插入排序" class="headerlink" title="2. 插入排序"></a>2. 插入排序</h1><p>时间复杂度O(N^2)，额外空间复杂度O(1)</p>
+<p>最好情况：O(N)，最坏情况：O(N^2)</p>
+<p>算法流程按照最差情况来估计时间复杂度</p>
+<p>类似于打扑克牌抓牌时的插入</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240829164912630.png" alt="image-20240829164912630"></p>
+<h1 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/">https://leetcode.cn/problems/sort-an-array/submissions/</a></p>
+<p><strong>使用「快速排序」解决的经典问题（非常重要）：</strong></p>
+<ul>
+<li>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-largest-element-in-an-array/description/">https://leetcode.cn/problems/kth-largest-element-in-an-array/description/</a></p>
+<ul>
+<li>荷兰国旗问题：「力扣」第 75 题：颜色分类</li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-colors/description/">https://leetcode.cn/problems/sort-colors/description/</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241021133248425.png" alt="image-20241021133248425"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241021133447470.png" alt="image-20241021133447470"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241021133615861.png" alt="image-20241021133615861"></p>
+<h1 id="4-堆排序"><a href="#4-堆排序" class="headerlink" title="4. 堆排序"></a>4. 堆排序</h1><p>堆排序的细节和复杂度分析</p>
+<p>时间复杂度O(N*logN)，额外空间复杂度O(1) </p>
+<p>堆结构非常重要</p>
+<p>1，堆结构的heapInsert与heapify </p>
+<p>2，堆结构的增大和减少 </p>
+<p>3，如果只是建立堆的过程，时间复杂度为O(N) </p>
+<p>4，优先级队列结构，就是堆结构</p>
+<p>使用堆排序解决的经典问题：</p>
+<ul>
+<li><p>TopK 问题：「力扣」第 215 题：数组中的第 K 个最大元素</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/560152694/">https://leetcode.cn/problems/sort-an-array/submissions/560152694/</a></p>
+</li>
+<li><p>排序几乎有序的数组</p>
+</li>
+</ul>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831184709207.png" alt="image-20240831184709207"></p>
+<p>假设要求升序排列，由题意，数组最小的数一定在下标。0–k 的范围内，所以将 0–k 范围内的数建立成小根堆，则下标0的数即为数组最小值，然后 k 窗口依次往右移动</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240831185648360.png" alt="image-20240831185648360"></p>
+<h1 id="5-归并排序"><a href="#5-归并排序" class="headerlink" title="5. 归并排序"></a>5. 归并排序</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902160735736.png" alt="image-20240902160735736"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-an-array/submissions/560674602/">https://leetcode.cn/problems/sort-an-array/submissions/560674602/</a>. – 用归并排序解决数组排序问题题解</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">LCR 170. 交易逆序对的总数</a></li>
+</ul>
+<p>​		<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/">https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/submissions/</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/">315. 计算右侧小于当前元素的个数</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/">https://leetcode.cn/problems/count-of-smaller-numbers-after-self/submissions/</a></p>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152141731.png" alt="image-20240830152141731"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240830152152732.png" alt="image-20240830152152732"></p>
+<h1 id="6-哈希表"><a href="#6-哈希表" class="headerlink" title="6. 哈希表"></a>6. 哈希表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191649354.png" alt="image-20240902191649354"></p>
+<h1 id="7-有序表"><a href="#7-有序表" class="headerlink" title="7. 有序表"></a>7. 有序表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240902191719761.png" alt="image-20240902191719761"></p>
+<h1 id="8-链表"><a href="#8-链表" class="headerlink" title="8. 链表"></a>8. 链表</h1><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907221407142.png" alt="image-20240907221407142"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907221424840.png" alt="image-20240907221424840"></p>
+<h2 id="8-1-反转单向链表"><a href="#8-1-反转单向链表" class="headerlink" title="8.1 反转单向链表"></a>8.1 反转单向链表</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/?envType=problem-list-v2&envId=linked-list">https://leetcode.cn/problems/reverse-linked-list/?envType=problem-list-v2&amp;envId=linked-list</a></p>
+<h2 id="8-2-反转单向链表进阶"><a href="#8-2-反转单向链表进阶" class="headerlink" title="8.2 反转单向链表进阶"></a>8.2 反转单向链表进阶</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list-ii/submissions/562860540/?envType=problem-list-v2&envId=linked-list">https://leetcode.cn/problems/reverse-linked-list-ii/submissions/562860540/?envType=problem-list-v2&amp;envId=linked-list</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908155521318.png" alt="image-20240908155521318"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908162630023.png" alt="image-20240908162630023"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240908162707744.png" alt="image-20240908162707744"></p>
+<h2 id="8-3-反转单向链表hard"><a href="#8-3-反转单向链表hard" class="headerlink" title="8.3 反转单向链表hard"></a>8.3 反转单向链表hard</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0">https://www.bilibili.com/video/BV1sd4y1x7KN/?vd_source=51d632fc88dc2672d78996251d66eda0</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/submissions/562862051/">https://leetcode.cn/problems/reverse-nodes-in-k-group/submissions/562862051/</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909021915991.png" alt="image-20240909021915991"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909021945636.png" alt="image-20240909021945636"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240909022011490.png" alt="image-20240909022011490"></p>
+<h2 id="8-4-反转双向链表"><a href="#8-4-反转双向链表" class="headerlink" title="8.4 反转双向链表"></a>8.4 反转双向链表</h2><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240910150436745.png" alt="image-20240910150436745"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> DoubleListNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val  <span class="type">int</span></span><br><span class="line">	Next *DoubleListNode</span><br><span class="line">	Last *DoubleListNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseList</span><span class="params">(head *DoubleListNode)</span></span> *DoubleListNode &#123;</span><br><span class="line">	<span class="keyword">var</span> pre, next *DoubleListNode = <span class="literal">nil</span>, <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">		next = head.Next</span><br><span class="line">		head.Next = pre</span><br><span class="line">		head.Last = next</span><br><span class="line">		pre = head</span><br><span class="line">		head = next</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pre</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printList</span><span class="params">(head *DoubleListNode)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> head != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(head.Val)</span><br><span class="line">		head = head.Next</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	node1 := &amp;DoubleListNode&#123;Val: <span class="number">1</span>&#125;</span><br><span class="line">	node2 := &amp;DoubleListNode&#123;Val: <span class="number">2</span>&#125;</span><br><span class="line">	node3 := &amp;DoubleListNode&#123;Val: <span class="number">3</span>&#125;</span><br><span class="line">	node4 := &amp;DoubleListNode&#123;Val: <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line">	node1.Next = node2</span><br><span class="line">	node1.Last = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">	node2.Next = node3</span><br><span class="line">	node2.Last = node1</span><br><span class="line"></span><br><span class="line">	node3.Next = node4</span><br><span class="line">	node3.Last = node2</span><br><span class="line"></span><br><span class="line">	node4.Next = <span class="literal">nil</span></span><br><span class="line">	node4.Last = node3</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;原始链表：&quot;</span>)</span><br><span class="line">	printList(node1)</span><br><span class="line"></span><br><span class="line">	head := reverseList(node1)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">&quot;翻转后：&quot;</span>)</span><br><span class="line">	printList(head)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-5-打印两个有序链表的公共部分"><a href="#8-5-打印两个有序链表的公共部分" class="headerlink" title="8.5 打印两个有序链表的公共部分"></a>8.5 打印两个有序链表的公共部分</h2><p>【题目】 给定两个有序链表的头指针head1和head2， 打印两个链表的公共部分。<br>【要求】 如果两个链表的长度之和为N，时间复杂度要求为O(N)，额外空间复</p>
+<p>题目解析</p>
+<p>因为是有序链表，所以从两个链表的头结点开始判断：</p>
+<ul>
+<li>如果head1的值小于head2，那么head1下移</li>
+<li>如果head2的值小于head1，那么head2下移</li>
+<li>如果两者相同，那么打印这个值，然后head1和head2均下移</li>
+<li>head1或者head2中只要有一个移动到null，那么整个过程停止</li>
+</ul>
+<p>为什么不是谁大谁移动，而是谁小谁移动，因为链表有序，先移动大的话，大的更大，两个链表无法相等了，所以应该移动小的，让小的追赶大的。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> ListNode &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    ListNode() : val(<span class="number">0</span>), next(nullptr) &#123;&#125;</span><br><span class="line">    ListNode(<span class="type">int</span> x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="line">    ListNode(<span class="type">int</span> x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    void printCommon(ListNode* head1, ListNode *head2) &#123;</span><br><span class="line">        ListNode *curr1 = head1, *curr2 = head2;</span><br><span class="line">        while (curr1 != nullptr &amp;&amp; curr2 != nullptr)&#123;</span><br><span class="line">            <span class="keyword">if</span>(curr1 == curr2)&#123;</span><br><span class="line">                printf(<span class="string">&quot;%d\t&quot;</span>, curr1-&gt;val);</span><br><span class="line">                curr1 = curr1-&gt;next;</span><br><span class="line">                curr2 = curr2-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(curr1-&gt;val &lt; curr2-&gt;val)&#123;</span><br><span class="line">                curr1 = curr1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                curr2 = curr2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-6-LCR-027-回文链表"><a href="#8-6-LCR-027-回文链表" class="headerlink" title="8.6 LCR 027. 回文链表"></a>8.6 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/aMhZSa/">LCR 027. 回文链表</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/aMhZSa/submissions/563379831/">https://leetcode.cn/problems/aMhZSa/submissions/563379831/</a></p>
+<h2 id="8-7-86-分隔链表"><a href="#8-7-86-分隔链表" class="headerlink" title="8.7 86. 分隔链表"></a>8.7 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-list/">86. 分隔链表</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-list/submissions/563427899/?envType=problem-list-v2&envId=linked-list">https://leetcode.cn/problems/partition-list/submissions/563427899/?envType=problem-list-v2&amp;envId=linked-list</a></p>
+<h3 id="进阶：左边小、中间相等、右边大"><a href="#进阶：左边小、中间相等、右边大" class="headerlink" title="进阶：左边小、中间相等、右边大"></a>进阶：左边小、中间相等、右边大</h3><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240907223456704.png" alt="image-20240907223456704"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240910183333054.png" alt="image-20240910183333054"></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240910183410063.png" alt="image-20240910183410063"></p>
+<h2 id="8-8-138-随机链表的复制"><a href="#8-8-138-随机链表的复制" class="headerlink" title="8.8 138. 随机链表的复制"></a>8.8 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/">138. 随机链表的复制</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/submissions/564207757/">https://leetcode.cn/problems/copy-list-with-random-pointer/submissions/564207757/</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240910183452486.png" alt="image-20240910183452486"></p>
+<h2 id="8-9-相交链表-环形链表问题"><a href="#8-9-相交链表-环形链表问题" class="headerlink" title="8.9 相交链表&amp;环形链表问题"></a>8.9 相交链表&amp;环形链表问题</h2><h3 id="160-相交链表"><a href="#160-相交链表" class="headerlink" title="160. 相交链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160. 相交链表</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/submissions/564431481/">https://leetcode.cn/problems/intersection-of-two-linked-lists/submissions/564431481/</a></p>
+<h3 id="141-环形链表"><a href="#141-环形链表" class="headerlink" title="141. 环形链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/">141. 环形链表</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/submissions/564467475/">https://leetcode.cn/problems/linked-list-cycle/submissions/564467475/</a></p>
+<h3 id="142-环形链表-II"><a href="#142-环形链表-II" class="headerlink" title="142. 环形链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142. 环形链表 II</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/submissions/564464002/">https://leetcode.cn/problems/linked-list-cycle-ii/submissions/564464002/</a></p>
+<h4 id="快慢指针解法证明"><a href="#快慢指针解法证明" class="headerlink" title="快慢指针解法证明"></a>快慢指针解法证明</h4><p>重画链表如下所示，线上有若干个节点。记蓝色慢指针为 slow，红色快指针为 fast。初始时 slow 和 fast 均在头节点处。<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1715514553-RxQrzr-0208_2.png" alt="0208_2.png">使 slow 和 fast 同时前进，fast 的速度是 slow 的两倍。当 slow 抵达环的入口处时，fast 一定在环上，如下所示。<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1715514558-mCJsmw-0208_3.png" alt="0208_3.png">其中：</p>
+<ul>
+<li>head 和 A 的距离为 <em>z</em></li>
+<li>弧 AB (沿箭头方向) 的长度为 <em>x</em></li>
+<li>同理，弧 BA 的长度为 <em>y</em></li>
+</ul>
+<p>可得：</p>
+<ul>
+<li>slow 走过的步数为 <em>z</em></li>
+<li>设 fast 已经走过了 <em>k</em> 个环，<em>k</em>≥0，对应的步数为 <em>z</em>+<em>k</em>(<em>x</em>+<em>y</em>)+<em>x</em></li>
+</ul>
+<p>以上两个步数中，后者为前者的两倍，即 2<em>z</em>&#x3D;<em>z</em>+<em>k</em>(<em>x</em>+<em>y</em>)+<em>x</em> 化简可得 <em>z</em>&#x3D;<em>x</em>+<em>k</em>(<em>x</em>+<em>y</em>)，替换如下所示。</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1715514562-KmTrNr-0208_4.png" alt="0208_4.png">此时因为 fast 比 slow 快 1 个单位的速度，且<em>y</em> 为整数，所以再经过 <em>y</em> 个单位的时间即可追上 slow。</p>
+<p>即 slow 再走 <em>y</em> 步，fast 再走 2<em>y</em> 步。设相遇在 C 点，位置如下所示，可得弧 AC 长度为 <em>y</em>。<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1715514566-cEsEBC-0208_5.png" alt="0208_5.png">因为此前<em>x</em>+<em>y</em> 为环长，所以弧 CA 的长度为 <em>x</em>。 此时我们另用一橙色指针 ptr (pointer) 指向 head，如下所示。并使 ptr 和 slow 保持 1 个单位的速度前进，在经过 <em>z</em>&#x3D;<em>x</em>+<em>k</em>(<em>x</em>+<em>y</em>) 步后，可在 A 处相遇。<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/1715514569-ATwmZT-0208_6.png" alt="0208_6.png">再考虑链表无环的情况，fast 在追到 slow 之前就会指向空节点，退出循环即可。</p>
+<h3 id="进阶：链表可能有环也可能无环"><a href="#进阶：链表可能有环也可能无环" class="headerlink" title="进阶：链表可能有环也可能无环"></a>进阶：链表可能有环也可能无环</h3><p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240911184007261.png" alt="image-20240911184007261"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> class_03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Code_14_FindFirstIntersectNode</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="type">int</span> value;</span><br><span class="line">		<span class="keyword">public</span> Node next;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(<span class="type">int</span> data)</span> &#123;</span><br><span class="line">			<span class="built_in">this</span>.value = data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title function_">getIntersectNode</span><span class="params">(Node head1, Node head2)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (head1 == <span class="literal">null</span> || head2 == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">loop1</span> <span class="operator">=</span> getLoopNode(head1);</span><br><span class="line">		<span class="type">Node</span> <span class="variable">loop2</span> <span class="operator">=</span> getLoopNode(head2);</span><br><span class="line">		<span class="keyword">if</span> (loop1 == <span class="literal">null</span> &amp;&amp; loop2 == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> noLoop(head1, head2);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (loop1 != <span class="literal">null</span> &amp;&amp; loop2 != <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> bothLoop(head1, loop1, head2, loop2);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title function_">getLoopNode</span><span class="params">(Node head)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span> || head.next.next == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">n1</span> <span class="operator">=</span> head.next; <span class="comment">// n1 -&gt; slow</span></span><br><span class="line">		<span class="type">Node</span> <span class="variable">n2</span> <span class="operator">=</span> head.next.next; <span class="comment">// n2 -&gt; fast</span></span><br><span class="line">		<span class="keyword">while</span> (n1 != n2) &#123;</span><br><span class="line">			<span class="keyword">if</span> (n2.next == <span class="literal">null</span> || n2.next.next == <span class="literal">null</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			n2 = n2.next.next;</span><br><span class="line">			n1 = n1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		n2 = head; <span class="comment">// n2 -&gt; walk again from head</span></span><br><span class="line">		<span class="keyword">while</span> (n1 != n2) &#123;</span><br><span class="line">			n1 = n1.next;</span><br><span class="line">			n2 = n2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> n1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title function_">noLoop</span><span class="params">(Node head1, Node head2)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (head1 == <span class="literal">null</span> || head2 == <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">cur1</span> <span class="operator">=</span> head1;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">cur2</span> <span class="operator">=</span> head2;</span><br><span class="line">		<span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (cur1.next != <span class="literal">null</span>) &#123;</span><br><span class="line">			n++;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (cur2.next != <span class="literal">null</span>) &#123;</span><br><span class="line">			n--;</span><br><span class="line">			cur2 = cur2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (cur1 != cur2) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cur1 = n &gt; <span class="number">0</span> ? head1 : head2;</span><br><span class="line">		cur2 = cur1 == head1 ? head2 : head1;</span><br><span class="line">		n = Math.abs(n);</span><br><span class="line">		<span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">			n--;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (cur1 != cur2) &#123;</span><br><span class="line">			cur1 = cur1.next;</span><br><span class="line">			cur2 = cur2.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> cur1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title function_">bothLoop</span><span class="params">(Node head1, Node loop1, Node head2, Node loop2)</span> &#123;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">cur1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="type">Node</span> <span class="variable">cur2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (loop1 == loop2) &#123;</span><br><span class="line">			cur1 = head1;</span><br><span class="line">			cur2 = head2;</span><br><span class="line">			<span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span> (cur1 != loop1) &#123;</span><br><span class="line">				n++;</span><br><span class="line">				cur1 = cur1.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (cur2 != loop2) &#123;</span><br><span class="line">				n--;</span><br><span class="line">				cur2 = cur2.next;</span><br><span class="line">			&#125;</span><br><span class="line">			cur1 = n &gt; <span class="number">0</span> ? head1 : head2;</span><br><span class="line">			cur2 = cur1 == head1 ? head2 : head1;</span><br><span class="line">			n = Math.abs(n);</span><br><span class="line">			<span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">				n--;</span><br><span class="line">				cur1 = cur1.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span> (cur1 != cur2) &#123;</span><br><span class="line">				cur1 = cur1.next;</span><br><span class="line">				cur2 = cur2.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> cur1;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			cur1 = loop1.next;</span><br><span class="line">			<span class="keyword">while</span> (cur1 != loop1) &#123;</span><br><span class="line">				<span class="keyword">if</span> (cur1 == loop2) &#123;</span><br><span class="line">					<span class="keyword">return</span> loop1;</span><br><span class="line">				&#125;</span><br><span class="line">				cur1 = cur1.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">// 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7-&gt;null</span></span><br><span class="line">		<span class="type">Node</span> <span class="variable">head1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">1</span>);</span><br><span class="line">		head1.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">2</span>);</span><br><span class="line">		head1.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">3</span>);</span><br><span class="line">		head1.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">4</span>);</span><br><span class="line">		head1.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">5</span>);</span><br><span class="line">		head1.next.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">6</span>);</span><br><span class="line">		head1.next.next.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 0-&gt;9-&gt;8-&gt;6-&gt;7-&gt;null</span></span><br><span class="line">		<span class="type">Node</span> <span class="variable">head2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>);</span><br><span class="line">		head2.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">9</span>);</span><br><span class="line">		head2.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">8</span>);</span><br><span class="line">		head2.next.next.next = head1.next.next.next.next.next; <span class="comment">// 8-&gt;6</span></span><br><span class="line">		System.out.println(getIntersectNode(head1, head2).value);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7-&gt;4...</span></span><br><span class="line">		head1 = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">1</span>);</span><br><span class="line">		head1.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">2</span>);</span><br><span class="line">		head1.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">3</span>);</span><br><span class="line">		head1.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">4</span>);</span><br><span class="line">		head1.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">5</span>);</span><br><span class="line">		head1.next.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">6</span>);</span><br><span class="line">		head1.next.next.next.next.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">7</span>);</span><br><span class="line">		head1.next.next.next.next.next.next = head1.next.next.next; <span class="comment">// 7-&gt;4</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 0-&gt;9-&gt;8-&gt;2...</span></span><br><span class="line">		head2 = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>);</span><br><span class="line">		head2.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">9</span>);</span><br><span class="line">		head2.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">8</span>);</span><br><span class="line">		head2.next.next.next = head1.next; <span class="comment">// 8-&gt;2</span></span><br><span class="line">		System.out.println(getIntersectNode(head1, head2).value);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 0-&gt;9-&gt;8-&gt;6-&gt;4-&gt;5-&gt;6..</span></span><br><span class="line">		head2 = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>);</span><br><span class="line">		head2.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">9</span>);</span><br><span class="line">		head2.next.next = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">8</span>);</span><br><span class="line">		head2.next.next.next = head1.next.next.next.next.next; <span class="comment">// 8-&gt;6</span></span><br><span class="line">		System.out.println(getIntersectNode(head1, head2).value);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="9-二叉树"><a href="#9-二叉树" class="headerlink" title="9. 二叉树"></a>9. 二叉树</h1><h2 id="9-1-144-二叉树的前序遍历"><a href="#9-1-144-二叉树的前序遍历" class="headerlink" title="9.1 144. 二叉树的前序遍历"></a>9.1 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/566221642/">https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/566221642/</a></p>
+<h2 id="9-2-94-二叉树的中序遍历"><a href="#9-2-94-二叉树的中序遍历" class="headerlink" title="9.2 94. 二叉树的中序遍历"></a>9.2 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/submissions/566260507/">https://leetcode.cn/problems/binary-tree-inorder-traversal/submissions/566260507/</a></p>
+<h2 id="9-3-145-二叉树的后序遍历"><a href="#9-3-145-二叉树的后序遍历" class="headerlink" title="9.3 145. 二叉树的后序遍历"></a>9.3 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><p>每棵子树，整棵树左边界进栈，依次弹出的过程中，打印，对弹出节点的右树重复上述操作</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/submissions/566248493/">https://leetcode.cn/problems/binary-tree-postorder-traversal/submissions/566248493/</a></p>
+<h2 id="9-4-102-二叉树的层序遍历"><a href="#9-4-102-二叉树的层序遍历" class="headerlink" title="9.4 102. 二叉树的层序遍历"></a>9.4 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/submissions/566466618/">https://leetcode.cn/problems/binary-tree-level-order-traversal/submissions/566466618/</a></p>
+<h2 id="9-5-662-二叉树最大宽度"><a href="#9-5-662-二叉树最大宽度" class="headerlink" title="9.5 662. 二叉树最大宽度"></a>9.5 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/">662. 二叉树最大宽度</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-width-of-binary-tree/submissions/566748187/">https://leetcode.cn/problems/maximum-width-of-binary-tree/submissions/566748187/</a></p>
+<h2 id="9-6-104-二叉树的最大深度"><a href="#9-6-104-二叉树的最大深度" class="headerlink" title="9.6 104. 二叉树的最大深度"></a>9.6 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">104. 二叉树的最大深度</a></h2><p>非递归的解法，思路类似上面两题，此处不再赘述</p>
+<h2 id="9-7-98-验证二叉搜索树"><a href="#9-7-98-验证二叉搜索树" class="headerlink" title="9.7 98. 验证二叉搜索树"></a>9.7 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/submissions/568133510/">https://leetcode.cn/problems/validate-binary-search-tree/submissions/568133510/</a></p>
+<h2 id="9-8-958-二叉树的完全性检验"><a href="#9-8-958-二叉树的完全性检验" class="headerlink" title="9.8 958. 二叉树的完全性检验"></a>9.8 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><strong>思路：</strong></p>
+<p>按照层序遍历</p>
+<ol>
+<li>任一节点，有右无左，返回false</li>
+<li>在满足条件1的情况下，如果遇到了第一个左右子不全的节点，那么后续节点皆为叶节点</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/submissions/568132810/">https://leetcode.cn/problems/check-completeness-of-a-binary-tree/submissions/568132810/</a></p>
+<h2 id="9-9-判断一颗二叉树是否是满二叉树"><a href="#9-9-判断一颗二叉树是否是满二叉树" class="headerlink" title="9.9 判断一颗二叉树是否是满二叉树"></a>9.9 判断一颗二叉树是否是满二叉树</h2><p>思路：</p>
+<p>满二叉树满足 n &#x3D; 2^h - 1，其中n为节点个数，h为树的高度</p>
+<p><strong>二叉树题目套路：</strong></p>
+<p>递归，</p>
+<p>找左树要信息（高度，节点个数），找右树也要同样的信息</p>
+<p>在当前递归中也得出上述同样的信息</p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20240926082313050.png" alt="image-20240926082313050"></p>
+<h2 id="9-10-110-平衡二叉树"><a href="#9-10-110-平衡二叉树" class="headerlink" title="9.10 110. 平衡二叉树"></a>9.10 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/">110. 平衡二叉树</a></h2><p><strong>平衡二叉树</strong> 是指该树所有节点的左右子树的深度相差不超过 1。</p>
+<p><strong>二叉树题目套路：</strong></p>
+<p>递归，</p>
+<p>找左树要信息（是否为平衡二叉树，高度），找右树也要同样的信息</p>
+<p>最后判断 左平衡 &amp; 右平衡 &amp; ｜左高度 - 右高度｜&lt;&#x3D; 1</p>
+<p>在当前递归中也得出上述同样的信息</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/submissions/568138327/">https://leetcode.cn/problems/balanced-binary-tree/submissions/568138327/</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> nodeInfo <span class="keyword">struct</span> &#123;</span><br><span class="line">    height <span class="type">int</span></span><br><span class="line">    isBalance <span class="type">bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isBalanced</span><span class="params">(root *TreeNode)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    info := process(root)</span><br><span class="line">    <span class="keyword">return</span> info.isBalance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(root *TreeNode)</span></span> *nodeInfo &#123;</span><br><span class="line">    <span class="keyword">if</span> root == <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &amp;nodeInfo&#123;<span class="number">0</span>, <span class="literal">true</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    lInfo := process(root.Left)</span><br><span class="line">    rInfo := process(root.Right)</span><br><span class="line"></span><br><span class="line">    height := max(lInfo.height, rInfo.height) + <span class="number">1</span></span><br><span class="line">    isBalance := lInfo.isBalance &amp;&amp; rInfo.isBalance &amp;&amp; absSub(lInfo.height, rInfo.height) &lt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &amp;nodeInfo&#123;height, isBalance&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">absSub</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a - b</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> b - a</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">max</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id><a href="#" class="headerlink" title></a></h2><h1 id="10-贪心算法"><a href="#10-贪心算法" class="headerlink" title="10. 贪心算法"></a>10. 贪心算法</h1><h2 id="10-1-646-最长数对链"><a href="#10-1-646-最长数对链" class="headerlink" title="10.1 646. 最长数对链"></a>10.1 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-length-of-pair-chain/">646. 最长数对链</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-length-of-pair-chain/submissions/569941794/">https://leetcode.cn/problems/maximum-length-of-pair-chain/submissions/569941794/</a></p>
+<h2 id="10-2-435-无重叠区间"><a href="#10-2-435-无重叠区间" class="headerlink" title="10.2 435. 无重叠区间"></a>10.2 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-overlapping-intervals/">435. 无重叠区间</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-overlapping-intervals/submissions/569955403/">https://leetcode.cn/problems/non-overlapping-intervals/submissions/569955403/</a></p>
+<h1 id="11-设计"><a href="#11-设计" class="headerlink" title="11. 设计"></a>11. 设计</h1><h2 id="11-1-LRU缓存"><a href="#11-1-LRU缓存" class="headerlink" title="11.1 LRU缓存"></a>11.1 LRU缓存</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/submissions/571650143/">https://leetcode.cn/problems/lru-cache/submissions/571650143/</a></p>
+<p><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241010003130387.png" alt="image-20241010003130387"></p>
+<p>1.为什么用双向链表而不是单向链表？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将某个节点移动到链表头部或者将链表尾部节点删去，都要用到删除链表中某个节点这个操作。你想要删除链表中的某个节点，需要找到该节点的前驱节点和后继节点。对于寻找后继节点，单向链表和双向链表都能通过 next 指针在O(1)时间内完成；对于寻找前驱节点，单向链表需要从头开始找，也就是要O(n)时间，双向链表可以通过前向指针直接找到，需要O(1)时间。综上，要想在O(1)时间内完成该操作，当然需要双向链表，实际上就是用双向链表空间换时间了。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实际上单向链表也是可以的，代码会变得很恶心，链表头部存最少访问的元素，在map里存储对应结点的上一个结点，访问、删除时都要多更新当前元素的下一个元素</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 2.为什么链表节点需要同时存储 key 和 value，而不是仅仅只存储 value？ </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因为删去最近最少使用的键值对时，要删除链表的尾节点，如果节点中没有存储 key，那么怎么知道是哪个 key 被删除，进而在 map 中删去该 key 对应的 key-value 呢？</span><br><span class="line">因为删去最近最少使用的键值对时，要删除链表的尾节点并且要删除map中的key-value，而如果尾节点没有存储key，那么就找不到要在map中删除哪个key，因此节点必须存储key。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="11-2-LFU缓存"><a href="#11-2-LFU缓存" class="headerlink" title="11.2 LFU缓存"></a>11.2 LFU缓存</h2><img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103141873.png" alt="image-20241011103141873" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103202673.png" alt="image-20241011103202673" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103214976.png" alt="image-20241011103214976" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103233386.png" alt="image-20241011103233386" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103243480.png" alt="image-20241011103243480" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103253836.png" alt="image-20241011103253836" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103307468.png" alt="image-20241011103307468" style="zoom:50%;">
+
+<img src="/2024/08/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/image-20241011103317548.png" alt="image-20241011103317548" style="zoom:50%;">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Node <span class="keyword">struct</span> &#123;</span><br><span class="line">    key   <span class="type">int</span></span><br><span class="line">    value <span class="type">int</span></span><br><span class="line">    freq  <span class="type">int</span></span><br><span class="line">    pre   *Node</span><br><span class="line">    next  *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> DoubleLinkedList <span class="keyword">struct</span> &#123;</span><br><span class="line">    size <span class="type">int</span></span><br><span class="line">    head *Node</span><br><span class="line">    tail *Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> LFUCache <span class="keyword">struct</span> &#123;</span><br><span class="line">    size     <span class="type">int</span></span><br><span class="line">    capacity <span class="type">int</span></span><br><span class="line">    min      <span class="type">int</span></span><br><span class="line">    freqMap  <span class="keyword">map</span>[<span class="type">int</span>]*DoubleLinkedList</span><br><span class="line">    nodeMap  <span class="keyword">map</span>[<span class="type">int</span>]*Node</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initLinkedList</span><span class="params">()</span></span> *DoubleLinkedList &#123;</span><br><span class="line">    head, tail := &amp;Node&#123;&#125;, &amp;Node&#123;&#125;</span><br><span class="line">    head.next = tail</span><br><span class="line">    tail.pre = head</span><br><span class="line">    <span class="keyword">return</span> &amp;DoubleLinkedList&#123;</span><br><span class="line">        size: <span class="number">0</span>,</span><br><span class="line">        head: head,</span><br><span class="line">        tail: tail,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">(capacity <span class="type">int</span>)</span></span> LFUCache &#123;</span><br><span class="line">    <span class="keyword">return</span> LFUCache&#123;</span><br><span class="line">        size:     <span class="number">0</span>,</span><br><span class="line">        capacity: capacity,</span><br><span class="line">        freqMap:  <span class="keyword">map</span>[<span class="type">int</span>]*DoubleLinkedList&#123;&#125;,</span><br><span class="line">        nodeMap:  <span class="keyword">map</span>[<span class="type">int</span>]*Node&#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 比LRU复杂的地方，在于多了freq，同freq里依然是LRU =&gt; freq map（双向链表） + 节点map</span></span><br><span class="line"><span class="comment">// GET：</span></span><br><span class="line"><span class="comment">//      1、使用节点 map 在 O(1) 取 node</span></span><br><span class="line"><span class="comment">//        2、更新 freq map，从原freq链表中删除，插入到 freq+1 的链表中</span></span><br><span class="line"><span class="comment">//        3、原 freq 变空的话，是否要更新 min freq</span></span><br><span class="line"><span class="comment">// PUT：</span></span><br><span class="line"><span class="comment">//        1、添加到节点 map、freq[1] 链表中</span></span><br><span class="line"><span class="comment">//        2、更新 min freq 为 1</span></span><br><span class="line"><span class="comment">//        3、容量满了后，删去 min freq 链表中的尾部节点</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LFUCache)</span></span> Get(key <span class="type">int</span>) <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> node, ok := this.nodeMap[key]; ok &#123;</span><br><span class="line">        this.update(node)</span><br><span class="line">        <span class="keyword">return</span> node.value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LFUCache)</span></span> update(node *Node) &#123;</span><br><span class="line">    freq := node.freq</span><br><span class="line">    this.remove(freq, node)</span><br><span class="line">    <span class="keyword">if</span> this.min == freq &amp;&amp; this.freqMap[freq].size == <span class="number">0</span> &#123;</span><br><span class="line">        this.min += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    node.freq += <span class="number">1</span></span><br><span class="line">    this.insert(freq+<span class="number">1</span>, node)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LFUCache)</span></span> remove(freq <span class="type">int</span>, node *Node) &#123;</span><br><span class="line">    <span class="keyword">if</span> list, ok := this.freqMap[freq]; ok &#123;</span><br><span class="line">        <span class="comment">//    pre &lt;=&gt; node &lt;=&gt; next</span></span><br><span class="line">      	<span class="comment">//    pre &lt;=&gt; next</span></span><br><span class="line">        node.pre.next = node.next</span><br><span class="line">        node.next.pre = node.pre</span><br><span class="line">        list.size--</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LFUCache)</span></span> insert(freq <span class="type">int</span>, node *Node) &#123;</span><br><span class="line">    <span class="keyword">var</span> list *DoubleLinkedList</span><br><span class="line">    <span class="keyword">if</span> l, ok := this.freqMap[freq]; ok &#123;</span><br><span class="line">        list = l</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        list = initLinkedList()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    head &lt;=&gt; next</span></span><br><span class="line">  	<span class="comment">//    head &lt;=&gt; node &lt;=&gt; next</span></span><br><span class="line">    head := list.head</span><br><span class="line">    next := head.next</span><br><span class="line">    node.next = next</span><br><span class="line">    next.pre = node</span><br><span class="line">    head.next = node</span><br><span class="line">    node.pre = head</span><br><span class="line">    list.size += <span class="number">1</span></span><br><span class="line">    this.freqMap[freq] = list</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *LFUCache)</span></span> Put(key <span class="type">int</span>, value <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> this.capacity == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> node, ok := this.nodeMap[key]; ok &#123;</span><br><span class="line">        node.value = value</span><br><span class="line">        this.update(node)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(this.nodeMap) == this.capacity &#123;</span><br><span class="line">            <span class="keyword">if</span> minList, ok := this.freqMap[this.min]; ok &#123;</span><br><span class="line">                last := minList.tail.pre</span><br><span class="line">                this.remove(this.min, last)</span><br><span class="line">                <span class="built_in">delete</span>(this.nodeMap, last.key)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        node := &amp;Node&#123;</span><br><span class="line">            key:   key,</span><br><span class="line">            value: value,</span><br><span class="line">            freq:  <span class="number">1</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        this.insert(<span class="number">1</span>, node)</span><br><span class="line">        this.nodeMap[key] = node</span><br><span class="line">        this.min = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="12-二分法"><a href="#12-二分法" class="headerlink" title="12. 二分法"></a>12. 二分法</h1><h2 id="1-704-二分查找"><a href="#1-704-二分查找" class="headerlink" title="1. 704. 二分查找"></a>1. <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/">704. 二分查找</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/submissions/573502401/">https://leetcode.cn/problems/binary-search/submissions/573502401/</a></p>
+<h2 id="2-153-寻找旋转排序数组中的最小值"><a href="#2-153-寻找旋转排序数组中的最小值" class="headerlink" title="2. 153. 寻找旋转排序数组中的最小值"></a>2. <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/">153. 寻找旋转排序数组中的最小值</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/submissions/573593708/">https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/submissions/573593708/</a></p>
+<h1 id="13-数组"><a href="#13-数组" class="headerlink" title="13. 数组"></a>13. 数组</h1><h2 id="1-27-移除元素"><a href="#1-27-移除元素" class="headerlink" title="1. 27. 移除元素"></a>1. <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/">27. 移除元素</a></h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/submissions/573607410/">https://leetcode.cn/problems/remove-element/submissions/573607410/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/24/golang%E5%88%87%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/retrospro.png">
+      <meta itemprop="name" content="Eric Hao">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | RETROSPRO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/24/golang%E5%88%87%E7%89%87/" class="post-title-link" itemprop="url">golang切片</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-24 16:38:21" itemprop="dateCreated datePublished" datetime="2024-08-24T16:38:21+08:00">2024-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-29 02:02:36" itemprop="dateModified" datetime="2024-08-29T02:02:36+08:00">2024-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/golang/" itemprop="url" rel="index"><span itemprop="name">golang</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/golang/golang%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">golang基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-make切片时，是否指定size有什么区别？"><a href="#1-make切片时，是否指定size有什么区别？" class="headerlink" title="1. make切片时，是否指定size有什么区别？"></a>1. make切片时，是否指定size有什么区别？</h1><p><strong>切片是否指定size有什么区别呢？</strong><br><strong>例如：</strong><br><strong>slice :&#x3D; make([]int)</strong><br><strong>slice :&#x3D; make([]int, 5)</strong></p>
+<p>在 Go 语言中，<code>make</code> 函数用于创建切片时，是否指定 <code>size</code>（即长度）会影响切片的初始状态。下面解释两种情况下的区别：</p>
+<h3 id="1-不指定长度"><a href="#1-不指定长度" class="headerlink" title="1. 不指定长度"></a>1. 不指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：如果你这样创建切片，由于没有指定长度和容量，Go 将会报错，因为 <code>make([]int)</code> 语法是无效的。</li>
+<li><strong>原因</strong>：<code>make</code> 函数在用于创建切片时至少需要一个参数（长度），你必须指定切片的初始长度。</li>
+</ul>
+<p>因此，你需要至少指定长度，像下面这样：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个长度为 0 的切片，其容量也为 0。这是一个空的切片，但仍然可以追加元素。</p>
+<h3 id="2-指定长度"><a href="#2-指定长度" class="headerlink" title="2. 指定长度"></a>2. 指定长度</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>行为</strong>：这段代码创建了一个长度为 5 的切片，其容量也为 5。切片中的 5 个元素会被初始化为类型 <code>int</code> 的零值（即 0）。切片的底层数组会包含 5 个元素。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(slice) <span class="comment">// 输出: [0 0 0 0 0]</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(slice)) <span class="comment">// 输出: 5</span></span><br><span class="line">fmt.Println(<span class="built_in">cap</span>(slice)) <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ol>
+<li><p><strong>未指定长度（非法操作）</strong>：如果你不指定长度并直接调用 <code>make([]int)</code>，Go 编译器会报错，因为这种用法是不合法的。你至少需要指定长度。</p>
+</li>
+<li><p><strong>指定长度</strong>：当你指定长度时，切片会被创建并初始化为指定长度的切片。它的容量和长度都等于你指定的长度。如果你在创建切片时指定的长度为 5，那么切片将包含 5 个元素，所有元素的初始值为 0。</p>
+</li>
+<li><p><strong>创建空切片</strong>：如果你需要一个空切片（长度为 0），你可以这样写：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个切片的长度和容量都为 0，可以使用 <code>append</code> 函数向其中添加元素，容量会根据需要自动扩展。</p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在创建切片时，必须至少指定长度。指定长度的切片会分配一个具有该长度的底层数组，未指定长度（即长度为 0）时，你得到的是一个空切片。</p>
+<h1 id="2-make切片时，是否指定容量有什么区别？"><a href="#2-make切片时，是否指定容量有什么区别？" class="headerlink" title="2. make切片时，是否指定容量有什么区别？"></a>2. make切片时，是否指定容量有什么区别？</h1><ul>
+<li><p><strong>未指定容量</strong>：当你使用 <code>make([]T, len)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 的切片，并且容量（capacity）等于长度。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个长度和容量均为 5 的切片。切片的所有元素都会被初始化为类型 <code>T</code> 的零值（比如对于 <code>int</code> 类型，零值是 0）。</p>
+</li>
+<li><p><strong>指定容量</strong>：当你使用 <code>make([]T, len, cap)</code> 创建切片时，<code>make</code> 会创建一个长度为 <code>len</code> 且容量为 <code>cap</code> 的切片。容量可以比长度大。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这段代码创建了一个长度为 5、容量为 10 的切片。这意味着虽然切片的当前长度是 5，但它最多可以扩展到 10 个元素而无需重新分配内存。</p>
+</li>
+</ul>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>如果不指定容量，Go 会将容量设置为与长度相同。</li>
+<li>如果指定了容量，Go 会为切片预留更多的空间。这在切片需要频繁追加元素的场景下非常有用，因为预先指定较大的容量可以减少在追加元素时的内存重新分配操作，提高性能。</li>
+</ul>
+<h2 id="3-slice避坑指南"><a href="#3-slice避坑指南" class="headerlink" title="3. slice避坑指南"></a>3. slice避坑指南</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.bilibili.com/video/BV1EL4y1P7hh?p=5&amp;vd_source=51d632fc88dc2672d78996251d66eda0</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -725,7 +1347,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-24 00:00:09" itemprop="dateModified" datetime="2024-08-24T00:00:09+08:00">2024-08-24</time>
+      <time title="修改时间：2024-10-16 14:24:20" itemprop="dateModified" datetime="2024-10-16T14:24:20+08:00">2024-10-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
