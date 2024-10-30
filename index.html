@@ -221,7 +221,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-10-27 16:29:44 / 修改时间：16:46:45" itemprop="dateCreated datePublished" datetime="2024-10-27T16:29:44+08:00">2024-10-27</time>
+      <time title="创建时间：2024-10-27 16:29:44 / 修改时间：22:04:12" itemprop="dateCreated datePublished" datetime="2024-10-27T16:29:44+08:00">2024-10-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -250,12 +250,20 @@
 <li>在多进程中如何使用 epoll</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://aimuke.github.io/nginx/2019/06/20/nginx-concurrent/#%E6%A0%B8%E5%BF%83nginx%E9%87%87%E7%94%A8%E7%9A%84-io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8Bepoll">https://aimuke.github.io/nginx/2019/06/20/nginx-concurrent/#%E6%A0%B8%E5%BF%83nginx%E9%87%87%E7%94%A8%E7%9A%84-io%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%9E%8Bepoll</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/WuDan_1112/article/details/126147231#:~:text=%E5%9C%A8%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%97%B6%E5%80%99,%E5%A4%9A%E5%B0%91%E4%B8%AAworker%E5%AD%90%E8%BF%9B%E7%A8%8B%E3%80%82">https://blog.csdn.net/WuDan_1112/article/details/126147231#:~:text=%E5%9C%A8%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%97%B6%E5%80%99,%E5%A4%9A%E5%B0%91%E4%B8%AAworker%E5%AD%90%E8%BF%9B%E7%A8%8B%E3%80%82</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.linkinstars.com/post/dbe65928.html">https://www.linkinstars.com/post/dbe65928.html</a></p>
 <p><img src="/2024/10/27/nginx/image-20241027163901391.png" alt="image-20241027163901391"></p>
 <p>针对红框处，以下是我的理解：</p>
 <blockquote>
 <p>socket创建，bind，listen都在master进程完成，然后再fork子进程，每个子进程都会 accept，有新的连接进来，子进程生成与客户端通信的 socket套接字，所以准确的表述应该是：每个worker都有自己的 epoll对象，也有自己的“与客户端通信的socket套接字”，但是监听的socket是一样的，因为监听的操作在 master进程进行。</p>
 </blockquote>
+<p><a target="_blank" rel="noopener" href="https://plantegg.github.io/2019/10/31/epoll%E5%92%8C%E6%83%8A%E7%BE%A4/">https://plantegg.github.io/2019/10/31/epoll%E5%92%8C%E6%83%8A%E7%BE%A4/</a></p>
+<p>下面这张图，为什么不是accept在前，epoll的三个函数在后，只把accept返回的connfd加入 epoll，这样不就不会有epoll导致的惊群了吗？</p>
+<img src="/2024/10/27/nginx/image-20241027215130456.png" alt="image-20241027215130456" style="zoom:50%;">
+
+<p>下面的博客质量很高：</p>
+<p><a target="_blank" rel="noopener" href="https://wenfh2020.com/category/">https://wenfh2020.com/category/</a></p>
+<img src="/2024/10/27/nginx/image-20241027220357879.png" alt="image-20241027220357879" style="zoom: 50%;">
 
       
     </div>
